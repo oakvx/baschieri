@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baschieri — Utensili Professionali | Scandiano</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,800;1,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #080809;
+  --deep: #0f1013;
+  --steel: #161920;
+  --iron: #1e2228;
+  --rust: #d44010;
+  --rust2: #f05a1e;
+  --amber: #f0a020;
+  --chrome: #c0c8d8;
+  --silver: #7a8494;
+  --white: #eef0f5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+#cur{position:fixed;width:12px;height:12px;background:var(--rust2);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s,background .2s}
+#cur-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(240,90,30,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:22px;height:22px;background:var(--amber)}
+body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:64px;height:64px;border-color:var(--amber)}
+
+/* PROGRESS */
+#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));z-index:9999;width:0%;box-shadow:0 0 14px var(--rust2)}
+
+/* CANVAS */
+#sc{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.75}
+
+/* NOISE */
+.noise{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:22px 56px;transition:background .4s,padding .4s}
+nav.s{background:rgba(8,8,9,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,64,16,.2);padding:14px 56px}
+.nlogo{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.14em;color:var(--white);text-decoration:none}
+.nlogo .dot{color:var(--rust)}
+.nlinks{display:flex;gap:40px;list-style:none}
+.nlinks a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);text-decoration:none;position:relative;transition:color .2s}
+.nlinks a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--rust);transform:scaleX(0);transition:transform .3s}
+.nlinks a:hover{color:var(--white)}
+.nlinks a:hover::after{transform:scaleX(1)}
+.ncta{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--white);text-decoration:none;border:1px solid var(--rust);padding:10px 24px;position:relative;overflow:hidden;transition:color .3s}
+.ncta::before{content:'';position:absolute;inset:0;background:var(--rust);transform:translateX(-101%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.ncta:hover::before{transform:translateX(0)}
+.ncta span{position:relative;z-index:1}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 56px;position:relative;overflow:hidden}
+.bg-gear{position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:680px;height:680px;opacity:.04;animation:spin 60s linear infinite}
+.bg-gear2{position:absolute;left:-120px;bottom:-80px;width:380px;height:380px;opacity:.03;animation:spin 40s linear infinite reverse}
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+.bg-gear2{animation:spin2 40s linear infinite reverse}
+@keyframes spin2{to{transform:rotate(360deg)}}
+
+.h-eye{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust2);margin-bottom:28px;display:flex;align-items:center;gap:16px;opacity:0;animation:fsu .8s .2s ease forwards}
+.h-eye::before{content:'';display:block;width:40px;height:1px;background:var(--rust2)}
+
+.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,12vw,176px);line-height:.88;letter-spacing:.02em}
+.h-title .line{display:block;overflow:hidden}
+.h-title .li{display:block;transform:translateY(110%);animation:reveal .9s cubic-bezier(.16,1,.3,1) forwards}
+.h-title .line:nth-child(1) .li{animation-delay:.4s}
+.h-title .line:nth-child(2) .li{animation-delay:.55s;color:var(--rust)}
+.h-title .line:nth-child(3) .li{animation-delay:.7s;-webkit-text-stroke:1px rgba(255,255,255,.2);color:transparent}
+@keyframes reveal{to{transform:translateY(0)}}
+
+.h-sub{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;opacity:0;animation:fsu .8s 1s ease forwards}
+.h-desc{font-size:17px;line-height:1.65;color:var(--silver);max-width:420px}
+.h-acts{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+
+.btn-p{position:relative;display:inline-block;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:18px 48px;background:var(--rust);color:var(--white);overflow:hidden;transition:transform .3s}
+.btn-p::after{content:'';position:absolute;inset:0;background:var(--rust2);clip-path:circle(0% at 50% 50%);transition:clip-path .5s}
+.btn-p:hover::after{clip-path:circle(150% at 50% 50%)}
+.btn-p span{position:relative;z-index:1}
+.btn-g{position:relative;display:inline-block;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:18px 48px;color:var(--chrome);border:1px solid rgba(192,200,216,.25);overflow:hidden;transition:transform .3s}
+.btn-g::before{content:'';position:absolute;inset:0;background:rgba(192,200,216,.06);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.btn-g:hover::before{transform:scaleX(1)}
+.btn-g span{position:relative;z-index:1}
+
+/* STATS BAR */
+.sbar{position:absolute;bottom:0;left:0;right:0;background:var(--iron);border-top:1px solid rgba(212,64,16,.3);display:grid;grid-template-columns:repeat(4,1fr);opacity:0;animation:fsu .8s 1.3s ease forwards}
+.si{padding:26px 36px;border-right:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden}
+.si::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rust),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.si:hover::before{transform:scaleX(1)}
+.sn{font-family:'Bebas Neue',sans-serif;font-size:50px;line-height:1;color:var(--white);display:flex;align-items:baseline;gap:4px}
+.sn .a{color:var(--rust2)}
+.sl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-top:6px}
+
+/* MARQUEE */
+.mwrap{background:var(--rust);padding:15px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:3}
+.mtrack{display:inline-flex;animation:mq 25s linear infinite}
+.mtrack.rev{animation-direction:reverse;animation-duration:18s}
+.mi{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.18em;color:rgba(255,255,255,.85);padding:0 36px}
+.mi::before{content:'✦  ';opacity:.5}
+.mwrap2{background:var(--iron)}
+.mwrap2 .mi{color:rgba(200,200,220,.4);font-size:12px}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{position:relative;z-index:3}
+.sec{padding:130px 56px}
+.slbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust2);margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.slbl::before{content:'';display:block;width:28px;height:1px;background:var(--rust2)}
+.stit{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,90px);line-height:.92;color:var(--white);margin-bottom:80px}
+.stit .gh{-webkit-text-stroke:1px rgba(255,255,255,.12);color:transparent}
+
+/* PRODUCTS */
+#prodotti{background:var(--steel)}
+.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.pc{background:var(--iron);padding:40px 32px 48px;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.25,.46,.45,.94);transform-style:preserve-3d}
+.pc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,64,16,.08),transparent 60%);opacity:0;transition:opacity .4s}
+.pc:hover{transform:translateY(-6px)}
+.pc:hover::before{opacity:1}
+.pcl{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
+.pc:hover .pcl{transform:scaleX(1)}
+.pico{font-size:52px;margin-bottom:28px;display:block;transition:transform .4s,filter .4s}
+.pc:hover .pico{transform:scale(1.15) rotate(-8deg);filter:drop-shadow(0 8px 20px rgba(212,64,16,.4))}
+.pname{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--white);margin-bottom:10px}
+.pdesc{font-size:14px;line-height:1.65;color:var(--silver)}
+.ptag{position:absolute;top:18px;right:18px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--rust2);opacity:0;transition:opacity .3s}
+.pc:hover .ptag{opacity:1}
+
+/* PARALLAX BANNER */
+.pban{height:480px;position:relative;overflow:hidden;background:var(--deep);display:flex;align-items:center;justify-content:center}
+.pbb{position:absolute;inset:-80px;background:repeating-linear-gradient(45deg,transparent 0px,transparent 30px,rgba(212,64,16,.04) 30px,rgba(212,64,16,.04) 31px);will-change:transform}
+.pbc{position:relative;z-index:2;text-align:center}
+.pbig{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,10vw,140px);letter-spacing:.06em;color:transparent;-webkit-text-stroke:1px rgba(240,90,30,.3);line-height:.9;user-select:none}
+.pbig .fill{-webkit-text-stroke:0;color:var(--white)}
+.psub{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust2);margin-top:24px}
+
+/* COUNTERS */
+.csec{background:var(--steel);padding:100px 56px}
+.cgrid{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(255,255,255,.05)}
+.cc{padding:56px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden}
+.cc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));transform:scaleX(0);transition:transform .6s}
+.cc.iv::after{transform:scaleX(1)}
+.cv{font-family:'Bebas Neue',sans-serif;font-size:68px;line-height:1;color:var(--white);display:flex;align-items:baseline;justify-content:center;gap:2px}
+.csu{font-size:34px;color:var(--rust2)}
+.clbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);margin-top:10px}
+
+/* PERCHÉ */
+#perche{background:var(--black)}
+.plo{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
+.rstack{}
+.rcard{background:var(--steel);padding:40px;border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;transition:transform .4s,box-shadow .4s;margin-bottom:18px}
+.rcard::before{content:'"';position:absolute;top:-20px;left:20px;font-family:'Bebas Neue',sans-serif;font-size:120px;color:var(--rust);opacity:.12;line-height:1}
+.rcard:hover{transform:translateX(8px);box-shadow:-4px 0 0 var(--rust)}
+.rstars{color:var(--amber);font-size:18px;letter-spacing:3px;margin-bottom:14px}
+.rtxt{font-size:16px;line-height:1.7;color:var(--chrome);font-style:italic;margin-bottom:18px}
+.rname{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust2)}
+.sbig{background:var(--rust);padding:36px 40px;display:flex;align-items:center;gap:24px;margin-bottom:18px}
+.snum{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:1;color:var(--white)}
+.sinf{}
+.slb{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
+.scnt{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--white)}
+.sbigs{font-size:26px;letter-spacing:5px;color:var(--amber);margin-top:6px}
+.reasons{}
+.rrow{display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.05);position:relative}
+.rrow::before{content:'';position:absolute;left:-56px;right:-56px;inset-block:0;background:rgba(212,64,16,.04);opacity:0;transition:opacity .3s}
+.rrow:hover::before{opacity:1}
+.rnum{font-family:'Bebas Neue',sans-serif;font-size:46px;color:var(--rust);line-height:1;opacity:.5}
+.rtitle{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--white);margin-bottom:8px}
+.rbody{font-size:14px;line-height:1.7;color:var(--silver)}
+
+/* ORARI */
+#orari{background:var(--deep)}
+.olo{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.schedule{}
+.srow{display:flex;align-items:center;justify-content:space-between;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:padding-left .3s;cursor:default}
+.srow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rust);transform:scaleY(0);transition:transform .3s}
+.srow:hover{padding-left:16px}
+.srow:hover::before,.srow.td::before{transform:scaleY(1)}
+.srow.td{background:rgba(212,64,16,.06)}
+.sday{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--silver)}
+.srow.td .sday{color:var(--rust2)}
+.sbadge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:3px 8px;margin-left:10px}
+.stime{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;color:var(--white)}
+.sclosed{color:var(--silver);opacity:.4;font-size:16px}
+.cpanel{display:flex;flex-direction:column;gap:2px}
+.cblk{background:var(--iron);padding:30px 34px;display:flex;align-items:flex-start;gap:20px;transition:background .3s,transform .3s}
+.cblk:hover{background:rgba(212,64,16,.08);transform:translateX(4px)}
+.cico{font-size:28px;flex-shrink:0}
+.clb2{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust2);margin-bottom:8px}
+.cv2{font-size:17px;color:var(--white);line-height:1.5}
+.cv2 a{color:var(--white);text-decoration:none;transition:color .2s}
+.cv2 a:hover{color:var(--rust2)}
+
+/* MAP */
+.mapsec{height:420px;background:var(--black);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+#mc{position:absolute;inset:0;width:100%;height:100%}
+.mapo{position:relative;z-index:2;text-align:center}
+.maptit{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.14em;color:var(--white);margin-bottom:6px}
+.mapsub{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--silver);margin-bottom:20px}
+.mapbtn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--rust);text-decoration:none;padding:12px 28px;display:inline-block;transition:background .2s,transform .2s;box-shadow:0 0 40px rgba(212,64,16,.4)}
+.mapbtn:hover{background:var(--rust2);transform:translateY(-3px)}
+
+/* FOOTER */
+footer{background:var(--deep);padding:64px 56px 40px;border-top:1px solid rgba(212,64,16,.2);position:relative;z-index:3}
+.ftop{display:grid;grid-template-columns:2fr 1fr 1fr;gap:64px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px}
+.fbrand{display:flex;flex-direction:column;gap:16px}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:.1em;line-height:1}
+.flogo .dot{color:var(--rust)}
+.ftag2{font-size:14px;color:var(--silver);line-height:1.6;max-width:280px}
+.fct{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:22px}
+.flinks{list-style:none;display:flex;flex-direction:column;gap:12px}
+.flinks a{font-size:14px;color:var(--silver);text-decoration:none;transition:color .2s,padding-left .2s;display:block}
+.flinks a:hover{color:var(--white);padding-left:8px}
+.fbot{display:flex;justify-content:space-between;align-items:center}
+.fcopy{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--silver)}
+.fph{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.08em;color:var(--chrome)}
+
+/* GLITCH */
+.glitch{position:relative}
+.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
+.glitch::before{left:2px;text-shadow:-2px 0 var(--rust);clip-path:polygon(0 0,100% 0,100% 33%,0 33%);animation:g1 4s infinite linear alternate-reverse}
+.glitch::after{left:-2px;text-shadow:2px 0 var(--amber);clip-path:polygon(0 66%,100% 66%,100% 100%,0 100%);animation:g2 4s infinite linear alternate}
+@keyframes g1{0%,90%,100%{transform:none;opacity:0}91%{transform:translateX(-2px);opacity:1}93%{transform:translateX(2px);opacity:1}95%{opacity:0}}
+@keyframes g2{0%,87%,100%{transform:none;opacity:0}88%{transform:translateX(2px);opacity:1}90%{transform:translateX(-2px);opacity:1}92%{opacity:0}}
+
+/* REVEALS */
+.rv{opacity:0;transform:translateY(50px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
+.rvl{opacity:0;transform:translateX(-50px);transition:opacity .8s ease,transform .8s ease}
+.rvr{opacity:0;transform:translateX(50px);transition:opacity .8s ease,transform .8s ease}
+.rv.vis,.rvl.vis,.rvr.vis{opacity:1;transform:none}
+.stg>*{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+.stg.vis>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+.stg.vis>*:nth-child(2){opacity:1;transform:none;transition-delay:.12s}
+.stg.vis>*:nth-child(3){opacity:1;transform:none;transition-delay:.19s}
+.stg.vis>*:nth-child(4){opacity:1;transform:none;transition-delay:.26s}
+.stg.vis>*:nth-child(5){opacity:1;transform:none;transition-delay:.33s}
+.stg.vis>*:nth-child(6){opacity:1;transform:none;transition-delay:.40s}
+.stg.vis>*:nth-child(7){opacity:1;transform:none;transition-delay:.47s}
+.stg.vis>*:nth-child(8){opacity:1;transform:none;transition-delay:.54s}
+
+@keyframes fsu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes bnc{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 24px}
+  .nlinks{display:none}
+  .sec{padding:80px 24px}
+  .hero{padding:0 24px}
+  .h-sub{grid-template-columns:1fr;gap:32px}
+  .sbar{grid-template-columns:repeat(2,1fr)}
+  .pgrid{grid-template-columns:repeat(2,1fr)}
+  .plo{grid-template-columns:1fr;gap:48px}
+  .olo{grid-template-columns:1fr;gap:48px}
+  .cgrid{grid-template-columns:repeat(2,1fr)}
+  .ftop{grid-template-columns:1fr;gap:40px}
+  .fbot{flex-direction:column;gap:16px;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+<div id="pbar"></div>
+<canvas id="sc"></canvas>
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nlogo">BASCHIERI<span class="dot">.</span></a>
+  <ul class="nlinks">
+    <li><a href="#prodotti">Prodotti</a></li>
+    <li><a href="#perche">Chi siamo</a></li>
+    <li><a href="#orari">Orari</a></li>
+    <li><a href="#orari">Contatti</a></li>
+  </ul>
+  <a href="tel:0522982772" class="ncta"><span>☎ &nbsp;0522 982772</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <svg class="bg-gear" viewBox="0 0 100 100" fill="none"><path fill="white" d="M43.3 5.2l-2.7 8.3a35 35 0 00-8.8 3.7L23.5 13l-9 9 4.2 8.3a35 35 0 00-3.7 8.8l-8.3 2.7v12.7l8.3 2.7a35 35 0 003.7 8.8L14.5 75l9 9 8.3-4.2a35 35 0 008.8 3.7l2.7 8.3h12.7l2.7-8.3a35 35 0 008.8-3.7l8.3 4.2 9-9-4.2-8.3a35 35 0 003.7-8.8l8.3-2.7V43.3l-8.3-2.7a35 35 0 00-3.7-8.8L85.5 23l-9-9-8.3 4.2a35 35 0 00-8.8-3.7L56.7 5.2H43.3zm6.7 22a23 23 0 110 46 23 23 0 010-46z"/></svg>
+  <svg class="bg-gear2" viewBox="0 0 100 100" fill="none"><path fill="white" d="M43.3 5.2l-2.7 8.3a35 35 0 00-8.8 3.7L23.5 13l-9 9 4.2 8.3a35 35 0 00-3.7 8.8l-8.3 2.7v12.7l8.3 2.7a35 35 0 003.7 8.8L14.5 75l9 9 8.3-4.2a35 35 0 008.8 3.7l2.7 8.3h12.7l2.7-8.3a35 35 0 008.8-3.7l8.3 4.2 9-9-4.2-8.3a35 35 0 003.7-8.8l8.3-2.7V43.3l-8.3-2.7a35 35 0 00-3.7-8.8L85.5 23l-9-9-8.3 4.2a35 35 0 00-8.8-3.7L56.7 5.2H43.3zm6.7 22a23 23 0 110 46 23 23 0 010-46z"/></svg>
+
+  <div class="h-eye">Dal 1970 — Scandiano, Reggio Emilia — Provincia RE</div>
+  <h1 class="h-title">
+    <span class="line"><span class="li">BASCHIERI</span></span>
+    <span class="line"><span class="li glitch" data-text="UTENSILI">UTENSILI</span></span>
+    <span class="line"><span class="li">PROFESSIONALI</span></span>
+  </h1>
+  <div class="h-sub">
+    <p class="h-desc">Il riferimento per professionisti e officine nel cuore dell'Emilia. Dagli utensili manuali alle parti di ricambio per camion — in un solo posto, con personale competente e consegna rapida.</p>
+    <div class="h-acts">
+      <a href="#prodotti" class="btn-p"><span>Esplora i prodotti →</span></a>
+      <a href="#orari" class="btn-g"><span>Orari & posizione</span></a>
+    </div>
+  </div>
+  <div class="sbar">
+    <div class="si"><div class="sn"><span class="cnt" data-t="4.6" data-d="1">0</span><span class="a">/5</span></div><div class="sl">Rating Google</div></div>
+    <div class="si"><div class="sn"><span class="cnt" data-t="4675" data-d="0">0</span><span class="a">+</span></div><div class="sl">Recensioni</div></div>
+    <div class="si"><div class="sn"><span class="cnt" data-t="50" data-d="0">0</span><span class="a">+</span></div><div class="sl">Anni attività</div></div>
+    <div class="si"><div class="sn"><span class="cnt" data-t="8" data-d="0">0</span><span class="a">K+</span></div><div class="sl">Prodotti disponibili</div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mwrap"><div class="mtrack"><span class="mi">Utensili manuali</span><span class="mi">Ricambi veicoli</span><span class="mi">Ferramenta</span><span class="mi">Prodotti industriali</span><span class="mi">DPI Sicurezza</span><span class="mi">Lubrificanti</span><span class="mi">Utensili elettrici</span><span class="mi">Consegna rapida</span><span class="mi">Utensili manuali</span><span class="mi">Ricambi veicoli</span><span class="mi">Ferramenta</span><span class="mi">Prodotti industriali</span><span class="mi">DPI Sicurezza</span><span class="mi">Lubrificanti</span><span class="mi">Utensili elettrici</span><span class="mi">Consegna rapida</span></div></div>
+<div class="mwrap mwrap2"><div class="mtrack rev"><span class="mi">Scandiano</span><span class="mi">Reggio Emilia</span><span class="mi">Centro Comm. Futura</span><span class="mi">Via Statale 28</span><span class="mi">Superstore Coop</span><span class="mi">0522 982772</span><span class="mi">Scandiano</span><span class="mi">Reggio Emilia</span><span class="mi">Centro Comm. Futura</span><span class="mi">Via Statale 28</span><span class="mi">Superstore Coop</span><span class="mi">0522 982772</span></div></div>
+
+<!-- PRODOTTI -->
+<section id="prodotti" class="sec">
+  <div class="slbl rv">I nostri prodotti</div>
+  <h2 class="stit rv">TUTTO QUELLO <span class="gh">CHE TI SERVE</span></h2>
+  <div class="pgrid stg">
+    <div class="pc"><span class="ptag">Bestseller</span><span class="pico">🔧</span><div class="pname">Utensili Manuali</div><div class="pdesc">Chiavi, pinze, cacciaviti, martelli. Attrezzatura completa per ogni tipo di lavoro professionale.</div><div class="pcl"></div></div>
+    <div class="pc"><span class="ptag">Richiesto</span><span class="pico">⚙️</span><div class="pname">Ricambi Veicoli</div><div class="pdesc">Componenti per auto, furgoni, camion e mezzi pesanti. Originali e compatibili, qualità garantita.</div><div class="pcl"></div></div>
+    <div class="pc"><span class="ptag">Industriale</span><span class="pico">🏭</span><div class="pname">Prodotti Industriali</div><div class="pdesc">Fornitura continuativa per officine, fabbriche, aziende artigiane e laboratori professionali.</div><div class="pcl"></div></div>
+    <div class="pc"><span class="ptag">Ampio stock</span><span class="pico">🪛</span><div class="pname">Ferramenta</div><div class="pdesc">Viti, bulloni, guarnizioni, raccorderia, tasselli e tutto per riparazioni e montaggi precisi.</div><div class="pcl"></div></div>
+    <div class="pc"><span class="ptag">Pro grade</span><span class="pico">🔌</span><div class="pname">Utensili Elettrici</div><div class="pdesc">Trapani, smerigliatrici, avvitatori elettrici e a batteria. I brand leader per professionisti.</div><div class="pcl"></div></div>
+    <div class="pc"><span class="ptag">Manutenzione</span><span class="pico">🪣</span><div class="pname">Lubrificanti & Chimica</div><div class="pdesc">Lubrificanti, disossidanti, sigillanti, sgrassatori. Prodotti chimici per manutenzione seria.</div><div class="pcl"></div></div>
+    <div class="pc"><span class="ptag">Normativa</span><span class="pico">🦺</span><div class="pname">DPI & Sicurezza</div><div class="pdesc">Dispositivi di protezione individuale conformi normativa EU per ambienti di lavoro sicuri.</div><div class="pcl"></div></div>
+    <div class="pc"><span class="ptag">Su richiesta</span><span class="pico">📦</span><div class="pname">Ordini Speciali</div><div class="pdesc">Non trovi ciò che cerchi? Gestiamo ordini su misura e forniture personalizzate per aziende.</div><div class="pcl"></div></div>
+  </div>
+</section>
+
+<!-- PARALLAX -->
+<div class="pban"><div class="pbb" id="pbg"></div><div class="pbc"><div class="pbig">OLTRE <span class="fill">50</span> ANNI<br>DI <span class="fill">ESPERIENZA</span></div><div class="psub">✦ &nbsp; Scandiano · Reggio Emilia · Dal 1970 &nbsp; ✦</div></div></div>
+
+<!-- COUNTERS -->
+<div class="csec"><div class="cgrid stg" id="cgrid">
+  <div class="cc"><div class="cv"><span class="cn" data-t="50">0</span><span class="csu">+</span></div><div class="clbl">Anni di attività</div></div>
+  <div class="cc"><div class="cv"><span class="cn" data-t="4675">0</span></div><div class="clbl">Recensioni Google</div></div>
+  <div class="cc"><div class="cv"><span class="cn" data-t="8000">0</span><span class="csu">+</span></div><div class="clbl">Referenze a stock</div></div>
+  <div class="cc"><div class="cv"><span class="cn" data-t="46">0</span><span class="csu">/50</span></div><div class="clbl">Punteggio qualità</div></div>
+  <div class="cc"><div class="cv"><span class="cn" data-t="24">0</span><span class="csu">h</span></div><div class="clbl">Consegna ordini</div></div>
+</div></div>
+
+<!-- PERCHÉ -->
+<section id="perche" class="sec">
+  <div class="slbl rv">Perché Baschieri</div>
+  <h2 class="stit rv">FIDUCIA &<br><span class="gh">COMPETENZA</span></h2>
+  <div class="plo">
+    <div class="rstack rvl">
+      <div class="sbig"><div class="snum">4.6</div><div class="sinf"><div class="slb">Valutazione media Google</div><div class="scnt">4.675 recensioni</div><div class="sbigs">★★★★★</div></div></div>
+      <div class="rcard"><div class="rstars">★★★★★</div><div class="rtxt">"Ben fornito. Ho trovato tutto quello di cui avevamo bisogno per riparare il nostro camion."</div><div class="rname">— Gabriele Ferrazzi</div></div>
+      <div class="rcard"><div class="rstars">★★★★★</div><div class="rtxt">"Mi sono sempre trovato bene, gentili, cordiali e puntuali nella consegna. Consiglio vivamente."</div><div class="rname">— Sandro Rubbiani</div></div>
+    </div>
+    <div class="reasons rvr">
+      <div class="rrow"><div class="rnum">01</div><div><div class="rtitle">Esperienza Decennale</div><div class="rbody">Oltre 50 anni di attività nel settore. Un patrimonio di competenze al servizio di professionisti e appassionati della provincia.</div></div></div>
+      <div class="rrow"><div class="rnum">02</div><div><div class="rtitle">Magazzino Completo</div><div class="rbody">Migliaia di referenze sempre disponibili. Dal piccolo hobbista al trasportatore con camion, trovi ciò che cerchi.</div></div></div>
+      <div class="rrow"><div class="rnum">03</div><div><div class="rtitle">Consegna Rapida</div><div class="rbody">Gestione ordini efficiente con consegne in 24h. La tua officina non si ferma mai per mancanza di materiale.</div></div></div>
+      <div class="rrow"><div class="rnum">04</div><div><div class="rtitle">Staff Qualificato</div><div class="rbody">Personale gentile, cordiale e preparato. Ti aiutano a trovare il pezzo giusto risparmiando tempo e denaro.</div></div></div>
+      <div class="rrow"><div class="rnum">05</div><div><div class="rtitle">Posizione Strategica</div><div class="rbody">All'interno del Centro Comm. Futura di Scandiano. Facilmente raggiungibile da Reggio Emilia, Modena e hinterland.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORARI -->
+<section id="orari" class="sec" style="background:var(--deep)">
+  <div class="slbl rv">Vieni a trovarci</div>
+  <h2 class="stit rv">ORARI &<br><span class="gh">CONTATTI</span></h2>
+  <div class="olo">
+    <div class="rvl">
+      <div class="schedule" id="sched">
+        <div class="srow" data-d="1"><span class="sday">Lunedì</span><span class="stime sclosed">Chiuso</span></div>
+        <div class="srow" data-d="2"><span class="sday">Martedì</span><span class="stime">08:30 – 18:30</span></div>
+        <div class="srow" data-d="3"><span class="sday">Mercoledì</span><span class="stime">08:30 – 18:30</span></div>
+        <div class="srow" data-d="4"><span class="sday">Giovedì</span><span class="stime">08:30 – 18:30</span></div>
+        <div class="srow" data-d="5"><span class="sday">Venerdì</span><span class="stime">08:30 – 18:30</span></div>
+        <div class="srow" data-d="6"><span class="sday">Sabato</span><span class="stime">08:30 – 12:30</span></div>
+        <div class="srow" data-d="0"><span class="sday">Domenica</span><span class="stime sclosed">Chiuso</span></div>
+      </div>
+    </div>
+    <div class="cpanel rvr">
+      <div class="cblk"><div class="cico">📍</div><div><div class="clb2">Indirizzo</div><div class="cv2">Via Statale, 28 · 42013 Scandiano (RE)<br><small style="color:var(--silver);font-size:13px">Centro Comm. "Futura" · Superstore Coop</small></div></div></div>
+      <div class="cblk"><div class="cico">📞</div><div><div class="clb2">Telefono</div><div class="cv2"><a href="tel:0522982772">0522 982772</a></div></div></div>
+      <div class="cblk"><div class="cico">🚗</div><div><div class="clb2">Come arrivare</div><div class="cv2" style="color:var(--silver);font-size:15px">14 min da Reggio Emilia<br>51 min da Bologna<br><small>Parcheggio gratuito al Centro Commerciale</small></div></div></div>
+      <div class="cblk"><div class="cico">🗺️</div><div><div class="clb2">Google Maps</div><div class="cv2"><a href="https://maps.google.com/?q=Baschieri+Via+Statale+28+Scandiano" target="_blank">Apri navigazione →</a></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="mapsec"><canvas id="mc"></canvas><div class="mapo"><div style="font-size:56px;margin-bottom:12px;animation:bnc 2s ease-in-out infinite">📍</div><div class="maptit">BASCHIERI — SCANDIANO RE</div><div class="mapsub">Via Statale, 28 · 42013 Scandiano · Centro Comm. Futura</div><a href="https://maps.google.com/?q=Baschieri+Via+Statale+28+Scandiano" target="_blank" class="mapbtn">Apri in Google Maps →</a></div></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ftop">
+    <div class="fbrand">
+      <div class="flogo">BASCHIERI<span class="dot">.</span></div>
+      <div class="ftag2">Il punto di riferimento per professionisti e officine in provincia di Reggio Emilia. Utensili, ricambi e ferramenta dal 1970.</div>
+    </div>
+    <div><div class="fct">Navigazione</div><ul class="flinks"><li><a href="#prodotti">Prodotti</a></li><li><a href="#perche">Chi siamo</a></li><li><a href="#orari">Orari</a></li><li><a href="#orari">Contatti</a></li></ul></div>
+    <div><div class="fct">Informazioni</div><ul class="flinks"><li><a href="#">Via Statale 28, Scandiano</a></li><li><a href="tel:0522982772">0522 982772</a></li><li><a href="#">Provincia di Reggio Emilia</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <div class="fcopy">© 2024 Baschieri — Negozio di Utensili · Scandiano RE</div>
+    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--silver)">Lun: Chiuso · Mar–Ven: 08:30–18:30 · Sab: 08:30–12:30</div>
+    <div class="fph">0522 982772</div>
+  </div>
+</footer>
+
+<script>
+/* ─── CURSOR ─── */
+const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animR)})();
+
+/* ─── PROGRESS ─── */
+const pb=document.getElementById('pbar');
+window.addEventListener('scroll',()=>pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%');
+
+/* ─── NAV ─── */
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>60));
+
+/* ─── SPARK CANVAS ─── */
+const sc=document.getElementById('sc'),cx=sc.getContext('2d');
+let W,H;function rsz(){W=sc.width=innerWidth;H=sc.height=innerHeight}
+window.addEventListener('resize',rsz);rsz();
+class P{
+  constructor(x,y,m){
+    this.x=x??Math.random()*W;this.y=y??Math.random()*H;this.m=m;
+    this.vx=(Math.random()-.5)*(m?9:1.5);this.vy=(Math.random()-1)*(m?9:2);
+    this.a=m?1:Math.random()*.5+.1;this.sz=m?Math.random()*3+1:Math.random()*1.5+.5;
+    this.c=m?(Math.random()>.5?'#ffd060':'#f05a1e'):`hsl(${20+Math.random()*20},80%,${50+Math.random()*30}%)`;
+    this.life=m?80:Math.random()*120+60;this.ml=this.life;this.g=m?.15:.03;
+  }
+  update(){this.x+=this.vx;this.y+=this.vy;this.vy+=this.g;if(!this.m)this.vx*=.99;this.life--;this.a=(this.life/this.ml)*(this.m?1:.4)}
+  draw(){cx.save();cx.globalAlpha=Math.max(0,this.a);cx.fillStyle=this.c;cx.shadowColor=this.c;cx.shadowBlur=this.m?14:4;cx.beginPath();cx.arc(this.x,this.y,this.sz,0,Math.PI*2);cx.fill();cx.restore()}
+}
+let ps=[];
+for(let i=0;i<80;i++)ps.push(new P());
+document.addEventListener('mousemove',e=>{for(let i=0;i<4;i++)ps.push(new P(e.clientX,e.clientY,true))});
+document.addEventListener('click',e=>{for(let i=0;i<24;i++)ps.push(new P(e.clientX,e.clientY,true))});
+(function anim(){cx.clearRect(0,0,W,H);ps=ps.filter(p=>p.life>0);while(ps.filter(p=>!p.m).length<80)ps.push(new P());ps.forEach(p=>{p.update();p.draw()});requestAnimationFrame(anim)})();
+
+/* ─── MAP CANVAS ─── */
+const mc=document.getElementById('mc'),mctx=mc.getContext('2d');
+function rsm(){mc.width=mc.parentElement.offsetWidth;mc.height=mc.parentElement.offsetHeight}
+window.addEventListener('resize',rsm);rsm();
+(function dm(){
+  mctx.clearRect(0,0,mc.width,mc.height);
+  const sp=36;
+  for(let x=0;x<mc.width+sp;x+=sp)for(let y=0;y<mc.height+sp;y+=sp){
+    const d=Math.sqrt((x-mc.width/2)**2+(y-mc.height/2)**2);
+    const md=Math.sqrt((mc.width/2)**2+(mc.height/2)**2);
+    mctx.fillStyle=`rgba(212,64,16,${.06*(1-d/md)+.01})`;
+    mctx.beginPath();mctx.arc(x,y,1.5,0,Math.PI*2);mctx.fill();
+  }
+  mctx.strokeStyle='rgba(212,64,16,.15)';mctx.lineWidth=1.5;
+  [[0,.5,1,.5],[.5,0,.5,1],[.2,.2,.8,.8],[.1,.7,.9,.3]].forEach(([x1,y1,x2,y2])=>{
+    mctx.beginPath();mctx.moveTo(x1*mc.width,y1*mc.height);mctx.lineTo(x2*mc.width,y2*mc.height);mctx.stroke();
+  });
+  const t=Date.now()/1000,pls=(Math.sin(t*2)*.5+.5);
+  mctx.strokeStyle=`rgba(212,64,16,${.35*pls})`;mctx.lineWidth=1;
+  mctx.beginPath();mctx.arc(mc.width/2,mc.height/2,60+40*pls,0,Math.PI*2);mctx.stroke();
+  mctx.beginPath();mctx.arc(mc.width/2,mc.height/2,18+8*pls,0,Math.PI*2);
+  mctx.fillStyle=`rgba(212,64,16,${.2*pls})`;mctx.fill();
+  requestAnimationFrame(dm);
+})();
+
+/* ─── PARALLAX ─── */
+const pbg=document.getElementById('pbg');
+window.addEventListener('scroll',()=>{
+  const r=pbg.parentElement.getBoundingClientRect();
+  if(r.bottom>0&&r.top<innerHeight)pbg.style.transform=`translateY(${(r.top/innerHeight)*60}px)`;
+});
+
+/* ─── TODAY HIGHLIGHT ─── */
+const td=new Date().getDay();
+document.querySelectorAll('.srow').forEach(r=>{
+  if(parseInt(r.dataset.d)===td){
+    r.classList.add('td');
+    const b=document.createElement('span');b.className='sbadge';b.textContent='Oggi';
+    r.querySelector('.sday').appendChild(b);
+  }
+});
+
+/* ─── COUNTERS ─── */
+function animCount(el,target,dur,dec){
+  const s=performance.now();
+  (function tick(now){
+    const t=Math.min((now-s)/dur,1),e=1-Math.pow(1-t,3),v=e*target;
+    el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('it-IT');
+    if(t<1)requestAnimationFrame(tick);
+  })(performance.now());
+}
+new IntersectionObserver((ents,obs)=>{
+  ents.forEach(en=>{if(!en.isIntersecting)return;
+    en.target.classList.add('iv');
+    en.target.querySelectorAll('.cn').forEach(el=>animCount(el,+el.dataset.t,2000,0));
+    obs.unobserve(en.target);
+  });
+},{threshold:.3}).observe(document.getElementById('cgrid'));
+
+/* Hero stat counters */
+const hObs=new IntersectionObserver((ents,obs)=>{
+  ents.forEach(en=>{if(!en.isIntersecting)return;
+    const el=en.target,t=parseFloat(el.dataset.t),d=parseInt(el.dataset.d)||0;
+    animCount(el,t,1800,d);obs.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('.cnt').forEach(el=>hObs.observe(el));
+
+/* ─── SCROLL REVEAL ─── */
+const rvObs=new IntersectionObserver(ents=>{
+  ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('vis');rvObs.unobserve(en.target)}});
+},{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr,.stg').forEach(el=>rvObs.observe(el));
+
+/* ─── 3D TILT ─── */
+document.querySelectorAll('.pc').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`perspective(800px) rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-6px)`;
+  });
+  c.addEventListener('mouseleave',()=>c.style.transform='');
+});
+
+/* ─── MAGNETIC BUTTONS ─── */
+document.querySelectorAll('.btn-p,.btn-g,.ncta').forEach(b=>{
+  b.addEventListener('mousemove',e=>{
+    const r=b.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;
+    b.style.transform=`translate(${x*.28}px,${y*.45}px)`;
+  });
+  b.addEventListener('mouseleave',()=>b.style.transform='');
+});
+
+/* ─── TYPEWRITER on hero tag ─── */
+const eye=document.querySelector('.h-eye');
+const txt='Dal 1970 — Scandiano, Reggio Emilia — Provincia RE';
+eye.textContent='';
+setTimeout(()=>{
+  let i=0;
+  (function type(){
+    if(i<txt.length){eye.textContent=txt.slice(0,++i);setTimeout(type,28)}
+  })();
+},800);
+</script>
+</body>
+</html>
