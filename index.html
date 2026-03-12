@@ -1,544 +1,2938 @@
 <!DOCTYPE html>
 <html lang="it">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Baschieri — Utensili Professionali | Scandiano</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,800;1,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --black: #080809;
-  --deep: #0f1013;
-  --steel: #161920;
-  --iron: #1e2228;
-  --rust: #d44010;
-  --rust2: #f05a1e;
-  --amber: #f0a020;
-  --chrome: #c0c8d8;
-  --silver: #7a8494;
-  --white: #eef0f5;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--white);font-family:'Barlow Condensed',sans-serif;font-weight:300;overflow-x:hidden;cursor:none}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Snake Garage — Officina Meccanica · Reggio Emilia</title>
+    <meta name="description" content="Snake Garage. Officina meccanica a Reggio Emilia dal 2006. Precisione tecnica, diagnosi elettronica, tagliandi e riparazioni." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --void: #030806;
+            --deep: #07110d;
+            --surface: #0c1813;
+            --panel: #11201a;
+            --gold: #2cff85;
+            --gold-lt: #9dffbf;
+            --gold-dk: #0f7f47;
+            --cream: #d9ffea;
+            --parch: #f2fff8;
+            --mid: #7eb79a;
+            --dim: #294438;
+            --rule: rgba(44, 255, 133, 0.22);
+            --rule-lt: rgba(44, 255, 133, 0.10);
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+            --font-tech: 'Oxanium', sans-serif;
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in: cubic-bezier(0.7, 0, 0.84, 0);
+        }
 
-/* CURSOR */
-#cur{position:fixed;width:12px;height:12px;background:var(--rust2);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .2s,height .2s,background .2s}
-#cur-ring{position:fixed;width:40px;height:40px;border:1px solid rgba(240,90,30,.5);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .3s,height .3s,border-color .3s}
-body:has(a:hover) #cur,body:has(button:hover) #cur{width:22px;height:22px;background:var(--amber)}
-body:has(a:hover) #cur-ring,body:has(button:hover) #cur-ring{width:64px;height:64px;border-color:var(--amber)}
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* PROGRESS */
-#pbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));z-index:9999;width:0%;box-shadow:0 0 14px var(--rust2)}
+        html {
+            scroll-behavior: auto;
+        }
 
-/* CANVAS */
-#sc{position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.75}
+        body {
+            background:
+                radial-gradient(circle at 20% 10%, rgba(44, 255, 133, .06), transparent 28%),
+                radial-gradient(circle at 80% 0%, rgba(157, 255, 191, .04), transparent 24%),
+                var(--void);
+            color: var(--cream);
+            font-family: var(--font-body);
+            font-weight: 400;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            cursor: none;
+        }
 
-/* NOISE */
-.noise{position:fixed;inset:0;pointer-events:none;z-index:2;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+            opacity: .028;
+            mix-blend-mode: overlay;
+        }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:space-between;align-items:center;padding:22px 56px;transition:background .4s,padding .4s}
-nav.s{background:rgba(8,8,9,.96);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,64,16,.2);padding:14px 56px}
-.nlogo{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.14em;color:var(--white);text-decoration:none}
-.nlogo .dot{color:var(--rust)}
-.nlinks{display:flex;gap:40px;list-style:none}
-.nlinks a{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);text-decoration:none;position:relative;transition:color .2s}
-.nlinks a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--rust);transform:scaleX(0);transition:transform .3s}
-.nlinks a:hover{color:var(--white)}
-.nlinks a:hover::after{transform:scaleX(1)}
-.ncta{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--white);text-decoration:none;border:1px solid var(--rust);padding:10px 24px;position:relative;overflow:hidden;transition:color .3s}
-.ncta::before{content:'';position:absolute;inset:0;background:var(--rust);transform:translateX(-101%);transition:transform .3s cubic-bezier(.4,0,.2,1)}
-.ncta:hover::before{transform:translateX(0)}
-.ncta span{position:relative;z-index:1}
+        #c-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--gold-lt);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: transform .08s, background .3s;
+            box-shadow: 0 0 14px rgba(44, 255, 133, .55);
+        }
 
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0 56px;position:relative;overflow:hidden}
-.bg-gear{position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:680px;height:680px;opacity:.04;animation:spin 60s linear infinite}
-.bg-gear2{position:absolute;left:-120px;bottom:-80px;width:380px;height:380px;opacity:.03;animation:spin 40s linear infinite reverse}
-@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
-.bg-gear2{animation:spin2 40s linear infinite reverse}
-@keyframes spin2{to{transform:rotate(360deg)}}
+        #c-ring {
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(44, 255, 133, .36);
+            border-radius: 50%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9997;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: width .4s var(--ease-out), height .4s var(--ease-out), border-color .4s, opacity .3s;
+        }
 
-.h-eye{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust2);margin-bottom:28px;display:flex;align-items:center;gap:16px;opacity:0;animation:fsu .8s .2s ease forwards}
-.h-eye::before{content:'';display:block;width:40px;height:1px;background:var(--rust2)}
+        body.hovering #c-ring {
+            width: 72px;
+            height: 72px;
+            border-color: rgba(157, 255, 191, .78);
+        }
 
-.h-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,12vw,176px);line-height:.88;letter-spacing:.02em}
-.h-title .line{display:block;overflow:hidden}
-.h-title .li{display:block;transform:translateY(110%);animation:reveal .9s cubic-bezier(.16,1,.3,1) forwards}
-.h-title .line:nth-child(1) .li{animation-delay:.4s}
-.h-title .line:nth-child(2) .li{animation-delay:.55s;color:var(--rust)}
-.h-title .line:nth-child(3) .li{animation-delay:.7s;-webkit-text-stroke:1px rgba(255,255,255,.2);color:transparent}
-@keyframes reveal{to{transform:translateY(0)}}
+        #prog {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, var(--gold-dk), var(--gold-lt));
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 9000;
+            opacity: .8;
+            transition: transform .05s linear;
+            box-shadow: 0 0 14px rgba(44, 255, 133, .35);
+        }
 
-.h-sub{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;opacity:0;animation:fsu .8s 1s ease forwards}
-.h-desc{font-size:17px;line-height:1.65;color:var(--silver);max-width:420px}
-.h-acts{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 8000;
+            padding: 0 clamp(2rem, 5vw, 5rem);
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background .5s, border-color .5s;
+        }
 
-.btn-p{position:relative;display:inline-block;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:18px 48px;background:var(--rust);color:var(--white);overflow:hidden;transition:transform .3s}
-.btn-p::after{content:'';position:absolute;inset:0;background:var(--rust2);clip-path:circle(0% at 50% 50%);transition:clip-path .5s}
-.btn-p:hover::after{clip-path:circle(150% at 50% 50%)}
-.btn-p span{position:relative;z-index:1}
-.btn-g{position:relative;display:inline-block;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:18px 48px;color:var(--chrome);border:1px solid rgba(192,200,216,.25);overflow:hidden;transition:transform .3s}
-.btn-g::before{content:'';position:absolute;inset:0;background:rgba(192,200,216,.06);transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.btn-g:hover::before{transform:scaleX(1)}
-.btn-g span{position:relative;z-index:1}
+        nav.scrolled {
+            background: rgba(3, 8, 6, .86);
+            backdrop-filter: blur(24px) saturate(140%);
+            border-bottom: 1px solid rgba(44, 255, 133, .08);
+        }
 
-/* STATS BAR */
-.sbar{position:absolute;bottom:0;left:0;right:0;background:var(--iron);border-top:1px solid rgba(212,64,16,.3);display:grid;grid-template-columns:repeat(4,1fr);opacity:0;animation:fsu .8s 1.3s ease forwards}
-.si{padding:26px 36px;border-right:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden}
-.si::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rust),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s}
-.si:hover::before{transform:scaleX(1)}
-.sn{font-family:'Bebas Neue',sans-serif;font-size:50px;line-height:1;color:var(--white);display:flex;align-items:baseline;gap:4px}
-.sn .a{color:var(--rust2)}
-.sl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-top:6px}
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            position: relative;
+            z-index: 1;
+        }
 
-/* MARQUEE */
-.mwrap{background:var(--rust);padding:15px 0;overflow:hidden;white-space:nowrap;position:relative;z-index:3}
-.mtrack{display:inline-flex;animation:mq 25s linear infinite}
-.mtrack.rev{animation-direction:reverse;animation-duration:18s}
-.mi{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.18em;color:rgba(255,255,255,.85);padding:0 36px}
-.mi::before{content:'✦  ';opacity:.5}
-.mwrap2{background:var(--iron)}
-.mwrap2 .mi{color:rgba(200,200,220,.4);font-size:12px}
-@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+        .nav-logo-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: .04em;
+            color: var(--parch);
+            line-height: 1;
+        }
 
-/* SECTIONS */
-section{position:relative;z-index:3}
-.sec{padding:130px 56px}
-.slbl{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust2);margin-bottom:16px;display:flex;align-items:center;gap:14px}
-.slbl::before{content:'';display:block;width:28px;height:1px;background:var(--rust2)}
-.stit{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,6vw,90px);line-height:.92;color:var(--white);margin-bottom:80px}
-.stit .gh{-webkit-text-stroke:1px rgba(255,255,255,.12);color:transparent}
+        .nav-logo-sub {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .48rem;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            line-height: 1;
+        }
 
-/* PRODUCTS */
-#prodotti{background:var(--steel)}
-.pgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
-.pc{background:var(--iron);padding:40px 32px 48px;position:relative;overflow:hidden;transition:transform .4s cubic-bezier(.25,.46,.45,.94);transform-style:preserve-3d}
-.pc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,64,16,.08),transparent 60%);opacity:0;transition:opacity .4s}
-.pc:hover{transform:translateY(-6px)}
-.pc:hover::before{opacity:1}
-.pcl{position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.25,.46,.45,.94)}
-.pc:hover .pcl{transform:scaleX(1)}
-.pico{font-size:52px;margin-bottom:28px;display:block;transition:transform .4s,filter .4s}
-.pc:hover .pico{transform:scale(1.15) rotate(-8deg);filter:drop-shadow(0 8px 20px rgba(212,64,16,.4))}
-.pname{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--white);margin-bottom:10px}
-.pdesc{font-size:14px;line-height:1.65;color:var(--silver)}
-.ptag{position:absolute;top:18px;right:18px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--rust2);opacity:0;transition:opacity .3s}
-.pc:hover .ptag{opacity:1}
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
 
-/* PARALLAX BANNER */
-.pban{height:480px;position:relative;overflow:hidden;background:var(--deep);display:flex;align-items:center;justify-content:center}
-.pbb{position:absolute;inset:-80px;background:repeating-linear-gradient(45deg,transparent 0px,transparent 30px,rgba(212,64,16,.04) 30px,rgba(212,64,16,.04) 31px);will-change:transform}
-.pbc{position:relative;z-index:2;text-align:center}
-.pbig{font-family:'Bebas Neue',sans-serif;font-size:clamp(60px,10vw,140px);letter-spacing:.06em;color:transparent;-webkit-text-stroke:1px rgba(240,90,30,.3);line-height:.9;user-select:none}
-.pbig .fill{-webkit-text-stroke:0;color:var(--white)}
-.psub{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--rust2);margin-top:24px}
+        .nav-center a {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .58rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(232, 226, 212, .5);
+            text-decoration: none;
+            transition: color .3s;
+            padding: .2rem 0;
+            position: relative;
+        }
 
-/* COUNTERS */
-.csec{background:var(--steel);padding:100px 56px}
-.cgrid{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(255,255,255,.05)}
-.cc{padding:56px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden}
-.cc::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rust),var(--amber));transform:scaleX(0);transition:transform .6s}
-.cc.iv::after{transform:scaleX(1)}
-.cv{font-family:'Bebas Neue',sans-serif;font-size:68px;line-height:1;color:var(--white);display:flex;align-items:baseline;justify-content:center;gap:2px}
-.csu{font-size:34px;color:var(--rust2)}
-.clbl{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--silver);margin-top:10px}
+        .nav-center a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--gold);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform .4s var(--ease-out);
+        }
 
-/* PERCHÉ */
-#perche{background:var(--black)}
-.plo{display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start}
-.rstack{}
-.rcard{background:var(--steel);padding:40px;border:1px solid rgba(255,255,255,.05);position:relative;overflow:hidden;transition:transform .4s,box-shadow .4s;margin-bottom:18px}
-.rcard::before{content:'"';position:absolute;top:-20px;left:20px;font-family:'Bebas Neue',sans-serif;font-size:120px;color:var(--rust);opacity:.12;line-height:1}
-.rcard:hover{transform:translateX(8px);box-shadow:-4px 0 0 var(--rust)}
-.rstars{color:var(--amber);font-size:18px;letter-spacing:3px;margin-bottom:14px}
-.rtxt{font-size:16px;line-height:1.7;color:var(--chrome);font-style:italic;margin-bottom:18px}
-.rname{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--rust2)}
-.sbig{background:var(--rust);padding:36px 40px;display:flex;align-items:center;gap:24px;margin-bottom:18px}
-.snum{font-family:'Bebas Neue',sans-serif;font-size:96px;line-height:1;color:var(--white)}
-.sinf{}
-.slb{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:6px}
-.scnt{font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--white)}
-.sbigs{font-size:26px;letter-spacing:5px;color:var(--amber);margin-top:6px}
-.reasons{}
-.rrow{display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:start;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.05);position:relative}
-.rrow::before{content:'';position:absolute;left:-56px;right:-56px;inset-block:0;background:rgba(212,64,16,.04);opacity:0;transition:opacity .3s}
-.rrow:hover::before{opacity:1}
-.rnum{font-family:'Bebas Neue',sans-serif;font-size:46px;color:var(--rust);line-height:1;opacity:.5}
-.rtitle{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.04em;color:var(--white);margin-bottom:8px}
-.rbody{font-size:14px;line-height:1.7;color:var(--silver)}
+        .nav-center a:hover {
+            color: var(--cream);
+        }
 
-/* ORARI */
-#orari{background:var(--deep)}
-.olo{display:grid;grid-template-columns:1fr 1fr;gap:80px}
-.schedule{}
-.srow{display:flex;align-items:center;justify-content:space-between;padding:19px 0;border-bottom:1px solid rgba(255,255,255,.06);position:relative;overflow:hidden;transition:padding-left .3s;cursor:default}
-.srow::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--rust);transform:scaleY(0);transition:transform .3s}
-.srow:hover{padding-left:16px}
-.srow:hover::before,.srow.td::before{transform:scaleY(1)}
-.srow.td{background:rgba(212,64,16,.06)}
-.sday{font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--silver)}
-.srow.td .sday{color:var(--rust2)}
-.sbadge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;background:var(--rust);color:#fff;padding:3px 8px;margin-left:10px}
-.stime{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;color:var(--white)}
-.sclosed{color:var(--silver);opacity:.4;font-size:16px}
-.cpanel{display:flex;flex-direction:column;gap:2px}
-.cblk{background:var(--iron);padding:30px 34px;display:flex;align-items:flex-start;gap:20px;transition:background .3s,transform .3s}
-.cblk:hover{background:rgba(212,64,16,.08);transform:translateX(4px)}
-.cico{font-size:28px;flex-shrink:0}
-.clb2{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--rust2);margin-bottom:8px}
-.cv2{font-size:17px;color:var(--white);line-height:1.5}
-.cv2 a{color:var(--white);text-decoration:none;transition:color .2s}
-.cv2 a:hover{color:var(--rust2)}
+        .nav-center a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
 
-/* MAP */
-.mapsec{height:420px;background:var(--black);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
-#mc{position:absolute;inset:0;width:100%;height:100%}
-.mapo{position:relative;z-index:2;text-align:center}
-.maptit{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.14em;color:var(--white);margin-bottom:6px}
-.mapsub{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--silver);margin-bottom:20px}
-.mapbtn{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--rust);text-decoration:none;padding:12px 28px;display:inline-block;transition:background .2s,transform .2s;box-shadow:0 0 40px rgba(212,64,16,.4)}
-.mapbtn:hover{background:var(--rust2);transform:translateY(-3px)}
+        .nav-tel {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 400;
+            font-size: .85rem;
+            letter-spacing: .08em;
+            color: var(--gold-lt);
+            text-decoration: none;
+            transition: color .3s;
+            position: relative;
+            z-index: 1;
+        }
 
-/* FOOTER */
-footer{background:var(--deep);padding:64px 56px 40px;border-top:1px solid rgba(212,64,16,.2);position:relative;z-index:3}
-.ftop{display:grid;grid-template-columns:2fr 1fr 1fr;gap:64px;padding-bottom:56px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:32px}
-.fbrand{display:flex;flex-direction:column;gap:16px}
-.flogo{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:.1em;line-height:1}
-.flogo .dot{color:var(--rust)}
-.ftag2{font-size:14px;color:var(--silver);line-height:1.6;max-width:280px}
-.fct{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--rust2);margin-bottom:22px}
-.flinks{list-style:none;display:flex;flex-direction:column;gap:12px}
-.flinks a{font-size:14px;color:var(--silver);text-decoration:none;transition:color .2s,padding-left .2s;display:block}
-.flinks a:hover{color:var(--white);padding-left:8px}
-.fbot{display:flex;justify-content:space-between;align-items:center}
-.fcopy{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.12em;color:var(--silver)}
-.fph{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.08em;color:var(--chrome)}
+        .nav-tel:hover {
+            color: var(--parch);
+        }
 
-/* GLITCH */
-.glitch{position:relative}
-.glitch::before,.glitch::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%}
-.glitch::before{left:2px;text-shadow:-2px 0 var(--rust);clip-path:polygon(0 0,100% 0,100% 33%,0 33%);animation:g1 4s infinite linear alternate-reverse}
-.glitch::after{left:-2px;text-shadow:2px 0 var(--amber);clip-path:polygon(0 66%,100% 66%,100% 100%,0 100%);animation:g2 4s infinite linear alternate}
-@keyframes g1{0%,90%,100%{transform:none;opacity:0}91%{transform:translateX(-2px);opacity:1}93%{transform:translateX(2px);opacity:1}95%{opacity:0}}
-@keyframes g2{0%,87%,100%{transform:none;opacity:0}88%{transform:translateX(2px);opacity:1}90%{transform:translateX(-2px);opacity:1}92%{opacity:0}}
+        .nav-mob {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--mid);
+        }
 
-/* REVEALS */
-.rv{opacity:0;transform:translateY(50px);transition:opacity .8s cubic-bezier(.25,.46,.45,.94),transform .8s cubic-bezier(.25,.46,.45,.94)}
-.rvl{opacity:0;transform:translateX(-50px);transition:opacity .8s ease,transform .8s ease}
-.rvr{opacity:0;transform:translateX(50px);transition:opacity .8s ease,transform .8s ease}
-.rv.vis,.rvl.vis,.rvr.vis{opacity:1;transform:none}
-.stg>*{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
-.stg.vis>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
-.stg.vis>*:nth-child(2){opacity:1;transform:none;transition-delay:.12s}
-.stg.vis>*:nth-child(3){opacity:1;transform:none;transition-delay:.19s}
-.stg.vis>*:nth-child(4){opacity:1;transform:none;transition-delay:.26s}
-.stg.vis>*:nth-child(5){opacity:1;transform:none;transition-delay:.33s}
-.stg.vis>*:nth-child(6){opacity:1;transform:none;transition-delay:.40s}
-.stg.vis>*:nth-child(7){opacity:1;transform:none;transition-delay:.47s}
-.stg.vis>*:nth-child(8){opacity:1;transform:none;transition-delay:.54s}
+        /* HERO */
+        #hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
 
-@keyframes fsu{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
-@keyframes bnc{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+        .hero-photo {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: url('https://i.ibb.co/Y4ck9sZy/image.png') center center / cover no-repeat;
+            transform: scale(1.04);
+            animation: heroZoom 18s ease-out forwards;
+        }
 
-/* RESPONSIVE */
-@media(max-width:900px){
-  nav{padding:14px 24px}
-  .nlinks{display:none}
-  .sec{padding:80px 24px}
-  .hero{padding:0 24px}
-  .h-sub{grid-template-columns:1fr;gap:32px}
-  .sbar{grid-template-columns:repeat(2,1fr)}
-  .pgrid{grid-template-columns:repeat(2,1fr)}
-  .plo{grid-template-columns:1fr;gap:48px}
-  .olo{grid-template-columns:1fr;gap:48px}
-  .cgrid{grid-template-columns:repeat(2,1fr)}
-  .ftop{grid-template-columns:1fr;gap:40px}
-  .fbot{flex-direction:column;gap:16px;text-align:center}
-}
-</style>
+        @keyframes heroZoom {
+            from {
+                transform: scale(1.04);
+            }
+
+            to {
+                transform: scale(1.0);
+            }
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(to right, rgba(3, 8, 6, .88) 0%, rgba(3, 8, 6, .65) 48%, rgba(3, 8, 6, .25) 100%),
+                linear-gradient(to top, rgba(3, 8, 6, .92) 0%, rgba(3, 8, 6, .5) 30%, transparent 65%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: clamp(3rem, 6vw, 6rem);
+            padding-bottom: clamp(3.5rem, 7vw, 7rem);
+            width: 100%;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .35em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .8s .2s, transform .8s .2s var(--ease-out);
+        }
+
+        .hero-eyebrow.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 30px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .5;
+        }
+
+        .hero-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(3.5rem, 8.5vw, 10rem);
+            line-height: .88;
+            letter-spacing: -.04em;
+            color: var(--parch);
+            width: fit-content;
+            max-width: calc(100vw - clamp(6rem, 12vw, 12rem));
+        }
+
+        .hero-title-line {
+            overflow: hidden;
+        }
+
+        .hero-title-word {
+            display: block;
+            transform: translateY(110%);
+            transition: transform .9s var(--ease-out);
+        }
+
+        .hero-title-word.show {
+            transform: translateY(0);
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--gold-lt);
+            font-weight: 700;
+            display: block;
+            text-shadow: 0 0 40px rgba(44, 255, 133, .25);
+        }
+
+        .hero-desc {
+            margin-top: 2.5rem;
+            max-width: 460px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .88rem;
+            letter-spacing: .06em;
+            line-height: 1.9;
+            color: rgba(217, 255, 234, .7);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .8s .9s, transform .8s .9s var(--ease-out);
+        }
+
+        .hero-desc.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-ctas {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            opacity: 0;
+            transition: opacity .8s 1.1s;
+        }
+
+        .hero-ctas.show {
+            opacity: 1;
+        }
+
+        .btn-hero {
+            display: inline-block;
+            text-decoration: none;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 400;
+            font-size: .58rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: #041009;
+            background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+            padding: .85rem 2.5rem;
+            transition: background .4s, color .4s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(157, 255, 191, .12) inset, 0 0 24px rgba(44, 255, 133, .25);
+        }
+
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, .2);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .5s var(--ease-out);
+        }
+
+        .btn-hero:hover::before {
+            transform: scaleX(1);
+        }
+
+        .btn-hero span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-hero-ghost {
+            text-decoration: none;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(217, 255, 234, .6);
+            border-bottom: 1px solid rgba(44, 255, 133, .3);
+            padding-bottom: 2px;
+            transition: color .3s, border-color .3s;
+        }
+
+        .btn-hero-ghost:hover {
+            color: var(--cream);
+            border-color: var(--gold);
+        }
+
+        .hero-stats {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            border-top: 1px solid rgba(44, 255, 133, .18);
+            background: rgba(3, 8, 6, .72);
+            backdrop-filter: blur(16px) saturate(140%);
+        }
+
+        .h-stat {
+            flex: 1;
+            padding: 1.4rem clamp(1.5rem, 3vw, 3rem);
+            border-right: 1px solid var(--rule-lt);
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .6s, transform .6s var(--ease-out);
+        }
+
+        .h-stat:last-child {
+            border-right: none;
+        }
+
+        .h-stat.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .h-stat-n {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: var(--parch);
+            line-height: 1;
+            display: block;
+        }
+
+        .h-stat-l {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .48rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-top: .35rem;
+            display: block;
+        }
+
+        .hero-badge {
+            position: absolute;
+            top: clamp(5rem, 9vw, 8rem);
+            right: clamp(2rem, 4vw, 4rem);
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: .4rem;
+            opacity: 0;
+            transition: opacity 1s 1.4s;
+        }
+
+        .hero-badge.show {
+            opacity: 1;
+        }
+
+        .badge-score {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            color: var(--gold-lt);
+            line-height: 1;
+            text-shadow: 0 0 30px rgba(44, 255, 133, .4);
+        }
+
+        .badge-stars {
+            color: var(--gold);
+            font-size: 1rem;
+            letter-spacing: .2em;
+        }
+
+        .badge-label {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .45rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: rgba(217, 255, 234, .5);
+        }
+
+        /* MANIFESTO */
+        #manifesto {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(5rem, 10vw, 10rem) clamp(2rem, 6vw, 6rem);
+            background: var(--deep);
+            border-top: 1px solid var(--rule-lt);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .manifesto-line {
+            display: none;
+        }
+
+        .manifesto-line.show {
+            height: 0;
+        }
+
+        .manifesto-lead {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            color: var(--gold-lt);
+            letter-spacing: -.02em;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 30px rgba(44, 255, 133, .3);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity .8s .1s, transform .8s .1s var(--ease-out);
+        }
+
+        .manifesto-lead.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .manifesto-text {
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: clamp(1.6rem, 4vw, 3.2rem);
+            line-height: 1.25;
+            color: var(--parch);
+            max-width: 860px;
+            letter-spacing: -.025em;
+        }
+
+        .manifesto-text .word {
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+
+        .manifesto-text .word span {
+            display: inline-block;
+            transform: translateY(105%);
+            transition: transform .7s var(--ease-out);
+        }
+
+        .manifesto-text .word.show span {
+            transform: translateY(0);
+        }
+
+        .manifesto-sub {
+            margin-top: 2.5rem;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .62rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0;
+            transition: opacity .8s .8s;
+        }
+
+        .manifesto-sub.show {
+            opacity: 1;
+        }
+
+        /* STRIP */
+        #strip {
+            background: var(--surface);
+            border-top: 1px solid var(--rule-lt);
+            border-bottom: 1px solid var(--rule-lt);
+            padding: .9rem 0;
+            overflow: hidden;
+        }
+
+        .strip-track {
+            display: flex;
+            gap: 0;
+            white-space: nowrap;
+            animation: marquee 28s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0)
+            }
+
+            to {
+                transform: translateX(-50%)
+            }
+        }
+
+        .strip-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 2rem;
+            padding: 0 3rem;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--mid);
+            border-right: 1px solid var(--rule-lt);
+        }
+
+        .strip-item .dot {
+            width: 3px;
+            height: 3px;
+            background: var(--gold);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* SERVICES */
+        #servizi-section {
+            background: var(--void);
+            padding-top: clamp(5rem, 9vw, 8rem);
+        }
+
+        .svc-header {
+            padding: 0 clamp(2rem, 6vw, 6rem) clamp(3rem, 5vw, 5rem);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .svc-drag-hint {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--dim);
+            display: flex;
+            align-items: center;
+            gap: .8rem;
+            padding-bottom: .5rem;
+        }
+
+        .svc-drag-hint::before {
+            content: '';
+            width: 20px;
+            height: 1px;
+            background: var(--dim);
+        }
+
+        .svc-scroll-wrap {
+            overflow: hidden;
+            position: relative;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .svc-scroll-wrap:active {
+            cursor: grabbing;
+        }
+
+        .svc-track {
+            display: flex;
+            padding: 0 clamp(2rem, 6vw, 6rem) clamp(4rem, 7vw, 7rem);
+            gap: 2px;
+            width: max-content;
+            transition: transform .05s linear;
+        }
+
+        .svc-card {
+            width: clamp(300px, 30vw, 420px);
+            background: var(--panel);
+            border: 1px solid var(--rule-lt);
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            transition: border-color .4s, background .4s;
+            box-shadow: 0 0 0 1px rgba(44, 255, 133, .04) inset;
+        }
+
+        .svc-card:hover {
+            border-color: rgba(44, 255, 133, .4);
+            background: #152720;
+        }
+
+        .svc-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transform: scaleX(0);
+            transition: transform .6s var(--ease-out);
+        }
+
+        .svc-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .svc-num {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: var(--dim);
+            letter-spacing: -.02em;
+        }
+
+        .svc-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--parch);
+            line-height: 1.05;
+            letter-spacing: -.02em;
+        }
+
+        .svc-desc {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .78rem;
+            letter-spacing: .05em;
+            line-height: 1.9;
+            color: var(--mid);
+            flex: 1;
+        }
+
+        .svc-tag {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--rule-lt);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .svc-tag::before {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .5;
+        }
+
+        /* NUMBERS */
+        #numbers {
+            background: var(--deep);
+            border-top: 1px solid var(--rule-lt);
+            border-bottom: 1px solid var(--rule-lt);
+            padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 6vw, 6rem);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .num-block {
+            padding: 2rem 2.5rem;
+            border-right: 1px solid var(--rule-lt);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .7s, transform .7s var(--ease-out);
+        }
+
+        .num-block:last-child {
+            border-right: none;
+        }
+
+        .num-block.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .num-big {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 1;
+            color: var(--parch);
+            letter-spacing: -.04em;
+            display: block;
+        }
+
+        .num-suffix {
+            color: var(--gold);
+        }
+
+        .num-label {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--mid);
+            margin-top: .5rem;
+            display: block;
+        }
+
+        .num-desc {
+            font-size: .78rem;
+            letter-spacing: .04em;
+            line-height: 1.8;
+            color: var(--dim);
+            margin-top: .8rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+        }
+
+        /* APPROCCIO */
+        #approccio {
+            background: var(--void);
+            padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
+        }
+
+        .approccio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: start;
+        }
+
+        .ap-pull {
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: clamp(1.5rem, 2.8vw, 2.2rem);
+            color: var(--cream);
+            line-height: 1.35;
+            letter-spacing: -.02em;
+            margin-top: 2.5rem;
+            padding-left: 2rem;
+            border-left: 1px solid var(--gold);
+            opacity: 0;
+            transition: opacity .9s .2s, transform .9s .2s var(--ease-out);
+            transform: translateX(-10px);
+        }
+
+        .ap-pull.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ap-body {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .82rem;
+            letter-spacing: .05em;
+            line-height: 1.95;
+            color: var(--mid);
+            margin-top: 2rem;
+            opacity: 0;
+            transition: opacity .9s .4s;
+        }
+
+        .ap-body.show {
+            opacity: 1;
+        }
+
+        .cert-section {
+            margin-top: 3rem;
+        }
+
+        .cert-head {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .52rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .cert-line {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: .8rem 0;
+            border-bottom: 1px solid var(--rule-lt);
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .78rem;
+            letter-spacing: .05em;
+            color: var(--mid);
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: opacity .5s, transform .5s var(--ease-out);
+        }
+
+        .cert-line.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .cert-line::before {
+            content: '';
+            width: 16px;
+            height: 1px;
+            background: var(--gold);
+            opacity: .4;
+            flex-shrink: 0;
+        }
+
+        .why-rows {
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .why-row {
+            display: grid;
+            grid-template-columns: 3rem 1fr;
+            gap: 2rem;
+            padding: 2.2rem 0;
+            border-bottom: 1px solid var(--rule-lt);
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .6s, transform .6s var(--ease-out);
+        }
+
+        .why-row.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .why-n {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--dim);
+            padding-top: .1rem;
+        }
+
+        .why-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .95rem;
+            color: var(--cream);
+            letter-spacing: .04em;
+            margin-bottom: .5rem;
+        }
+
+        .why-desc {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .78rem;
+            letter-spacing: .04em;
+            line-height: 1.85;
+            color: var(--mid);
+        }
+
+        /* REVIEWS */
+        #recensioni {
+            background: var(--deep);
+            padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .rev-top {
+            display: flex;
+            align-items: baseline;
+            gap: 3rem;
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid var(--rule-lt);
+        }
+
+        .rev-score-big {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: clamp(5rem, 8vw, 8rem);
+            color: var(--parch);
+            line-height: 1;
+            letter-spacing: -.05em;
+        }
+
+        .rev-stars {
+            letter-spacing: .2rem;
+            font-size: .9rem;
+            color: var(--gold);
+            margin-bottom: .3rem;
+        }
+
+        .rev-count {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--mid);
+        }
+
+        .rev-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .rev-card {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid var(--rule-lt);
+            border-bottom: 1px solid var(--rule-lt);
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity .7s, transform .7s var(--ease-out), background .3s;
+            box-shadow: 0 0 0 1px rgba(44, 255, 133, .04) inset;
+        }
+
+        .rev-card:hover {
+            background: rgba(44, 255, 133, .05);
+        }
+
+        .rev-card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .rev-stars-sm {
+            letter-spacing: .12rem;
+            font-size: .7rem;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .rev-body {
+            font-family: 'Syne', sans-serif;
+            font-weight: 500;
+            font-size: .98rem;
+            line-height: 1.55;
+            color: var(--cream);
+            margin-bottom: 1.8rem;
+        }
+
+        .rev-body::before {
+            content: '\2018';
+        }
+
+        .rev-body::after {
+            content: '\2019';
+        }
+
+        .rev-author {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .52rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .rev-when {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .6rem;
+            color: var(--dim);
+            margin-top: .2rem;
+            letter-spacing: .05em;
+        }
+
+        .rev-more {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .link-arrow {
+            text-decoration: none;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .58rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--mid);
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            transition: color .3s, gap .3s;
+        }
+
+        .link-arrow::after {
+            content: '→';
+            font-size: .9rem;
+            color: var(--gold);
+            transition: transform .3s;
+        }
+
+        .link-arrow:hover {
+            color: var(--cream);
+            gap: 1.4rem;
+        }
+
+        .link-arrow:hover::after {
+            transform: translateX(4px);
+        }
+
+        /* GALLERY */
+        #galleria {
+            background: var(--void);
+            padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .gal-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            grid-template-rows: 280px 280px;
+            gap: 2px;
+            margin-top: 3.5rem;
+        }
+
+        .gal-cell {
+            background: var(--panel);
+            border: 1px solid var(--rule-lt);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity .7s var(--ease-out), border-color .5s;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            box-shadow: 0 0 0 1px rgba(44, 255, 133, .04) inset;
+        }
+
+        .gal-cell.show {
+            opacity: 1;
+        }
+
+        .gal-cell:nth-child(1) {
+            grid-row: span 2;
+            background-image: linear-gradient(to top, rgba(3, 8, 6, .88) 0%, rgba(3, 8, 6, .16) 55%), url('https://images.unsplash.com/photo-1551522435-a13afa10f103?auto=format&fit=crop&fm=jpg&q=80&w=1400');
+        }
+
+        .gal-cell:nth-child(2) {
+            background-image: linear-gradient(to top, rgba(3, 8, 6, .86) 0%, rgba(3, 8, 6, .12) 55%), url('https://images.unsplash.com/photo-1637640125496-31852f042a60?auto=format&fit=crop&fm=jpg&q=80&w=1000');
+        }
+
+        .gal-cell:nth-child(3) {
+            background-image: linear-gradient(to top, rgba(3, 8, 6, .86) 0%, rgba(3, 8, 6, .12) 55%), url('https://images.unsplash.com/photo-1593699199342-59b40e08f0ac?auto=format&fit=crop&fm=jpg&q=80&w=1000');
+        }
+
+        .gal-cell:nth-child(4) {
+            background-image: linear-gradient(to top, rgba(3, 8, 6, .86) 0%, rgba(3, 8, 6, .12) 55%), url('https://images.unsplash.com/photo-1596986952526-3be237187071?auto=format&fit=crop&fm=jpg&q=80&w=1000');
+        }
+
+        .gal-cell:nth-child(5) {
+            background-image: linear-gradient(to top, rgba(3, 8, 6, .86) 0%, rgba(3, 8, 6, .12) 55%), url('https://images.unsplash.com/photo-1617898529288-7f3efcf8e299?auto=format&fit=crop&fm=jpg&q=80&w=1000');
+        }
+
+        .gal-cell:hover {
+            border-color: rgba(44, 255, 133, .4);
+        }
+
+        .gal-cell::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 255, 133, .08) 0%, transparent 38%), repeating-linear-gradient(135deg, transparent, transparent 32px, rgba(255, 255, 255, .01) 32px, rgba(255, 255, 255, .01) 33px);
+        }
+
+        .gal-cell::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(3, 8, 6, .9) 0%, transparent 40%);
+        }
+
+        .gal-lbl {
+            position: relative;
+            z-index: 1;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: rgba(217, 255, 234, .46);
+            transition: color .3s;
+        }
+
+        .gal-cell:hover .gal-lbl {
+            color: var(--cream);
+        }
+
+        /* CHI SIAMO */
+        #chi {
+            background: var(--deep);
+            padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .chi-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+            align-items: start;
+        }
+
+        .chi-copy .chi-pull {
+            font-family: 'Syne', sans-serif;
+            font-weight: 600;
+            font-size: 1.3rem;
+            line-height: 1.45;
+            color: var(--cream);
+            border-left: 1px solid var(--gold);
+            padding-left: 2rem;
+            margin: 2.5rem 0;
+            letter-spacing: -.02em;
+        }
+
+        .chi-copy p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .82rem;
+            letter-spacing: .04em;
+            line-height: 1.95;
+            color: var(--mid);
+            margin-bottom: 1rem;
+        }
+
+        .team-list {
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .team-row {
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--rule-lt);
+            display: grid;
+            grid-template-columns: 1.1fr 1.6fr;
+            gap: 2rem;
+            align-items: start;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: opacity .6s, transform .6s var(--ease-out);
+        }
+
+        .team-row.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .team-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--parch);
+            letter-spacing: -.02em;
+        }
+
+        .team-role {
+            display: block;
+            margin-top: .3rem;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .team-bio {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .78rem;
+            letter-spacing: .04em;
+            line-height: 1.85;
+            color: var(--mid);
+        }
+
+        .chi-story {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding-top: 1rem;
+        }
+
+        .story-block {
+            border-top: 1px solid var(--rule-lt);
+            padding: 2rem 0;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .8s, transform .8s var(--ease-out);
+        }
+
+        .story-block.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .story-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .82rem;
+            letter-spacing: .04em;
+            line-height: 1.95;
+            color: var(--mid);
+        }
+
+        /* FAQ */
+        #faq {
+            background: var(--void);
+            padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8rem;
+        }
+
+        .faq-list {
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--rule-lt);
+        }
+
+        .faq-q {
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.6rem 0;
+            text-align: left;
+            gap: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .95rem;
+            letter-spacing: .03em;
+            color: var(--cream);
+            transition: color .3s;
+        }
+
+        .faq-q:hover {
+            color: var(--parch);
+        }
+
+        .faq-icon {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--gold);
+            transition: transform .4s var(--ease-out);
+            flex-shrink: 0;
+        }
+
+        .faq-item.open .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-ans {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s var(--ease-out);
+        }
+
+        .faq-item.open .faq-ans {
+            max-height: 180px;
+        }
+
+        .faq-ans p {
+            padding-bottom: 1.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .8rem;
+            letter-spacing: .04em;
+            line-height: 1.9;
+            color: var(--mid);
+        }
+
+        .faq-aside {
+            padding-top: 2rem;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .8s, transform .8s var(--ease-out);
+        }
+
+        .faq-aside.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-aside h3 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            color: var(--cream);
+            line-height: 1.0;
+            margin-bottom: 1.2rem;
+            letter-spacing: -.03em;
+        }
+
+        .faq-aside h3 em {
+            font-style: normal;
+            color: var(--gold-lt);
+            text-shadow: 0 0 18px rgba(44, 255, 133, .16);
+        }
+
+        .faq-aside p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .8rem;
+            letter-spacing: .04em;
+            line-height: 1.9;
+            color: var(--mid);
+            margin-bottom: 2rem;
+        }
+
+        .faq-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .faq-btn {
+            text-decoration: none;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 400;
+            font-size: .58rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--cream);
+            border: 1px solid var(--rule);
+            padding: .9rem 2.2rem;
+            display: inline-block;
+            transition: border-color .4s, background .4s, color .4s;
+        }
+
+        .faq-btn:hover {
+            border-color: var(--gold);
+            background: rgba(44, 255, 133, .07);
+        }
+
+        .faq-btn.ghost {
+            border-color: transparent;
+            color: var(--mid);
+            padding: .9rem 0;
+        }
+
+        .faq-btn.ghost:hover {
+            color: var(--cream);
+            background: transparent;
+            border-color: transparent;
+        }
+
+        /* CTA BAND */
+        #band {
+            background: linear-gradient(135deg, #0c1813 0%, #0f7f47 100%);
+            border-top: 1px solid rgba(44, 255, 133, .45);
+            padding: clamp(4rem, 7vw, 7rem) clamp(2rem, 6vw, 6rem);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #band::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(157, 255, 191, .10) 0%, transparent 38%), repeating-linear-gradient(135deg, transparent, transparent 40px, rgba(255, 255, 255, .03) 40px, rgba(255, 255, 255, .03) 41px);
+        }
+
+        .band-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            color: var(--parch);
+            line-height: 1.0;
+            letter-spacing: -.03em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .band-actions {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .band-btn {
+            text-decoration: none;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 400;
+            font-size: .58rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: #041009;
+            background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+            padding: .9rem 2.5rem;
+            transition: background .3s, color .3s;
+            box-shadow: 0 0 0 1px rgba(157, 255, 191, .12) inset, 0 0 24px rgba(44, 255, 133, .12);
+        }
+
+        .band-btn:hover {
+            background: linear-gradient(135deg, var(--gold-lt), #c8ffd9);
+        }
+
+        .band-link {
+            text-decoration: none;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: rgba(242, 255, 248, .7);
+            border-bottom: 1px solid rgba(242, 255, 248, .2);
+            padding-bottom: 2px;
+            transition: color .3s, border-color .3s;
+        }
+
+        .band-link:hover {
+            color: var(--parch);
+            border-color: rgba(242, 255, 248, .5);
+        }
+
+        /* CONTACTS */
+        #contatti {
+            background: var(--deep);
+            padding: clamp(5rem, 9vw, 9rem) clamp(2rem, 6vw, 6rem);
+            border-top: 1px solid var(--rule-lt);
+        }
+
+        .cnt-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 8rem;
+            align-items: start;
+        }
+
+        .cnt-detail-list {
+            border-top: 1px solid var(--rule-lt);
+            margin-top: 2.5rem;
+        }
+
+        .cnt-row {
+            display: grid;
+            grid-template-columns: 5.5rem 1fr;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--rule-lt);
+            align-items: start;
+        }
+
+        .cnt-lbl {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            padding-top: .2rem;
+        }
+
+        .cnt-val {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .9rem;
+            color: var(--cream);
+            letter-spacing: .02em;
+            line-height: 1.7;
+        }
+
+        .cnt-val a {
+            color: var(--cream);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .cnt-val a:hover {
+            color: var(--gold-lt);
+        }
+
+        .cnt-small {
+            display: block;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .65rem;
+            color: var(--mid);
+            margin-top: .2rem;
+            letter-spacing: .04em;
+        }
+
+        .map-block {
+            background: var(--surface);
+            border: 1px solid var(--rule-lt);
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-top: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 0 1px rgba(44, 255, 133, .04) inset;
+        }
+
+        .map-block::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(44, 255, 133, .08) 0%, transparent 38%), repeating-linear-gradient(135deg, transparent, transparent 32px, rgba(255, 255, 255, .008) 32px, rgba(255, 255, 255, .008) 33px);
+        }
+
+        .map-block p,
+        .map-block a {
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-block p {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--mid);
+        }
+
+        .map-block a {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--gold-lt);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(44, 255, 133, .3);
+            padding-bottom: 2px;
+            transition: color .3s, border-color .3s;
+        }
+
+        .map-block a:hover {
+            color: var(--parch);
+            border-color: var(--gold);
+        }
+
+        .form-panel {}
+
+        .form-title {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.7rem;
+            color: var(--cream);
+            letter-spacing: -.03em;
+            margin-bottom: 2.5rem;
+        }
+
+        .fg {
+            margin-bottom: 1.2rem;
+        }
+
+        .fg label {
+            display: block;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--dim);
+            margin-bottom: .45rem;
+        }
+
+        .fg input,
+        .fg textarea,
+        .fg select {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--rule-lt);
+            color: var(--cream);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: .88rem;
+            letter-spacing: .03em;
+            padding: .7rem 0;
+            outline: none;
+            resize: none;
+            transition: border-color .4s;
+        }
+
+        .fg input:focus,
+        .fg textarea:focus,
+        .fg select:focus {
+            border-color: var(--gold);
+        }
+
+        .fg select {
+            appearance: none;
+            cursor: pointer;
+        }
+
+        .fg select option {
+            background: var(--void);
+        }
+
+        .fg-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+        }
+
+        .form-cta {
+            margin-top: 2.5rem;
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--rule);
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 400;
+            font-size: .58rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--cream);
+            padding: 1.1rem 2.5rem;
+            cursor: pointer;
+            transition: border-color .4s, background .4s, color .4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--gold);
+            opacity: 0;
+            transition: opacity .4s;
+        }
+
+        .form-cta:hover::before {
+            opacity: .1;
+        }
+
+        .form-cta:hover {
+            border-color: rgba(44, 255, 133, .6);
+        }
+
+        .form-cta span {
+            position: relative;
+            z-index: 1;
+        }
+
+        #fsuc {
+            display: none;
+            margin-top: 1rem;
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .55rem;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--void);
+            border-top: 1px solid var(--rule-lt);
+            padding: clamp(4rem, 6vw, 6rem) clamp(2rem, 6vw, 6rem) 2rem;
+        }
+
+        .ft-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--rule-lt);
+            margin-bottom: 2rem;
+        }
+
+        .ft-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--parch);
+            letter-spacing: -.02em;
+            margin-bottom: 1rem;
+        }
+
+        .ft-tagline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .75rem;
+            letter-spacing: .04em;
+            line-height: 1.85;
+            color: var(--mid);
+            max-width: 230px;
+        }
+
+        .ft-socials {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .ft-soc {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--dim);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .ft-soc:hover {
+            color: var(--gold-lt);
+        }
+
+        .ft-col h5 {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .ft-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+
+        .ft-col ul li a {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .78rem;
+            letter-spacing: .04em;
+            color: var(--mid);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .ft-col ul li a:hover {
+            color: var(--cream);
+        }
+
+        .ft-addr {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .78rem;
+            letter-spacing: .04em;
+            line-height: 1.9;
+            color: var(--mid);
+        }
+
+        .ft-addr a {
+            color: var(--mid);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .ft-addr a:hover {
+            color: var(--cream);
+        }
+
+        .ft-bottom {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ft-copy {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .15em;
+            color: var(--dim);
+        }
+
+        .ft-legal {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .ft-legal a {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .5rem;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--dim);
+            text-decoration: none;
+            transition: color .3s;
+        }
+
+        .ft-legal a:hover {
+            color: var(--mid);
+        }
+
+        /* WA BUTTON */
+        #wa {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 7000;
+            width: 52px;
+            height: 52px;
+            background: #25D366;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, .4);
+            transition: transform .3s var(--ease-out), box-shadow .3s;
+        }
+
+        #wa:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 28px rgba(37, 211, 102, .6);
+        }
+
+        #wa svg {
+            width: 28px;
+            height: 28px;
+            fill: #fff;
+        }
+
+        /* SHARED */
+        .s-eye {
+            font-family: 'Oxanium', sans-serif;
+            font-weight: 300;
+            font-size: .52rem;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+            display: block;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity .7s, transform .7s var(--ease-out);
+        }
+
+        .s-eye.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .s-h2 {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--parch);
+            line-height: .9;
+            letter-spacing: -.04em;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity .8s .1s, transform .8s .1s var(--ease-out);
+        }
+
+        .s-h2.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .s-h2 em {
+            font-style: normal;
+            color: var(--cream);
+        }
+
+        .s-intro {
+            max-width: 480px;
+            margin-top: 1.2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 300;
+            font-size: .8rem;
+            letter-spacing: .05em;
+            line-height: 1.95;
+            color: var(--mid);
+            opacity: 0;
+            transition: opacity .8s .25s;
+        }
+
+        .s-intro.show {
+            opacity: 1;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:1000px) {
+
+            .approccio-grid,
+            .chi-layout,
+            .faq-layout,
+            .cnt-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            #numbers {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .rev-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .ft-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .nav-mob {
+                display: block;
+            }
+
+            .nav-tel {
+                display: none;
+            }
+
+            .fg-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .svc-card {
+                width: clamp(260px, 80vw, 340px);
+            }
+
+            .hero-badge {
+                top: auto;
+                bottom: 7rem;
+                right: 1.5rem;
+                align-items: flex-end;
+            }
+        }
+
+        @media(max-width:640px) {
+            #numbers {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .num-block {
+                padding: 1.5rem;
+            }
+
+            .rev-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ft-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gal-layout {
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: auto;
+            }
+
+            .gal-cell:nth-child(1) {
+                grid-row: span 1;
+                min-height: 280px;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+            }
+
+            .h-stat {
+                min-width: 50%;
+            }
+
+            .band-actions {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+            }
+
+            .hero-content {
+                padding-bottom: clamp(9rem, 18vw, 14rem);
+            }
+
+            .hero-title {
+                font-size: clamp(3.5rem, 16vw, 6rem);
+            }
+
+            .hero-badge {
+                display: none;
+            }
+
+            #wa {
+                bottom: 1.2rem;
+                right: 1.2rem;
+            }
+
+            .cnt-row {
+                grid-template-columns: 4rem 1fr;
+            }
+
+            .svc-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
+    <div id="c-dot"></div>
+    <div id="c-ring"></div>
+    <div id="prog"></div>
 
-<div id="cur"></div>
-<div id="cur-ring"></div>
-<div id="pbar"></div>
-<canvas id="sc"></canvas>
-<div class="noise"></div>
+    <!-- WhatsApp floating button with SVG logo -->
+    <a href="https://wa.me/393669907230" id="wa" target="_blank" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+    </a>
 
-<!-- NAV -->
-<nav id="nav">
-  <a href="#" class="nlogo">BASCHIERI<span class="dot">.</span></a>
-  <ul class="nlinks">
-    <li><a href="#prodotti">Prodotti</a></li>
-    <li><a href="#perche">Chi siamo</a></li>
-    <li><a href="#orari">Orari</a></li>
-    <li><a href="#orari">Contatti</a></li>
-  </ul>
-  <a href="tel:0522982772" class="ncta"><span>☎ &nbsp;0522 982772</span></a>
-</nav>
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="#" class="nav-logo">
+            <span class="nav-logo-name">Snake Garage</span>
+            <span class="nav-logo-sub">Officina · Reggio Emilia · dal 2006</span>
+        </a>
+        <ul class="nav-center">
+            <li><a href="#servizi-section">Servizi</a></li>
+            <li><a href="#approccio">Approccio</a></li>
+            <li><a href="#recensioni">Clienti</a></li>
+            <li><a href="#chi">Chi siamo</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+        <a href="tel:+393669907230" class="nav-tel">+39&thinsp;366&thinsp;990&thinsp;7230</a>
+        <button class="nav-mob" onclick="toggleNav()">Menu</button>
+    </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <svg class="bg-gear" viewBox="0 0 100 100" fill="none"><path fill="white" d="M43.3 5.2l-2.7 8.3a35 35 0 00-8.8 3.7L23.5 13l-9 9 4.2 8.3a35 35 0 00-3.7 8.8l-8.3 2.7v12.7l8.3 2.7a35 35 0 003.7 8.8L14.5 75l9 9 8.3-4.2a35 35 0 008.8 3.7l2.7 8.3h12.7l2.7-8.3a35 35 0 008.8-3.7l8.3 4.2 9-9-4.2-8.3a35 35 0 003.7-8.8l8.3-2.7V43.3l-8.3-2.7a35 35 0 00-3.7-8.8L85.5 23l-9-9-8.3 4.2a35 35 0 00-8.8-3.7L56.7 5.2H43.3zm6.7 22a23 23 0 110 46 23 23 0 010-46z"/></svg>
-  <svg class="bg-gear2" viewBox="0 0 100 100" fill="none"><path fill="white" d="M43.3 5.2l-2.7 8.3a35 35 0 00-8.8 3.7L23.5 13l-9 9 4.2 8.3a35 35 0 00-3.7 8.8l-8.3 2.7v12.7l8.3 2.7a35 35 0 003.7 8.8L14.5 75l9 9 8.3-4.2a35 35 0 008.8 3.7l2.7 8.3h12.7l2.7-8.3a35 35 0 008.8-3.7l8.3 4.2 9-9-4.2-8.3a35 35 0 003.7-8.8l8.3-2.7V43.3l-8.3-2.7a35 35 0 00-3.7-8.8L85.5 23l-9-9-8.3 4.2a35 35 0 00-8.8-3.7L56.7 5.2H43.3zm6.7 22a23 23 0 110 46 23 23 0 010-46z"/></svg>
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-photo"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-badge" id="hbadge">
+            <span class="badge-score">4.9</span>
+            <span class="badge-stars">★★★★★</span>
+            <span class="badge-label">Recensioni medie Google</span>
+        </div>
+        <div class="hero-content">
+            <div class="hero-eyebrow" id="he">Officina tecnica specializzata · diagnosi avanzata · Riparazioni complesse</div>
+            <h1 class="hero-title">
+                <div class="hero-title-line"><span class="hero-title-word" id="hw1">Snake</span></div>
+                <div class="hero-title-line"><em class="hero-title-word" id="hw2">Garage</em></div>
+            </h1>
+            <p class="hero-desc" id="hd">
+                Diagnosi elettronica, tagliandi e riparazioni. Ogni intervento preceduto da analisi strumentale e preventivo trasparente. Lavoriamo sull'auto come se fosse la nostra.
+            </p>
+            <div class="hero-ctas" id="hc">
+                <a href="tel:+393669907230" class="btn-hero"><span>Chiama ora</span></a>
+                <a href="https://wa.me/393669907230" class="btn-hero-ghost" target="_blank">WhatsApp</a>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="h-stat" id="hs1" style="transition-delay:.4s">
+                <span class="h-stat-n" data-target="20" data-suffix="+">20</span>
+                <span class="h-stat-l">Anni di attività</span>
+            </div>
+            <div class="h-stat" id="hs2" style="transition-delay:.55s">
+                <span class="h-stat-n">4.9</span>
+                <span class="h-stat-l">Recensioni medie Google</span>
+            </div>
+            <div class="h-stat" id="hs3" style="transition-delay:.7s">
+                <span class="h-stat-n" data-target="2500" data-suffix="+">2500</span>
+                <span class="h-stat-l">Veicoli seguiti</span>
+            </div>
+            <div class="h-stat" id="hs4" style="transition-delay:.85s">
+                <span class="h-stat-n">3</span>
+                <span class="h-stat-l">Tempi di intervento chiari</span>
+            </div>
+        </div>
+    </section>
 
-  <div class="h-eye">Dal 1970 — Scandiano, Reggio Emilia — Provincia RE</div>
-  <h1 class="h-title">
-    <span class="line"><span class="li">BASCHIERI</span></span>
-    <span class="line"><span class="li glitch" data-text="UTENSILI">UTENSILI</span></span>
-    <span class="line"><span class="li">PROFESSIONALI</span></span>
-  </h1>
-  <div class="h-sub">
-    <p class="h-desc">Il riferimento per professionisti e officine nel cuore dell'Emilia. Dagli utensili manuali alle parti di ricambio per camion — in un solo posto, con personale competente e consegna rapida.</p>
-    <div class="h-acts">
-      <a href="#prodotti" class="btn-p"><span>Esplora i prodotti →</span></a>
-      <a href="#orari" class="btn-g"><span>Orari & posizione</span></a>
+    <!-- MANIFESTO -->
+    <section id="manifesto">
+        <div class="manifesto-line" id="mline"></div>
+        <div>
+            <p class="manifesto-lead" id="mlead">Ogni intervento nasce da una diagnosi reale</p>
+            <p class="manifesto-text" id="mtext">
+                Molti veicoli arrivano da noi dopo essere stati controllati altrove. Il nostro lavoro è individuare il vero problema e risolverlo nel modo corretto.
+            </p>
+            <p class="manifesto-sub" id="msub">Snake Garage — Diagnosi tecnica, precisione meccanica e trasparenza nel lavoro</p>
+        </div>
+    </section>
+
+    <!-- STRIP -->
+    <div id="strip">
+        <div class="strip-track">
+            <div class="strip-item"><span class="dot"></span> Via Enrico Fermi, 21 · Reggio Emilia</div>
+            <div class="strip-item"><span class="dot"></span> Lun–Ven 08:30–19:30</div>
+            <div class="strip-item"><span class="dot"></span> Sabato 09:30–14:30</div>
+            <div class="strip-item"><span class="dot"></span> Telefono +39 366 990 7230</div>
+            <div class="strip-item"><span class="dot"></span> Auto · SUV · Commerciali · Moto</div>
+            <div class="strip-item"><span class="dot"></span> Diagnosi multimarchio</div>
+            <div class="strip-item"><span class="dot"></span> Preventivo sempre gratuito</div>
+            <div class="strip-item"><span class="dot"></span> Via Enrico Fermi, 21 · Reggio Emilia</div>
+            <div class="strip-item"><span class="dot"></span> Lun–Ven 08:30–19:30</div>
+            <div class="strip-item"><span class="dot"></span> Sabato 09:30–14:30</div>
+            <div class="strip-item"><span class="dot"></span> Telefono +39 366 990 7230</div>
+            <div class="strip-item"><span class="dot"></span> Auto · SUV · Commerciali · Moto</div>
+            <div class="strip-item"><span class="dot"></span> Diagnosi multimarchio</div>
+            <div class="strip-item"><span class="dot"></span> Preventivo sempre gratuito</div>
+        </div>
     </div>
-  </div>
-  <div class="sbar">
-    <div class="si"><div class="sn"><span class="cnt" data-t="4.6" data-d="1">0</span><span class="a">/5</span></div><div class="sl">Rating Google</div></div>
-    <div class="si"><div class="sn"><span class="cnt" data-t="4675" data-d="0">0</span><span class="a">+</span></div><div class="sl">Recensioni</div></div>
-    <div class="si"><div class="sn"><span class="cnt" data-t="50" data-d="0">0</span><span class="a">+</span></div><div class="sl">Anni attività</div></div>
-    <div class="si"><div class="sn"><span class="cnt" data-t="8" data-d="0">0</span><span class="a">K+</span></div><div class="sl">Prodotti disponibili</div></div>
-  </div>
-</section>
 
-<!-- MARQUEE -->
-<div class="mwrap"><div class="mtrack"><span class="mi">Utensili manuali</span><span class="mi">Ricambi veicoli</span><span class="mi">Ferramenta</span><span class="mi">Prodotti industriali</span><span class="mi">DPI Sicurezza</span><span class="mi">Lubrificanti</span><span class="mi">Utensili elettrici</span><span class="mi">Consegna rapida</span><span class="mi">Utensili manuali</span><span class="mi">Ricambi veicoli</span><span class="mi">Ferramenta</span><span class="mi">Prodotti industriali</span><span class="mi">DPI Sicurezza</span><span class="mi">Lubrificanti</span><span class="mi">Utensili elettrici</span><span class="mi">Consegna rapida</span></div></div>
-<div class="mwrap mwrap2"><div class="mtrack rev"><span class="mi">Scandiano</span><span class="mi">Reggio Emilia</span><span class="mi">Centro Comm. Futura</span><span class="mi">Via Statale 28</span><span class="mi">Superstore Coop</span><span class="mi">0522 982772</span><span class="mi">Scandiano</span><span class="mi">Reggio Emilia</span><span class="mi">Centro Comm. Futura</span><span class="mi">Via Statale 28</span><span class="mi">Superstore Coop</span><span class="mi">0522 982772</span></div></div>
+    <!-- SERVICES -->
+    <section id="servizi-section">
+        <div class="svc-header">
+            <div class="svc-header-left">
+                <span class="s-eye reveal-el">I nostri servizi</span>
+                <h2 class="s-h2 reveal-el">Specializzazioni<br><em>tecniche</em></h2>
+            </div>
+            <div class="svc-drag-hint reveal-el">Trascina per scorrere</div>
+        </div>
+        <div class="svc-scroll-wrap" id="svcWrap">
+            <div class="svc-track" id="svcTrack">
 
-<!-- PRODOTTI -->
-<section id="prodotti" class="sec">
-  <div class="slbl rv">I nostri prodotti</div>
-  <h2 class="stit rv">TUTTO QUELLO <span class="gh">CHE TI SERVE</span></h2>
-  <div class="pgrid stg">
-    <div class="pc"><span class="ptag">Bestseller</span><span class="pico">🔧</span><div class="pname">Utensili Manuali</div><div class="pdesc">Chiavi, pinze, cacciaviti, martelli. Attrezzatura completa per ogni tipo di lavoro professionale.</div><div class="pcl"></div></div>
-    <div class="pc"><span class="ptag">Richiesto</span><span class="pico">⚙️</span><div class="pname">Ricambi Veicoli</div><div class="pdesc">Componenti per auto, furgoni, camion e mezzi pesanti. Originali e compatibili, qualità garantita.</div><div class="pcl"></div></div>
-    <div class="pc"><span class="ptag">Industriale</span><span class="pico">🏭</span><div class="pname">Prodotti Industriali</div><div class="pdesc">Fornitura continuativa per officine, fabbriche, aziende artigiane e laboratori professionali.</div><div class="pcl"></div></div>
-    <div class="pc"><span class="ptag">Ampio stock</span><span class="pico">🪛</span><div class="pname">Ferramenta</div><div class="pdesc">Viti, bulloni, guarnizioni, raccorderia, tasselli e tutto per riparazioni e montaggi precisi.</div><div class="pcl"></div></div>
-    <div class="pc"><span class="ptag">Pro grade</span><span class="pico">🔌</span><div class="pname">Utensili Elettrici</div><div class="pdesc">Trapani, smerigliatrici, avvitatori elettrici e a batteria. I brand leader per professionisti.</div><div class="pcl"></div></div>
-    <div class="pc"><span class="ptag">Manutenzione</span><span class="pico">🪣</span><div class="pname">Lubrificanti & Chimica</div><div class="pdesc">Lubrificanti, disossidanti, sigillanti, sgrassatori. Prodotti chimici per manutenzione seria.</div><div class="pcl"></div></div>
-    <div class="pc"><span class="ptag">Normativa</span><span class="pico">🦺</span><div class="pname">DPI & Sicurezza</div><div class="pdesc">Dispositivi di protezione individuale conformi normativa EU per ambienti di lavoro sicuri.</div><div class="pcl"></div></div>
-    <div class="pc"><span class="ptag">Su richiesta</span><span class="pico">📦</span><div class="pname">Ordini Speciali</div><div class="pdesc">Non trovi ciò che cerchi? Gestiamo ordini su misura e forniture personalizzate per aziende.</div><div class="pcl"></div></div>
-  </div>
-</section>
+                <!-- I -->
+                <div class="svc-card">
+                    <span class="svc-num">I</span>
+                    <h3 class="svc-name">Manutenzione tecnica e tagliandi</h3>
+                    <p class="svc-desc">Tagliando completo con check dei principali sistemi del veicolo e verifica preventiva dei componenti soggetti a usura. Utilizziamo ricambi originali o equivalenti certificati garantiti da noi. Scheda manutenzione rilasciata ad ogni intervento.</p>
+                    <div class="svc-tag">Ricambi originali o equivalenti certificati</div>
+                </div>
 
-<!-- PARALLAX -->
-<div class="pban"><div class="pbb" id="pbg"></div><div class="pbc"><div class="pbig">OLTRE <span class="fill">50</span> ANNI<br>DI <span class="fill">ESPERIENZA</span></div><div class="psub">✦ &nbsp; Scandiano · Reggio Emilia · Dal 1970 &nbsp; ✦</div></div></div>
+                <!-- II -->
+                <div class="svc-card">
+                    <span class="svc-num">II</span>
+                    <h3 class="svc-name">Diagnosi elettronica avanzata</h3>
+                    <p class="svc-desc">Analisi centraline, sensori e sistemi con lettura dei parametri reali del veicolo per individuare il guasto con precisione. Lettura, analisi e reset di tutti i codici di errore presenti sul veicolo.</p>
+                    <div class="svc-tag">Strumentazione professionale TEXA</div>
+                </div>
 
-<!-- COUNTERS -->
-<div class="csec"><div class="cgrid stg" id="cgrid">
-  <div class="cc"><div class="cv"><span class="cn" data-t="50">0</span><span class="csu">+</span></div><div class="clbl">Anni di attività</div></div>
-  <div class="cc"><div class="cv"><span class="cn" data-t="4675">0</span></div><div class="clbl">Recensioni Google</div></div>
-  <div class="cc"><div class="cv"><span class="cn" data-t="8000">0</span><span class="csu">+</span></div><div class="clbl">Referenze a stock</div></div>
-  <div class="cc"><div class="cv"><span class="cn" data-t="46">0</span><span class="csu">/50</span></div><div class="clbl">Punteggio qualità</div></div>
-  <div class="cc"><div class="cv"><span class="cn" data-t="24">0</span><span class="csu">h</span></div><div class="clbl">Consegna ordini</div></div>
-</div></div>
+                <!-- III -->
+                <div class="svc-card">
+                    <span class="svc-num">III</span>
+                    <h3 class="svc-name">Freni, sospensioni e assetti</h3>
+                    <p class="svc-desc">Sostituzione e check di dischi, pastiglie, ammortizzatori e assetti sportivi. Bracci, silent block e verifica completa dell'assetto prima e dopo ogni intervento sulla geometria ruote.</p>
+                    <div class="svc-tag">Sicurezza attiva</div>
+                </div>
 
-<!-- PERCHÉ -->
-<section id="perche" class="sec">
-  <div class="slbl rv">Perché Baschieri</div>
-  <h2 class="stit rv">FIDUCIA &<br><span class="gh">COMPETENZA</span></h2>
-  <div class="plo">
-    <div class="rstack rvl">
-      <div class="sbig"><div class="snum">4.6</div><div class="sinf"><div class="slb">Valutazione media Google</div><div class="scnt">4.675 recensioni</div><div class="sbigs">★★★★★</div></div></div>
-      <div class="rcard"><div class="rstars">★★★★★</div><div class="rtxt">"Ben fornito. Ho trovato tutto quello di cui avevamo bisogno per riparare il nostro camion."</div><div class="rname">— Gabriele Ferrazzi</div></div>
-      <div class="rcard"><div class="rstars">★★★★★</div><div class="rtxt">"Mi sono sempre trovato bene, gentili, cordiali e puntuali nella consegna. Consiglio vivamente."</div><div class="rname">— Sandro Rubbiani</div></div>
+                <!-- IV -->
+                <div class="svc-card">
+                    <span class="svc-num">IV</span>
+                    <h3 class="svc-name">Distribuzione e frizione</h3>
+                    <p class="svc-desc">Sostituzione cinghia di distribuzione, catene motore e trasmissioni. Interventi su frizione con procedure mirate su tutti i principali modelli europei e giapponesi. Intervento garantito.</p>
+                    <div class="svc-tag">Garanzia lavoro</div>
+                </div>
+
+                <!-- V -->
+                <div class="svc-card">
+                    <span class="svc-num">V</span>
+                    <h3 class="svc-name">Sistemi di iniezione e alimentazione</h3>
+                    <p class="svc-desc">Test e diagnosi dell'alimentazione diesel, benzina e GPL. Pulizia iniettori e verifica pompe carburanti con revisione. Interventi con strumentazione professionale dedicata.</p>
+                    <div class="svc-tag">Con strumentazione professionale</div>
+                </div>
+
+                <!-- VI -->
+                <div class="svc-card">
+                    <span class="svc-num">VI</span>
+                    <h3 class="svc-name">Climatizzazione</h3>
+                    <p class="svc-desc">Manutenzione e ricarica climatizzatore con gas certificati R134a e R1234yf. Controllo perdite, pulizia e sanificazione circuito. Operatori certificati F-Gas secondo il D.Lgs. 26/2013.</p>
+                    <div class="svc-tag">Certificazione F-GAS</div>
+                </div>
+
+                <!-- VII -->
+                <div class="svc-card">
+                    <span class="svc-num">VII</span>
+                    <h3 class="svc-name">Impianti elettrici</h3>
+                    <p class="svc-desc">Riparazione degli impianti elettrici ed elettronici del veicolo. Cablaggi, sensori e componenti. Manutenzione alternatori e motorini di avviamento. Check dei sistemi di bordo per garantire il pieno funzionamento del veicolo.</p>
+                    <div class="svc-tag">Tutte le architetture</div>
+                </div>
+
+                <!-- VIII -->
+                <div class="svc-card">
+                    <span class="svc-num">VIII</span>
+                    <h3 class="svc-name">Pneumatici</h3>
+                    <p class="svc-desc">Montaggio, bilanciatura completa e cambio gomme con sensori TPMS. Stock di pneumatici estivi, invernali e 4 stagioni delle principali marche per tutte le misure.</p>
+                    <div class="svc-tag">Attrezzatura certificata</div>
+                </div>
+
+                <!-- IX -->
+                <div class="svc-card">
+                    <span class="svc-num">IX</span>
+                    <h3 class="svc-name">Controllo pre-revisione</h3>
+                    <p class="svc-desc">Verifica dei principali sistemi di sicurezza e delle anomalie da risolvere prima della presentazione alla motorizzazione. Ogni criticità rilevata viene corretta con ricambi di prima qualità.</p>
+                    <div class="svc-tag">Su appuntamento dedicato</div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- NUMBERS -->
+    <div id="numbers">
+        <div class="num-block reveal-el">
+            <span class="num-big"><span class="counter" data-target="20">0</span><span class="num-suffix">+</span></span>
+            <span class="num-label">Anni di attività</span>
+            <p class="num-desc">Dal 2006 serviamo privati e flotte aziendali della provincia di Reggio Emilia.</p>
+        </div>
+        <div class="num-block reveal-el" style="transition-delay:.1s">
+            <span class="num-big"><span class="counter" data-target="214">0</span></span>
+            <span class="num-label">Recensioni Google</span>
+            <p class="num-desc">Rating medio 4.9 su 5 stelle, verificato e aggiornato continuamente.</p>
+        </div>
+        <div class="num-block reveal-el" style="transition-delay:.2s">
+            <span class="num-big"><span class="counter" data-target="2500">0</span><span class="num-suffix">+</span></span>
+            <span class="num-label">Veicoli seguiti</span>
+            <p class="num-desc">Privati, professionisti e aziende che ci affidano i loro veicoli per le manutenzioni.</p>
+        </div>
+        <div class="num-block reveal-el" style="transition-delay:.3s">
+            <span class="num-big"><span class="counter" data-target="3">0</span></span>
+            <span class="num-label">Interventi programmati</span>
+            <p class="num-desc">Tempi certi per ogni appuntamento programmato. Nessuna attesa indefinita.</p>
+        </div>
     </div>
-    <div class="reasons rvr">
-      <div class="rrow"><div class="rnum">01</div><div><div class="rtitle">Esperienza Decennale</div><div class="rbody">Oltre 50 anni di attività nel settore. Un patrimonio di competenze al servizio di professionisti e appassionati della provincia.</div></div></div>
-      <div class="rrow"><div class="rnum">02</div><div><div class="rtitle">Magazzino Completo</div><div class="rbody">Migliaia di referenze sempre disponibili. Dal piccolo hobbista al trasportatore con camion, trovi ciò che cerchi.</div></div></div>
-      <div class="rrow"><div class="rnum">03</div><div><div class="rtitle">Consegna Rapida</div><div class="rbody">Gestione ordini efficiente con consegne in 24h. La tua officina non si ferma mai per mancanza di materiale.</div></div></div>
-      <div class="rrow"><div class="rnum">04</div><div><div class="rtitle">Staff Qualificato</div><div class="rbody">Personale gentile, cordiale e preparato. Ti aiutano a trovare il pezzo giusto risparmiando tempo e denaro.</div></div></div>
-      <div class="rrow"><div class="rnum">05</div><div><div class="rtitle">Posizione Strategica</div><div class="rbody">All'interno del Centro Comm. Futura di Scandiano. Facilmente raggiungibile da Reggio Emilia, Modena e hinterland.</div></div></div>
+
+    <!-- APPROCCIO -->
+    <section id="approccio">
+        <div class="approccio-grid">
+            <div class="ap-left">
+                <span class="s-eye reveal-el">Il nostro approccio</span>
+                <h2 class="s-h2 reveal-el">Perché affidare<br><em>la vostra auto</em><br>a noi</h2>
+                <p class="ap-pull reveal-el">
+                    "Non iniziamo nessun lavoro senza preventivo approvato. Non finiamo nessun lavoro con sorprese in fattura."
+                </p>
+                <p class="ap-body reveal-el">
+                    In vent'anni di attività a Reggio Emilia abbiamo capito che il cliente vuole due cose: sapere cosa c'è che non va e sapere esattamente quanto costerà risolverlo. Il nostro metodo è semplice — prima diagnostichiamo con strumenti professionali, poi proponiamo, poi agiamo.
+                </p>
+                <div class="cert-section">
+                    <p class="cert-head">Certificazioni e partnership tecniche</p>
+                    <div class="cert-items">
+                        <div class="cert-line reveal-el" style="transition-delay:.1s">Bosch Car Service — Partner autorizzato</div>
+                        <div class="cert-line reveal-el" style="transition-delay:.18s">Certificazione F-Gas · D.Lgs. 26/2013</div>
+                        <div class="cert-line reveal-el" style="transition-delay:.26s">AutoData Certified Technician</div>
+                        <div class="cert-line reveal-el" style="transition-delay:.34s">Partner tecnico Magneti Marelli</div>
+                        <div class="cert-line reveal-el" style="transition-delay:.42s">Partner Valeo Service Network</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ap-right">
+                <div class="why-rows">
+                    <div class="why-row reveal-el"><span class="why-n">i</span>
+                        <div>
+                            <p class="why-title">Esperienza maturata</p>
+                            <p class="why-desc">Dal 2006 seguiamo auto europee e giapponesi, veicoli commerciali e moto. Ogni marca, ogni problema ricorrente per chilometraggio e stagione.</p>
+                        </div>
+                    </div>
+                    <div class="why-row reveal-el" style="transition-delay:.08s"><span class="why-n">ii</span>
+                        <div>
+                            <p class="why-title">Diagnosi strumentale</p>
+                            <p class="why-desc">Scanner multimarchio di ultima generazione. Non si tocca nulla prima di aver letto i dati. Questo riduce tempi e costi per il cliente.</p>
+                        </div>
+                    </div>
+                    <div class="why-row reveal-el" style="transition-delay:.16s"><span class="why-n">iii</span>
+                        <div>
+                            <p class="why-title">Preventivo vincolante</p>
+                            <p class="why-desc">Il costo finale non supera mai quello concordato. Firmato, comunicato e rispettato. Ogni volta.</p>
+                        </div>
+                    </div>
+                    <div class="why-row reveal-el" style="transition-delay:.24s"><span class="why-n">iv</span>
+                        <div>
+                            <p class="why-title">Ricambi certificati</p>
+                            <p class="why-desc">Solo ricambi originali o OEM certificati dalle case costruttrici. La durata dell'intervento è coperta da garanzia scritta.</p>
+                        </div>
+                    </div>
+                    <div class="why-row reveal-el" style="transition-delay:.32s"><span class="why-n">v</span>
+                        <div>
+                            <p class="why-title">Tempi rispettati</p>
+                            <p class="why-desc">Ogni appuntamento ha uno slot esclusivo. Il tagliando ordinario viene consegnato entro tre ore dalla presa in carico.</p>
+                        </div>
+                    </div>
+                    <div class="why-row reveal-el" style="transition-delay:.4s"><span class="why-n">vi</span>
+                        <div>
+                            <p class="why-title">Interlocutore diretto</p>
+                            <p class="why-desc">Parlate direttamente con il meccanico che lavora sulla vostra auto. Nessun centralino, nessuna catena intermediari.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="recensioni">
+        <span class="s-eye reveal-el">Testimonianze</span>
+        <h2 class="s-h2 reveal-el">I nostri <em>clienti</em></h2>
+        <div class="rev-top reveal-el">
+            <div class="rev-score-big">4.9</div>
+            <div class="rev-meta-r">
+                <div class="rev-stars">★★★★★</div>
+                <div class="rev-count">214 recensioni verificate · Google Maps</div>
+            </div>
+        </div>
+        <div class="rev-grid">
+            <div class="rev-card reveal-el">
+                <div class="rev-stars-sm">★★★★★</div>
+                <p class="rev-body">Portato l'auto per una diagnosi alla spia motore. In meno di un'ora avevo il problema risolto e un preventivo chiaro. Finalmente un'officina che lavora senza fare finta di non sapere niente.</p>
+                <div class="rev-author">Marco T.</div>
+                <div class="rev-when">2 settimane fa</div>
+            </div>
+            <div class="rev-card reveal-el" style="transition-delay:.08s">
+                <div class="rev-stars-sm">★★★★★</div>
+                <p class="rev-body">Ho fatto il tagliando e la sostituzione della cinghia di distribuzione. Professionali, veloci e con prezzi onesti. Mi hanno spiegato tutto passo per passo.</p>
+                <div class="rev-author">Alessia R.</div>
+                <div class="rev-when">1 mese fa</div>
+            </div>
+            <div class="rev-card reveal-el" style="transition-delay:.16s">
+                <div class="rev-stars-sm">★★★★★</div>
+                <p class="rev-body">Pendolare con furgone aziendale. Da quando li ho trovati dormo tranquillo. Serietà rara in questo settore. Veloci, puntuali, mai una sorpresa in fattura.</p>
+                <div class="rev-author">Gianluca M.</div>
+                <div class="rev-when">3 settimane fa</div>
+            </div>
+            <div class="rev-card reveal-el" style="transition-delay:.04s">
+                <div class="rev-stars-sm">★★★★★</div>
+                <p class="rev-body">Clima rotto a luglio. Presa lo stesso giorno, ricaricato e sanificato in novanta minuti. Prezzo corretto, personale disponibile. Tornerò sicuramente.</p>
+                <div class="rev-author">Francesca B.</div>
+                <div class="rev-when">1 mese fa</div>
+            </div>
+            <div class="rev-card reveal-el" style="transition-delay:.12s">
+                <div class="rev-stars-sm">★★★★★</div>
+                <p class="rev-body">Auto appena comprata con rumore anomalo. Smontata, problema trovato alla sospensione anteriore, riparata in giornata. Prezzo nella norma, nessuna pressione.</p>
+                <div class="rev-author">Stefano L.</div>
+                <div class="rev-when">2 mesi fa</div>
+            </div>
+            <div class="rev-card reveal-el" style="transition-delay:.2s">
+                <div class="rev-stars-sm">★★★★★</div>
+                <p class="rev-body">Porto la mia moto da tre anni. Sempre disponibili, sempre precisi. Conoscono anche i modelli meno comuni. Non cambierei officina per nessun motivo.</p>
+                <div class="rev-author">Davide P.</div>
+                <div class="rev-when">3 mesi fa</div>
+            </div>
+        </div>
+        <div class="rev-more">
+            <a href="#" class="link-arrow">Leggi tutte le recensioni su Google</a>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="galleria">
+        <span class="s-eye reveal-el">Gli spazi</span>
+        <h2 class="s-h2 reveal-el">L'officina <em>dall'interno</em></h2>
+        <p class="s-intro reveal-el">Foto demo da Unsplash, utili come placeholder finché non carichi il materiale reale dell'officina.</p>
+        <div class="gal-layout">
+            <div class="gal-cell reveal-el"><span class="gal-lbl">Officina principale</span></div>
+            <div class="gal-cell reveal-el" style="transition-delay:.06s"><span class="gal-lbl">Banco attrezzi</span></div>
+            <div class="gal-cell reveal-el" style="transition-delay:.12s"><span class="gal-lbl">Ponte sollevatore</span></div>
+            <div class="gal-cell reveal-el" style="transition-delay:.18s"><span class="gal-lbl">Diagnosi elettronica</span></div>
+            <div class="gal-cell reveal-el" style="transition-delay:.24s"><span class="gal-lbl">Area performance</span></div>
+        </div>
+    </section>
+
+    <!-- CHI SIAMO -->
+    <section id="chi">
+        <div class="chi-layout">
+            <div class="chi-copy">
+                <span class="s-eye reveal-el">Chi siamo</span>
+                <h2 class="s-h2 reveal-el">Snake Garage<br><em>dal 2006</em></h2>
+                <p class="ap-body reveal-el" style="margin-top:1.5rem">
+                    Snake Garage è nata dalla passione di Mirco per la meccanica, iniziata a sedici anni lavorando sui motori di ciclomotori e motociclette. Quello che era un piccolo box si è trasformato in un'officina tecnica completa, riconoscibile nella provincia per serietà e competenza.
+                </p>
+                <div class="chi-pull reveal-el">
+                    "Un'officina è fatta di persone prima che di attrezzature. Trattiamo ogni cliente come vorremmo essere trattati noi."
+                </div>
+                <p class="ap-body reveal-el">
+                    Oggi Snake Garage è un'officina tecnica indipendente a Reggio Emilia, specializzata in diagnosi elettroniche, riparazioni meccaniche e lavorazioni di precisione su motori e componenti. Qui parlate direttamente con il meccanico che lavora sulla vostra auto.
+                </p>
+            </div>
+            <div class="chi-story">
+                <div class="story-block reveal-el">
+                    <p class="story-text">Negli anni l'esperienza si è evoluta fino al mondo delle competizioni, con numerosi motori preparati per gare rally e prove dirette in pista. Un percorso che ha permesso di sviluppare una conoscenza concreta di ciò che funziona davvero nel motore e nei sistemi meccanici di un veicolo.</p>
+                </div>
+                <div class="story-block reveal-el" style="transition-delay:.1s">
+                    <p class="story-text">Con il tempo l'officina si è ampliata, passando dalla preparazione sportiva alla diagnosi e riparazione di veicoli stradali, mantenendo sempre lo stesso approccio: analizzare il problema reale e intervenire in modo preciso.</p>
+                </div>
+                <div class="story-block reveal-el" style="transition-delay:.2s">
+                    <p class="story-text">L'esperienza maturata ha portato Mirco a lavorare anche su motori aeronautici ultraleggeri, ampliando ulteriormente le competenze meccaniche e diagnostiche. Specializzati in vetture europee e giapponesi, veicoli commerciali leggeri e motociclette, serviamo tutta la provincia: Scandiano, Correggio, Guastalla, Montecchio, Castelnovo Monti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="faq-layout">
+            <div>
+                <span class="s-eye reveal-el">Domande frequenti</span>
+                <h2 class="s-h2 reveal-el"><em>FAQ</em></h2>
+                <div class="faq-list" style="margin-top:3rem">
+                    <div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Fate preventivi gratuiti?<span class="faq-icon">+</span></button>
+                        <div class="faq-ans">
+                            <p>Sì, il preventivo è sempre gratuito e senza impegno. Non iniziamo alcun lavoro senza la vostra approvazione scritta. Il costo finale non potrà mai superare quanto concordato.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Lavorate su appuntamento?<span class="faq-icon">+</span></button>
+                        <div class="faq-ans">
+                            <p>Principalmente su appuntamento per garantire tempi certi. È possibile prenotare via telefono, WhatsApp o modulo. Per urgenze verifichiamo sempre la disponibilità in giornata.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Quanto dura un tagliando?<span class="faq-icon">+</span></button>
+                        <div class="faq-ans">
+                            <p>Un tagliando ordinario viene completato entro tre ore dalla presa in carico. Per interventi più complessi forniamo una stima precisa in fase di prenotazione.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Trattate veicoli commerciali?<span class="faq-icon">+</span></button>
+                        <div class="faq-ans">
+                            <p>Sì, lavoriamo su furgoni e veicoli commerciali leggeri fino a 3,5 tonnellate. Seguiamo diverse flotte aziendali con piani di manutenzione programmata.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Posso portare i ricambi?<span class="faq-icon">+</span></button>
+                        <div class="faq-ans">
+                            <p>Preferiamo fornire noi i ricambi per garantire qualità e copertura in garanzia. Non possiamo offrire garanzia sul materiale portato dal cliente, ma valutiamo caso per caso.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Accettate pagamenti con carta?<span class="faq-icon">+</span></button>
+                        <div class="faq-ans">
+                            <p>Sì, accettiamo tutte le carte di credito, debito e contactless. Anche contanti e bonifico. Emettiamo sempre fattura regolare.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item"><button class="faq-q" onclick="tFaq(this)">Seguite anche le moto?<span class="faq-icon">+</span></button>
+                        <div class="faq-ans">
+                            <p>Sì, lavoriamo su motociclette di tutte le marche inclusi modelli meno comuni. Tagliandi, riparazioni meccaniche, freni e pneumatici.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-aside reveal-el">
+                <h3>Avete ancora<br><em>domande?</em></h3>
+                <p>Contattateci direttamente. Siamo a disposizione da lunedì a venerdì dalle 08:30 alle 19:30 e il sabato mattina fino alle 14:30.</p>
+                <div class="faq-btns">
+                    <a href="tel:+393669907230" class="faq-btn">Chiamate ora</a>
+                    <a href="https://wa.me/393669907230" class="faq-btn" target="_blank">Scrivete su WhatsApp</a>
+                    <a href="#contatti" class="faq-btn ghost">Modulo di contatto →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA BAND -->
+    <div id="band">
+        <h2 class="band-title">Un problema alla vostra<br><em>auto?</em></h2>
+        <div class="band-actions">
+            <a href="tel:+393669907230" class="band-btn">Chiamate ora</a>
+            <a href="https://wa.me/393669907230" class="band-link" target="_blank">WhatsApp →</a>
+        </div>
     </div>
-  </div>
-</section>
 
-<!-- ORARI -->
-<section id="orari" class="sec" style="background:var(--deep)">
-  <div class="slbl rv">Vieni a trovarci</div>
-  <h2 class="stit rv">ORARI &<br><span class="gh">CONTATTI</span></h2>
-  <div class="olo">
-    <div class="rvl">
-      <div class="schedule" id="sched">
-        <div class="srow" data-d="1"><span class="sday">Lunedì</span><span class="stime sclosed">Chiuso</span></div>
-        <div class="srow" data-d="2"><span class="sday">Martedì</span><span class="stime">08:30 – 18:30</span></div>
-        <div class="srow" data-d="3"><span class="sday">Mercoledì</span><span class="stime">08:30 – 18:30</span></div>
-        <div class="srow" data-d="4"><span class="sday">Giovedì</span><span class="stime">08:30 – 18:30</span></div>
-        <div class="srow" data-d="5"><span class="sday">Venerdì</span><span class="stime">08:30 – 18:30</span></div>
-        <div class="srow" data-d="6"><span class="sday">Sabato</span><span class="stime">08:30 – 12:30</span></div>
-        <div class="srow" data-d="0"><span class="sday">Domenica</span><span class="stime sclosed">Chiuso</span></div>
-      </div>
-    </div>
-    <div class="cpanel rvr">
-      <div class="cblk"><div class="cico">📍</div><div><div class="clb2">Indirizzo</div><div class="cv2">Via Statale, 28 · 42013 Scandiano (RE)<br><small style="color:var(--silver);font-size:13px">Centro Comm. "Futura" · Superstore Coop</small></div></div></div>
-      <div class="cblk"><div class="cico">📞</div><div><div class="clb2">Telefono</div><div class="cv2"><a href="tel:0522982772">0522 982772</a></div></div></div>
-      <div class="cblk"><div class="cico">🚗</div><div><div class="clb2">Come arrivare</div><div class="cv2" style="color:var(--silver);font-size:15px">14 min da Reggio Emilia<br>51 min da Bologna<br><small>Parcheggio gratuito al Centro Commerciale</small></div></div></div>
-      <div class="cblk"><div class="cico">🗺️</div><div><div class="clb2">Google Maps</div><div class="cv2"><a href="https://maps.google.com/?q=Baschieri+Via+Statale+28+Scandiano" target="_blank">Apri navigazione →</a></div></div></div>
-    </div>
-  </div>
-</section>
+    <!-- CONTACTS -->
+    <section id="contatti">
+        <div class="cnt-layout">
+            <div class="cnt-details">
+                <span class="s-eye reveal-el">Dove siamo</span>
+                <h2 class="s-h2 reveal-el">Contatti<br><em>& sede</em></h2>
+                <div class="cnt-detail-list">
+                    <div class="cnt-row reveal-el"><span class="cnt-lbl">Telefono</span>
+                        <div class="cnt-val"><a href="tel:+393669907230">+39 366 990 7230</a><span class="cnt-small">Lun–Ven 08:30–19:30</span></div>
+                    </div>
+                    <div class="cnt-row reveal-el" style="transition-delay:.06s"><span class="cnt-lbl">WhatsApp</span>
+                        <div class="cnt-val"><a href="https://wa.me/393669907230" target="_blank">+39 366 990 7230</a><span class="cnt-small">Risposta entro due ore in orario lavorativo</span></div>
+                    </div>
+                    <div class="cnt-row reveal-el" style="transition-delay:.12s"><span class="cnt-lbl">Email</span>
+                        <div class="cnt-val"><a href="mailto:snakegarages.r.l@hotmail.com">snakegarages.r.l@hotmail.com</a></div>
+                    </div>
+                    <div class="cnt-row reveal-el" style="transition-delay:.18s"><span class="cnt-lbl">Sede</span>
+                        <div class="cnt-val">Via Enrico Fermi, 21<br>42123 Reggio Emilia (RE)</div>
+                    </div>
+                    <div class="cnt-row reveal-el" style="transition-delay:.24s"><span class="cnt-lbl">Orari</span>
+                        <div class="cnt-val">Lunedì – Venerdì · 08:30 – 19:30<br>Sabato · 09:30 – 14:30<span class="cnt-small">Domenica e festivi: chiuso</span></div>
+                    </div>
+                </div>
+                <div class="map-block reveal-el">
+                    <p>Via Enrico Fermi, 21 · 42123 Reggio Emilia (RE)</p>
+                    <a href="https://maps.google.com/?q=Via+Enrico+Fermi+21+Reggio+Emilia" target="_blank">Apri in Google Maps →</a>
+                </div>
+            </div>
+            <div class="form-panel reveal-el">
+                <p class="form-title">Richiedete un preventivo</p>
+                <div class="fg-row">
+                    <div class="fg"><label>Nome e cognome</label><input type="text" placeholder="Mario Rossi" /></div>
+                    <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39 333 000 0000" /></div>
+                </div>
+                <div class="fg"><label>Veicolo</label><input type="text" placeholder="Marca, modello, anno di immatricolazione" /></div>
+                <div class="fg">
+                    <label>Tipo di intervento</label>
+                    <select>
+                        <option value="">Selezionare il servizio…</option>
+                        <option>Manutenzione tecnica e tagliandi</option>
+                        <option>Diagnosi elettronica avanzata</option>
+                        <option>Freni, sospensioni e assetti</option>
+                        <option>Distribuzione e frizione</option>
+                        <option>Sistemi di iniezione e alimentazione</option>
+                        <option>Climatizzazione</option>
+                        <option>Impianti elettrici</option>
+                        <option>Pneumatici</option>
+                        <option>Controllo pre-revisione</option>
+                        <option>Altro</option>
+                    </select>
+                </div>
+                <div class="fg"><label>Messaggio</label><textarea placeholder="Descrivete brevemente il problema o l'intervento richiesto…" rows="5"></textarea></div>
+                <button class="form-cta" onclick="doSub()"><span>Invia richiesta</span></button>
+                <div id="fsuc">Richiesta ricevuta — vi contatteremo a breve.</div>
+            </div>
+        </div>
+    </section>
 
-<!-- MAP -->
-<div class="mapsec"><canvas id="mc"></canvas><div class="mapo"><div style="font-size:56px;margin-bottom:12px;animation:bnc 2s ease-in-out infinite">📍</div><div class="maptit">BASCHIERI — SCANDIANO RE</div><div class="mapsub">Via Statale, 28 · 42013 Scandiano · Centro Comm. Futura</div><a href="https://maps.google.com/?q=Baschieri+Via+Statale+28+Scandiano" target="_blank" class="mapbtn">Apri in Google Maps →</a></div></div>
+    <!-- FOOTER -->
+    <footer>
+        <div class="ft-grid">
+            <div>
+                <div class="ft-brand">Snake Garage</div>
+                <p class="ft-tagline">Officina meccanica a Reggio Emilia. Tagliandi, diagnosi e riparazioni con la massima trasparenza tecnica dal 2006.</p>
+                <div class="ft-socials">
+                    <a href="#" class="ft-soc">Facebook</a>
+                    <a href="#" class="ft-soc">Instagram</a>
+                    <a href="#" class="ft-soc">Google</a>
+                </div>
+            </div>
+            <div class="ft-col">
+                <h5>Servizi</h5>
+                <ul>
+                    <li><a href="#servizi-section">Manutenzione e tagliandi</a></li>
+                    <li><a href="#servizi-section">Diagnosi elettronica</a></li>
+                    <li><a href="#servizi-section">Freni e sospensioni</a></li>
+                    <li><a href="#servizi-section">Distribuzione</a></li>
+                    <li><a href="#servizi-section">Iniezione e alimentazione</a></li>
+                    <li><a href="#servizi-section">Climatizzazione</a></li>
+                    <li><a href="#servizi-section">Impianti elettrici</a></li>
+                    <li><a href="#servizi-section">Pneumatici</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h5>Navigazione</h5>
+                <ul>
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#approccio">Approccio</a></li>
+                    <li><a href="#recensioni">Clienti</a></li>
+                    <li><a href="#chi">Chi siamo</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contatti">Contatti</a></li>
+                </ul>
+            </div>
+            <div class="ft-col">
+                <h5>Sede</h5>
+                <p class="ft-addr">
+                    Via Enrico Fermi, 21<br>
+                    42123 Reggio Emilia (RE)<br><br>
+                    <a href="tel:+393669907230">+39 366 990 7230</a><br>
+                    <a href="mailto:snakegarages.r.l@hotmail.com">snakegarages.r.l@hotmail.com</a><br><br>
+                    Lun–Ven 08:30–19:30<br>
+                    Sab 09:30–14:30
+                </p>
+            </div>
+        </div>
+        <div class="ft-bottom">
+            <p class="ft-copy">© 2026 Snake Garage di Mirco &ensp;·&ensp; P. IVA da aggiornare &ensp;·&ensp; Reggio Emilia</p>
+            <div class="ft-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
 
-<!-- FOOTER -->
-<footer>
-  <div class="ftop">
-    <div class="fbrand">
-      <div class="flogo">BASCHIERI<span class="dot">.</span></div>
-      <div class="ftag2">Il punto di riferimento per professionisti e officine in provincia di Reggio Emilia. Utensili, ricambi e ferramenta dal 1970.</div>
-    </div>
-    <div><div class="fct">Navigazione</div><ul class="flinks"><li><a href="#prodotti">Prodotti</a></li><li><a href="#perche">Chi siamo</a></li><li><a href="#orari">Orari</a></li><li><a href="#orari">Contatti</a></li></ul></div>
-    <div><div class="fct">Informazioni</div><ul class="flinks"><li><a href="#">Via Statale 28, Scandiano</a></li><li><a href="tel:0522982772">0522 982772</a></li><li><a href="#">Provincia di Reggio Emilia</a></li></ul></div>
-  </div>
-  <div class="fbot">
-    <div class="fcopy">© 2024 Baschieri — Negozio di Utensili · Scandiano RE</div>
-    <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--silver)">Lun: Chiuso · Mar–Ven: 08:30–18:30 · Sab: 08:30–12:30</div>
-    <div class="fph">0522 982772</div>
-  </div>
-</footer>
+    <script>
+        /* CURSOR */
+        const dot = document.getElementById('c-dot');
+        const ring = document.getElementById('c-ring');
+        let mx = 0,
+            my = 0,
+            rx = 0,
+            ry = 0;
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+        });
+        (function animCursor() {
+            rx += (mx - rx) * .14;
+            ry += (my - ry) * .14;
+            dot.style.left = mx + 'px';
+            dot.style.top = my + 'px';
+            ring.style.left = rx + 'px';
+            ring.style.top = ry + 'px';
+            requestAnimationFrame(animCursor);
+        })();
+        document.querySelectorAll('a,button,.svc-card,.team-row,.rev-card').forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+        });
 
-<script>
-/* ─── CURSOR ─── */
-const cur=document.getElementById('cur'),ring=document.getElementById('cur-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function animR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animR)})();
+        /* SCROLL PROGRESS + NAV */
+        const prog = document.getElementById('prog');
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            const p = window.scrollY / (document.body.scrollHeight - window.innerHeight);
+            prog.style.transform = `scaleX(${p})`;
+            nav.classList.toggle('scrolled', window.scrollY > 80);
+        }, {
+            passive: true
+        });
 
-/* ─── PROGRESS ─── */
-const pb=document.getElementById('pbar');
-window.addEventListener('scroll',()=>pb.style.width=(window.scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%');
+        /* HERO INTRO */
+        window.addEventListener('load', () => {
+            setTimeout(() => document.getElementById('he').classList.add('show'), 200);
+            setTimeout(() => document.getElementById('hw1').classList.add('show'), 400);
+            setTimeout(() => document.getElementById('hw2').classList.add('show'), 580);
+            setTimeout(() => document.getElementById('hd').classList.add('show'), 900);
+            setTimeout(() => document.getElementById('hc').classList.add('show'), 1100);
+            setTimeout(() => {
+                const b = document.getElementById('hbadge');
+                if (b) b.classList.add('show');
+            }, 1300);
+            [document.getElementById('hs1'), document.getElementById('hs2'), document.getElementById('hs3'), document.getElementById('hs4')].forEach(el => {
+                if (el) setTimeout(() => el.classList.add('show'), 1400);
+            });
+        });
 
-/* ─── NAV ─── */
-window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('s',scrollY>60));
+        /* MANIFESTO TEXT SPLIT */
+        function splitWords(el) {
+            const words = el.innerText.split(' ');
+            el.innerHTML = words.map(w => `<span class="word"><span>${w}</span></span>`).join(' ');
+        }
+        const mtext = document.getElementById('mtext');
+        if (mtext) splitWords(mtext);
 
-/* ─── SPARK CANVAS ─── */
-const sc=document.getElementById('sc'),cx=sc.getContext('2d');
-let W,H;function rsz(){W=sc.width=innerWidth;H=sc.height=innerHeight}
-window.addEventListener('resize',rsz);rsz();
-class P{
-  constructor(x,y,m){
-    this.x=x??Math.random()*W;this.y=y??Math.random()*H;this.m=m;
-    this.vx=(Math.random()-.5)*(m?9:1.5);this.vy=(Math.random()-1)*(m?9:2);
-    this.a=m?1:Math.random()*.5+.1;this.sz=m?Math.random()*3+1:Math.random()*1.5+.5;
-    this.c=m?(Math.random()>.5?'#ffd060':'#f05a1e'):`hsl(${20+Math.random()*20},80%,${50+Math.random()*30}%)`;
-    this.life=m?80:Math.random()*120+60;this.ml=this.life;this.g=m?.15:.03;
-  }
-  update(){this.x+=this.vx;this.y+=this.vy;this.vy+=this.g;if(!this.m)this.vx*=.99;this.life--;this.a=(this.life/this.ml)*(this.m?1:.4)}
-  draw(){cx.save();cx.globalAlpha=Math.max(0,this.a);cx.fillStyle=this.c;cx.shadowColor=this.c;cx.shadowBlur=this.m?14:4;cx.beginPath();cx.arc(this.x,this.y,this.sz,0,Math.PI*2);cx.fill();cx.restore()}
-}
-let ps=[];
-for(let i=0;i<80;i++)ps.push(new P());
-document.addEventListener('mousemove',e=>{for(let i=0;i<4;i++)ps.push(new P(e.clientX,e.clientY,true))});
-document.addEventListener('click',e=>{for(let i=0;i<24;i++)ps.push(new P(e.clientX,e.clientY,true))});
-(function anim(){cx.clearRect(0,0,W,H);ps=ps.filter(p=>p.life>0);while(ps.filter(p=>!p.m).length<80)ps.push(new P());ps.forEach(p=>{p.update();p.draw()});requestAnimationFrame(anim)})();
+        /* INTERSECTION OBSERVER */
+        const revObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('show');
+                e.target.querySelectorAll('.counter').forEach(c => animCounter(c));
+                revObs.unobserve(e.target);
+            });
+        }, {
+            threshold: 0.12
+        });
+        document.querySelectorAll('.reveal-el').forEach(el => revObs.observe(el));
 
-/* ─── MAP CANVAS ─── */
-const mc=document.getElementById('mc'),mctx=mc.getContext('2d');
-function rsm(){mc.width=mc.parentElement.offsetWidth;mc.height=mc.parentElement.offsetHeight}
-window.addEventListener('resize',rsm);rsm();
-(function dm(){
-  mctx.clearRect(0,0,mc.width,mc.height);
-  const sp=36;
-  for(let x=0;x<mc.width+sp;x+=sp)for(let y=0;y<mc.height+sp;y+=sp){
-    const d=Math.sqrt((x-mc.width/2)**2+(y-mc.height/2)**2);
-    const md=Math.sqrt((mc.width/2)**2+(mc.height/2)**2);
-    mctx.fillStyle=`rgba(212,64,16,${.06*(1-d/md)+.01})`;
-    mctx.beginPath();mctx.arc(x,y,1.5,0,Math.PI*2);mctx.fill();
-  }
-  mctx.strokeStyle='rgba(212,64,16,.15)';mctx.lineWidth=1.5;
-  [[0,.5,1,.5],[.5,0,.5,1],[.2,.2,.8,.8],[.1,.7,.9,.3]].forEach(([x1,y1,x2,y2])=>{
-    mctx.beginPath();mctx.moveTo(x1*mc.width,y1*mc.height);mctx.lineTo(x2*mc.width,y2*mc.height);mctx.stroke();
-  });
-  const t=Date.now()/1000,pls=(Math.sin(t*2)*.5+.5);
-  mctx.strokeStyle=`rgba(212,64,16,${.35*pls})`;mctx.lineWidth=1;
-  mctx.beginPath();mctx.arc(mc.width/2,mc.height/2,60+40*pls,0,Math.PI*2);mctx.stroke();
-  mctx.beginPath();mctx.arc(mc.width/2,mc.height/2,18+8*pls,0,Math.PI*2);
-  mctx.fillStyle=`rgba(212,64,16,${.2*pls})`;mctx.fill();
-  requestAnimationFrame(dm);
-})();
+        /* MANIFESTO */
+        const mObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                const lead = document.getElementById('mlead');
+                if (lead) setTimeout(() => lead.classList.add('show'), 100);
+                document.getElementById('mline').classList.add('show');
+                document.querySelectorAll('#mtext .word').forEach((w, i) => {
+                    setTimeout(() => w.classList.add('show'), 100 + i * 55);
+                });
+                document.getElementById('msub').classList.add('show');
+                mObs.unobserve(e.target);
+            });
+        }, {
+            threshold: 0.3
+        });
+        const manSec = document.getElementById('manifesto');
+        if (manSec) mObs.observe(manSec);
 
-/* ─── PARALLAX ─── */
-const pbg=document.getElementById('pbg');
-window.addEventListener('scroll',()=>{
-  const r=pbg.parentElement.getBoundingClientRect();
-  if(r.bottom>0&&r.top<innerHeight)pbg.style.transform=`translateY(${(r.top/innerHeight)*60}px)`;
-});
+        /* COUNTER */
+        function animCounter(el) {
+            if (el.dataset.done === '1') return;
+            el.dataset.done = '1';
+            const target = +el.dataset.target;
+            const duration = 1600;
+            const start = performance.now();
 
-/* ─── TODAY HIGHLIGHT ─── */
-const td=new Date().getDay();
-document.querySelectorAll('.srow').forEach(r=>{
-  if(parseInt(r.dataset.d)===td){
-    r.classList.add('td');
-    const b=document.createElement('span');b.className='sbadge';b.textContent='Oggi';
-    r.querySelector('.sday').appendChild(b);
-  }
-});
+            function step(ts) {
+                const p = Math.min((ts - start) / duration, 1);
+                const ease = 1 - Math.pow(1 - p, 3);
+                el.textContent = Math.round(ease * target).toLocaleString('it');
+                if (p < 1) requestAnimationFrame(step);
+                else el.textContent = target.toLocaleString('it');
+            }
+            requestAnimationFrame(step);
+        }
+        const numObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                e.target.querySelectorAll('.counter').forEach(animCounter);
+                numObs.unobserve(e.target);
+            });
+        }, {
+            threshold: 0.3
+        });
+        document.querySelectorAll('.num-block').forEach(b => numObs.observe(b));
 
-/* ─── COUNTERS ─── */
-function animCount(el,target,dur,dec){
-  const s=performance.now();
-  (function tick(now){
-    const t=Math.min((now-s)/dur,1),e=1-Math.pow(1-t,3),v=e*target;
-    el.textContent=dec?v.toFixed(dec):Math.round(v).toLocaleString('it-IT');
-    if(t<1)requestAnimationFrame(tick);
-  })(performance.now());
-}
-new IntersectionObserver((ents,obs)=>{
-  ents.forEach(en=>{if(!en.isIntersecting)return;
-    en.target.classList.add('iv');
-    en.target.querySelectorAll('.cn').forEach(el=>animCount(el,+el.dataset.t,2000,0));
-    obs.unobserve(en.target);
-  });
-},{threshold:.3}).observe(document.getElementById('cgrid'));
+        /* HORIZONTAL DRAG SCROLL */
+        const wrap = document.getElementById('svcWrap');
+        const track = document.getElementById('svcTrack');
+        let isDragging = false,
+            startX = 0,
+            scrollStart = 0,
+            velX = 0,
+            lastX = 0,
+            raf = null;
+        wrap.addEventListener('mousedown', e => {
+            isDragging = true;
+            startX = e.pageX;
+            scrollStart = wrap._sx || 0;
+            lastX = e.pageX;
+            velX = 0;
+            cancelAnimationFrame(raf);
+        });
+        window.addEventListener('mousemove', e => {
+            if (!isDragging) return;
+            const dx = e.pageX - startX;
+            velX = e.pageX - lastX;
+            lastX = e.pageX;
+            wrap._sx = scrollStart - dx;
+            clampAndApply();
+        });
+        window.addEventListener('mouseup', () => {
+            if (!isDragging) return;
+            isDragging = false;
+            momentum();
+        });
+        wrap.addEventListener('touchstart', e => {
+            startX = e.touches[0].pageX;
+            scrollStart = wrap._sx || 0;
+            lastX = startX;
+            velX = 0;
+            cancelAnimationFrame(raf);
+        }, {
+            passive: true
+        });
+        wrap.addEventListener('touchmove', e => {
+            const dx = e.touches[0].pageX - startX;
+            velX = e.touches[0].pageX - lastX;
+            lastX = e.touches[0].pageX;
+            wrap._sx = scrollStart - dx;
+            clampAndApply();
+        }, {
+            passive: true
+        });
+        wrap.addEventListener('touchend', () => momentum());
 
-/* Hero stat counters */
-const hObs=new IntersectionObserver((ents,obs)=>{
-  ents.forEach(en=>{if(!en.isIntersecting)return;
-    const el=en.target,t=parseFloat(el.dataset.t),d=parseInt(el.dataset.d)||0;
-    animCount(el,t,1800,d);obs.unobserve(el);
-  });
-},{threshold:.5});
-document.querySelectorAll('.cnt').forEach(el=>hObs.observe(el));
+        function getMaxScroll() {
+            return track.scrollWidth - wrap.offsetWidth;
+        }
 
-/* ─── SCROLL REVEAL ─── */
-const rvObs=new IntersectionObserver(ents=>{
-  ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('vis');rvObs.unobserve(en.target)}});
-},{threshold:.1,rootMargin:'0px 0px -60px 0px'});
-document.querySelectorAll('.rv,.rvl,.rvr,.stg').forEach(el=>rvObs.observe(el));
+        function clampAndApply() {
+            const max = getMaxScroll();
+            wrap._sx = Math.max(0, Math.min(wrap._sx, max));
+            track.style.transform = `translateX(-${wrap._sx}px)`;
+        }
 
-/* ─── 3D TILT ─── */
-document.querySelectorAll('.pc').forEach(c=>{
-  c.addEventListener('mousemove',e=>{
-    const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
-    c.style.transform=`perspective(800px) rotateY(${x*14}deg) rotateX(${-y*14}deg) translateY(-6px)`;
-  });
-  c.addEventListener('mouseleave',()=>c.style.transform='');
-});
+        function momentum() {
+            raf = requestAnimationFrame(function loop() {
+                velX *= 0.92;
+                wrap._sx -= velX;
+                clampAndApply();
+                if (Math.abs(velX) > 0.4) raf = requestAnimationFrame(loop);
+            });
+        }
 
-/* ─── MAGNETIC BUTTONS ─── */
-document.querySelectorAll('.btn-p,.btn-g,.ncta').forEach(b=>{
-  b.addEventListener('mousemove',e=>{
-    const r=b.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;
-    b.style.transform=`translate(${x*.28}px,${y*.45}px)`;
-  });
-  b.addEventListener('mouseleave',()=>b.style.transform='');
-});
+        /* FAQ */
+        function tFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const was = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!was) item.classList.add('open');
+        }
 
-/* ─── TYPEWRITER on hero tag ─── */
-const eye=document.querySelector('.h-eye');
-const txt='Dal 1970 — Scandiano, Reggio Emilia — Provincia RE';
-eye.textContent='';
-setTimeout(()=>{
-  let i=0;
-  (function type(){
-    if(i<txt.length){eye.textContent=txt.slice(0,++i);setTimeout(type,28)}
-  })();
-},800);
-</script>
+        /* MOBILE NAV */
+        function toggleNav() {
+            const l = document.querySelector('.nav-center');
+            if (l.style.display === 'flex') {
+                l.style.display = 'none';
+                return;
+            }
+            l.style.cssText = 'display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(3,8,6,.97);padding:2rem clamp(2rem,6vw,6rem);gap:1.8rem;border-bottom:1px solid rgba(44,255,133,.15);z-index:7999;backdrop-filter:blur(24px)';
+        }
+
+        /* FORM */
+        function doSub() {
+            const s = document.getElementById('fsuc');
+            s.style.display = 'block';
+            setTimeout(() => s.style.display = 'none', 5000);
+        }
+    </script>
 </body>
+
 </html>
