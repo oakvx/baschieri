@@ -402,7 +402,6 @@
             }
         }
 
-        /* Hero eyebrow */
         .h-eye {
             font-family: 'DM Mono', monospace;
             font-size: 10px;
@@ -432,7 +431,6 @@
             background: var(--gold)
         }
 
-        /* Hero title — each word is a clip container */
         .h-title {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(68px, 10vw, 156px);
@@ -461,7 +459,6 @@
             color: transparent
         }
 
-        /* Hero sub */
         .h-sub {
             margin-top: 52px;
             display: grid;
@@ -492,7 +489,6 @@
             align-items: flex-start
         }
 
-        /* Buttons */
         .btn-primary {
             display: inline-block;
             position: relative;
@@ -568,7 +564,6 @@
             z-index: 1
         }
 
-        /* Stats bar */
         .sbar {
             position: absolute;
             bottom: 0;
@@ -705,8 +700,6 @@
             white-space: nowrap;
             will-change: transform
         }
-
-        /* hover pause handled via JS */
 
         .t-item {
             display: inline-flex;
@@ -1103,7 +1096,6 @@
             font-weight: 600
         }
 
-        /* Hero logo — single featured */
         .logo-hero {
             background: var(--iron);
             display: flex;
@@ -1171,7 +1163,6 @@
             opacity: 1
         }
 
-        /* Main 3-col */
         .logo-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -1263,13 +1254,11 @@
             color: var(--gold)
         }
 
-        /* mini row */
         .lc-sm {
             min-height: 128px;
             padding: 32px 24px
         }
 
-        /* Brand link cards */
         a.lc,
         a.logo-hero {
             cursor: pointer
@@ -1303,6 +1292,466 @@
         .logo-hero:hover .lh-visit {
             opacity: 1;
             transform: translateY(0)
+        }
+
+        /* ═══ PROMO CATALOGS SECTION ══════════════════════════ */
+        .promo-catalogs {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            padding: 0 70px;
+            background: transparent;
+        }
+
+        .promo-cat-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--black);
+            cursor: default;
+            transition: background .3s;
+            transform-style: preserve-3d
+        }
+
+        .promo-cat-card:hover { background: var(--deep) }
+
+        .pcc-bg-pattern {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .04
+        }
+
+        .fervi-bg {
+            background: repeating-linear-gradient(135deg, transparent 0, transparent 24px, #1a4fa0 24px, #1a4fa0 25px)
+        }
+
+        .usag-bg {
+            background: repeating-linear-gradient(-45deg, transparent 0, transparent 24px, #cc2222 24px, #cc2222 25px)
+        }
+
+        .pcc-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column
+        }
+
+        .pcc-brand-badge {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 20px 40px;
+            border-bottom: 1px solid rgba(255,255,255,.06)
+        }
+
+        .fervi-badge { background: rgba(26,79,160,.06) }
+        .usag-badge  { background: rgba(232,160,0,.04) }
+
+        .pcc-badge-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 7.5px;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            color: var(--silver)
+        }
+
+        .usag-bl { color: rgba(232,160,0,.6) }
+
+        .pcc-visual {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .pcc-visual-img {
+            height: auto !important;
+            aspect-ratio: unset !important;
+        }
+
+        .fervi-visual {
+            background: linear-gradient(135deg, #0a1628 0%, #112244 50%, #0d1e38 100%)
+        }
+
+        .fervi-hex-bg { position: absolute; inset: 0; pointer-events: none }
+
+        .fhex {
+            position: absolute;
+            background: rgba(26,79,160,.12);
+            clip-path: polygon(25% 0%,75% 0%,100% 50%,75% 100%,25% 100%,0% 50%)
+        }
+
+        .fhex1 { width: 320px; height: 320px; top: -70px; left: -70px }
+        .fhex2 { width: 220px; height: 220px; top: 20px; right: -50px; background: rgba(26,79,160,.07) }
+        .fhex3 { width: 180px; height: 180px; bottom: -50px; left: 35%; background: rgba(26,79,160,.09) }
+
+        .fervi-edition-block {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(26,79,160,.3);
+            padding: 24px 48px;
+            clip-path: polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+            transition: border-color .35s, box-shadow .35s
+        }
+
+        .promo-cat-card:hover .fervi-edition-block {
+            border-color: rgba(100,149,237,.5);
+            box-shadow: 0 0 40px rgba(100,149,237,.1)
+        }
+
+        .fe-sel {
+            font-family: 'DM Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .32em;
+            text-transform: uppercase;
+            color: rgba(100,149,237,.8);
+            margin-bottom: 4px
+        }
+
+        .fe-year {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 88px;
+            line-height: .9;
+            color: #6495ed;
+            text-shadow: 0 0 50px rgba(100,149,237,.25)
+        }
+
+        .fe-ed {
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: rgba(100,149,237,.6);
+            margin-top: 6px
+        }
+
+        .fervi-sub-brands {
+            position: absolute;
+            bottom: 18px;
+            right: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 3
+        }
+
+        .fsb-sep { width: 1px; height: 14px; background: rgba(255,255,255,.2) }
+
+        .usag-visual {
+            background: linear-gradient(135deg, #8b0000 0%, #cc1a1a 40%, #990000 100%)
+        }
+
+        .usag-xgrip-bg {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 70% at 50% 50%, rgba(255,255,255,.04), transparent)
+        }
+
+        .usag-x-mark {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center
+        }
+
+        .usag-xgrip-logo {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3
+        }
+
+        .usag-super {
+            position: relative;
+            z-index: 3;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 52px;
+            line-height: 1;
+            color: white;
+            letter-spacing: .04em;
+            text-shadow: 0 2px 20px rgba(0,0,0,.4);
+            text-align: center
+        }
+
+        .usag-super span {
+            display: block;
+            font-size: 28px;
+            letter-spacing: .18em;
+            color: rgba(255,255,255,.6)
+        }
+
+        .pcc-content {
+            padding: 36px 40px 44px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px
+        }
+
+        .pcc-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 7.5px;
+            letter-spacing: .22em;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border: 1px solid;
+            display: inline-block;
+            width: fit-content
+        }
+
+        .fervi-tag { color: #6495ed; border-color: rgba(100,149,237,.25); background: rgba(100,149,237,.05) }
+        .usag-tag  { color: #e84040; border-color: rgba(232,64,64,.25);  background: rgba(232,64,64,.05) }
+
+        .pcc-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(28px, 3vw, 44px);
+            line-height: .9;
+            letter-spacing: .03em;
+            color: var(--white)
+        }
+
+        .pcc-desc {
+            font-size: 13.5px;
+            line-height: 1.82;
+            color: var(--silver);
+            max-width: 440px
+        }
+
+        .pcc-validity {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--silver)
+        }
+
+        .pcc-val-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0 }
+        .fervi-dot { background: #6495ed; box-shadow: 0 0 8px rgba(100,149,237,.6) }
+        .usag-dot  { background: #4ade80; box-shadow: 0 0 8px rgba(74,222,128,.6); animation: pulse-green 2s ease-in-out infinite }
+
+        .pcc-ctas { display: flex; gap: 10px; flex-wrap: wrap }
+
+        .pcc-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            padding: 11px 24px;
+            transition: transform .25s, box-shadow .25s, background .25s;
+            width: fit-content
+        }
+
+        .fervi-cta { background: #1a4fa0; color: white }
+        .fervi-cta:hover { background: #2560c0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(26,79,160,.35) }
+        .usag-cta  { background: #cc1a1a; color: white }
+        .usag-cta:hover  { background: #e82020; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(204,26,26,.4) }
+
+        .pcc-cta-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: 'DM Mono', monospace;
+            font-size: 9px;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+            padding: 11px 24px;
+            color: var(--silver);
+            border: 1px solid var(--muted);
+            transition: border-color .25s, color .25s
+        }
+
+        .pcc-cta-ghost:hover { border-color: var(--silver); color: var(--white) }
+
+        .pcc-corner-deco {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-family: 'DM Mono', monospace;
+            font-size: 7px;
+            letter-spacing: .3em;
+            text-transform: uppercase;
+            opacity: .2;
+            z-index: 2
+        }
+
+        .fervi-corner { color: #6495ed }
+        .usag-corner  { color: var(--gold) }
+
+        .promo-cat-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .5s var(--r)
+        }
+
+        .fervi-card::after { background: linear-gradient(90deg, #1a4fa0, #6495ed, transparent) }
+        .usag-card::after  { background: linear-gradient(90deg, #cc1a1a, #ff4444, transparent) }
+        .promo-cat-card:hover::after { transform: scaleX(1) }
+
+        /* Promo responsive — granular breakpoints */
+        @media(max-width: 1280px) {
+            .promo-catalogs { padding: 0 48px; }
+        }
+
+        @media(max-width: 1100px) {
+            .promo-catalogs { padding: 0 36px; gap: 12px; }
+            .pcc-visual-img { height: 300px !important; }
+            .pcc-cover-img  { max-height: 300px; }
+            .pcc-content    { padding: 28px 32px 36px; }
+            .pcc-brand-badge{ padding: 16px 32px; }
+        }
+
+        @media(max-width: 960px) {
+            .promo-catalogs { grid-template-columns: 1fr; padding: 0 28px; gap: 14px; }
+            .pcc-visual-img { height: 320px !important; }
+            .pcc-cover-img  { max-height: 320px; }
+        }
+
+        @media(max-width: 767px) {
+            /* slider rules already above */
+        }
+
+        @media(max-width: 540px) {
+            .promo-catalogs { padding: 0 14px !important; gap: 10px !important; }
+            .promo-cat-card { flex: 0 0 calc(92vw - 28px); }
+            .pcc-visual-img { height: 220px !important; }
+            .pcc-cover-img  { max-height: 220px; }
+            .pcc-content    { padding: 22px 20px 28px; gap: 10px; }
+            .pcc-brand-badge{ padding: 14px 20px; }
+            .pcc-title      { font-size: 26px !important; }
+            .pcc-desc       { font-size: 12.5px; }
+        }
+
+        @media(max-width: 400px) {
+            .promo-catalogs { padding: 0 10px !important; }
+            .promo-cat-card { flex: 0 0 calc(95vw - 20px); }
+            .pcc-visual-img { height: 190px !important; }
+            .pcc-cover-img  { max-height: 190px; }
+            .pcc-content    { padding: 18px 16px 24px; }
+            .pcc-brand-badge{ padding: 12px 16px; }
+            .pcc-title      { font-size: 23px !important; }
+        }
+
+        .pcc-visual-img {
+            background: var(--iron) !important;
+            padding: 0;
+            height: 340px !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .pcc-cover-img {
+            position: relative;
+            width: auto;
+            height: 100%;
+            max-width: 100%;
+            max-height: 340px;
+            object-fit: contain;
+            display: block;
+            transition: transform .5s var(--r), filter .4s;
+            filter: brightness(.93);
+            z-index: 0;
+        }
+
+        .promo-cat-card:hover .pcc-cover-img {
+            transform: scale(1.03);
+            filter: brightness(1);
+        }
+
+        .pcc-img-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to bottom, transparent, rgba(5,5,7,.6));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ── SLIDER MOBILE ─────────────────────────── */
+        .promo-slider-wrap {
+            position: relative;
+        }
+
+        .promo-slider-dots {
+            display: none;
+        }
+
+        @media(max-width: 767px) {
+            .promo-catalogs {
+                display: flex !important;
+                flex-direction: row !important;
+                grid-template-columns: unset !important;
+                overflow-x: scroll;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                padding: 0 20px !important;
+                gap: 12px !important;
+            }
+
+            .promo-catalogs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .promo-cat-card {
+                flex: 0 0 calc(88vw - 40px);
+                min-width: 0;
+                scroll-snap-align: start;
+                border-radius: 2px;
+            }
+
+            .pcc-visual-img {
+                height: 260px !important;
+            }
+
+            .pcc-cover-img {
+                max-height: 260px;
+            }
+
+            .promo-slider-dots {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+                margin-top: 18px;
+                padding-bottom: 4px;
+            }
+
+            .psd {
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: rgba(255,255,255,.2);
+                transition: background .3s, transform .3s, width .3s;
+                cursor: pointer;
+                border: none;
+                padding: 0;
+                flex-shrink: 0;
+            }
+
+            .psd.active {
+                background: var(--gold);
+                width: 22px;
+                border-radius: 3px;
+            }
         }
 
         /* ═══ WHY US + REVIEWS ════════════════════════════════ */
@@ -1843,13 +2292,8 @@
         }
 
         @keyframes marquee {
-            from {
-                transform: translateX(0)
-            }
-
-            to {
-                transform: translateX(-50%)
-            }
+            from { transform: translateX(0) }
+            to   { transform: translateX(-50%) }
         }
 
         /* ═══ FOOTER ══════════════════════════════════════════ */
@@ -2007,31 +2451,13 @@
         }
 
         @keyframes pulse-green {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1)
-            }
-
-            50% {
-                opacity: .65;
-                transform: scale(1.35)
-            }
+            0%, 100% { opacity: 1; transform: scale(1) }
+            50%       { opacity: .65; transform: scale(1.35) }
         }
 
         @keyframes pulse-gold {
-
-            0%,
-            100% {
-                opacity: 1;
-                transform: scale(1)
-            }
-
-            50% {
-                opacity: .5;
-                transform: scale(1.25)
-            }
+            0%, 100% { opacity: 1; transform: scale(1) }
+            50%       { opacity: .5; transform: scale(1.25) }
         }
 
         .live-label {
@@ -2104,11 +2530,8 @@
             border-color: var(--gold-bd);
         }
 
-        .schedule-row.closed-day {
-            opacity: .45
-        }
+        .schedule-row.closed-day { opacity: .45 }
 
-        /* Day number column */
         .srow-num {
             display: flex;
             align-items: center;
@@ -2123,12 +2546,8 @@
             width: 60px;
         }
 
-        .schedule-row.today .srow-num {
-            color: var(--gold);
-            opacity: .7
-        }
+        .schedule-row.today .srow-num { color: var(--gold); opacity: .7 }
 
-        /* Main content */
         .srow-body {
             display: flex;
             flex-direction: column;
@@ -2138,7 +2557,6 @@
             position: relative;
         }
 
-        /* Day name */
         .sday {
             font-family: 'DM Mono', monospace;
             font-size: 10px;
@@ -2151,9 +2569,7 @@
             line-height: 1;
         }
 
-        .schedule-row.today .sday {
-            color: var(--gold-lt)
-        }
+        .schedule-row.today .sday { color: var(--gold-lt) }
 
         .today-badge {
             font-family: 'DM Mono', monospace;
@@ -2166,7 +2582,6 @@
             line-height: 1.6;
         }
 
-        /* Time display */
         .stime {
             font-family: 'Bebas Neue', sans-serif;
             font-size: 22px;
@@ -2179,18 +2594,8 @@
             flex-wrap: wrap;
         }
 
-        .stime-slot {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px
-        }
-
-        .stime-sep {
-            width: 20px;
-            height: 1px;
-            background: rgba(255, 255, 255, .2);
-            display: inline-block;
-        }
+        .stime-slot { display: inline-flex; align-items: center; gap: 6px }
+        .stime-sep  { width: 20px; height: 1px; background: rgba(255,255,255,.2); display: inline-block }
 
         .sclosed {
             font-family: 'DM Mono', monospace;
@@ -2200,15 +2605,7 @@
             color: var(--muted);
         }
 
-        /* Progress bar (appears on today's row) */
-        .srow-progress {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: rgba(255, 255, 255, .04);
-        }
+        .srow-progress { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: rgba(255,255,255,.04) }
 
         .srow-progress-fill {
             height: 100%;
@@ -2218,13 +2615,12 @@
             transition: width .5s ease;
         }
 
-        /* Right status column */
         .srow-status {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 0 26px;
-            border-left: 1px solid rgba(255, 255, 255, .05);
+            border-left: 1px solid rgba(255,255,255,.05);
             min-width: 96px;
         }
 
@@ -2241,95 +2637,53 @@
             white-space: nowrap;
         }
 
-        .status-pill.open {
-            background: rgba(74, 222, 128, .1);
-            color: #4ade80;
-            border: 1px solid rgba(74, 222, 128, .2)
-        }
+        .status-pill.open   { background: rgba(74,222,128,.1);  color: #4ade80;      border: 1px solid rgba(74,222,128,.2) }
+        .status-pill.lunch  { background: rgba(200,168,75,.1);  color: var(--gold-lt); border: 1px solid var(--gold-bd) }
+        .status-pill.closed-s { background: rgba(255,255,255,.04); color: var(--muted); border: 1px solid rgba(255,255,255,.06) }
 
-        .status-pill.lunch {
-            background: rgba(200, 168, 75, .1);
-            color: var(--gold-lt);
-            border: 1px solid var(--gold-bd)
-        }
+        .status-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0 }
 
-        .status-pill.closed-s {
-            background: rgba(255, 255, 255, .04);
-            color: var(--muted);
-            border: 1px solid rgba(255, 255, 255, .06)
-        }
-
-        .status-pill-dot {
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background: currentColor;
-            flex-shrink: 0
-        }
-
-        /* Glow sweep on today row */
         .schedule-row.today::after {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
+            top: 0; bottom: 0;
             left: -100%;
             width: 60%;
-            background: linear-gradient(90deg, transparent, rgba(200, 168, 75, .04), transparent);
+            background: linear-gradient(90deg, transparent, rgba(200,168,75,.04), transparent);
             animation: sweep 4s ease-in-out infinite;
         }
 
         @keyframes sweep {
-            0% {
-                left: -60%
-            }
-
-            100% {
-                left: 120%
-            }
+            0%   { left: -60% }
+            100% { left: 120% }
         }
 
         /* ═══ CURSOR CANVAS ═══════════════════════════════════ */
-        #curCanvas {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 9996
-        }
+        #curCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 9996 }
 
-        /* ═══ TILT CARD ═══════════════════════════════════════ */
-        .pc {
-            transform-style: preserve-3d;
-            will-change: transform
-        }
+        .pc { transform-style: preserve-3d; will-change: transform }
 
         .pc .pc-shine {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, .06), transparent 65%);
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,.06), transparent 65%);
             pointer-events: none;
             opacity: 0;
             transition: opacity .3s
         }
 
-        .lc {
-            transform-style: preserve-3d;
-            will-change: transform
-        }
+        .lc { transform-style: preserve-3d; will-change: transform }
 
         .lc .lc-shine {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(200, 168, 75, .08), transparent 65%);
+            background: radial-gradient(circle at 50% 50%, rgba(200,168,75,.08), transparent 65%);
             pointer-events: none;
             opacity: 0;
             transition: opacity .3s
         }
 
-        /* ═══ SCRAMBLE TEXT ═══════════════════════════════════ */
-        .scramble {
-            display: inline
-        }
+        .scramble { display: inline }
 
         /* ═══ HORIZONTAL PROGRESS DOTS ═══════════════════════ */
         #nav-dots {
@@ -2347,7 +2701,7 @@
             width: 5px;
             height: 5px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, .2);
+            background: rgba(255,255,255,.2);
             transition: background .3s, transform .3s, height .3s;
             cursor: pointer
         }
@@ -2359,15 +2713,7 @@
             border-radius: 3px
         }
 
-        /* ═══ SECTION FLASH ON ENTER ══════════════════════════ */
-        .sec-flash {
-            position: absolute;
-            inset: 0;
-            background: var(--gold);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 0
-        }
+        .sec-flash { position: absolute; inset: 0; background: var(--gold); opacity: 0; pointer-events: none; z-index: 0 }
 
         /* ═══ HAMBURGER MENU ══════════════════════════════════ */
         .nav-burger {
@@ -2385,47 +2731,19 @@
             position: relative;
         }
 
-        .nav-burger span {
-            display: block;
-            height: 1.5px;
-            background: var(--white);
-            transition: transform .35s var(--r), opacity .25s, width .25s;
-            transform-origin: center;
-        }
+        .nav-burger span { display: block; height: 1.5px; background: var(--white); transition: transform .35s var(--r), opacity .25s, width .25s; transform-origin: center }
+        .nav-burger span:nth-child(1) { width: 26px }
+        .nav-burger span:nth-child(2) { width: 20px }
+        .nav-burger span:nth-child(3) { width: 26px }
+        .nav-burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); width: 26px }
+        .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0) }
+        .nav-burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); width: 26px }
 
-        .nav-burger span:nth-child(1) {
-            width: 26px
-        }
-
-        .nav-burger span:nth-child(2) {
-            width: 20px
-        }
-
-        .nav-burger span:nth-child(3) {
-            width: 26px
-        }
-
-        .nav-burger.open span:nth-child(1) {
-            transform: translateY(6.5px) rotate(45deg);
-            width: 26px
-        }
-
-        .nav-burger.open span:nth-child(2) {
-            opacity: 0;
-            transform: scaleX(0)
-        }
-
-        .nav-burger.open span:nth-child(3) {
-            transform: translateY(-6.5px) rotate(-45deg);
-            width: 26px
-        }
-
-        /* Mobile drawer */
         .nav-drawer {
             position: fixed;
             inset: 0;
             z-index: 550;
-            background: rgba(5, 5, 7, .97);
+            background: rgba(5,5,7,.97);
             backdrop-filter: blur(32px);
             display: flex;
             flex-direction: column;
@@ -2436,26 +2754,11 @@
             pointer-events: none;
         }
 
-        .nav-drawer.open {
-            transform: translateX(0);
-            pointer-events: all
-        }
+        .nav-drawer.open { transform: translateX(0); pointer-events: all }
 
-        .nav-drawer ul {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
-            width: 100%
-        }
+        .nav-drawer ul { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 0; width: 100% }
 
-        .nav-drawer ul li {
-            width: 100%;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, .04);
-            overflow: hidden
-        }
+        .nav-drawer ul li { width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,.04); overflow: hidden }
 
         .nav-drawer ul li a {
             display: block;
@@ -2464,21 +2767,13 @@
             font-size: 42px;
             letter-spacing: .05em;
             color: var(--white);
-            transition: color .2s, padding-left .3s var(--r);
             transform: translateX(60px);
             opacity: 0;
             transition: transform .45s var(--r), opacity .4s, color .2s, padding-left .3s var(--r);
         }
 
-        .nav-drawer.open ul li a {
-            transform: translateX(0);
-            opacity: 1
-        }
-
-        .nav-drawer ul li a:hover {
-            color: var(--gold);
-            padding-left: 52px
-        }
+        .nav-drawer.open ul li a { transform: translateX(0); opacity: 1 }
+        .nav-drawer ul li a:hover { color: var(--gold); padding-left: 52px }
 
         .nav-drawer-cta {
             margin-top: 40px;
@@ -2495,14 +2790,8 @@
             transition: transform .5s var(--r), opacity .45s, background .25s;
         }
 
-        .nav-drawer.open .nav-drawer-cta {
-            transform: translateY(0);
-            opacity: 1
-        }
-
-        .nav-drawer-cta:hover {
-            background: var(--gold-lt)
-        }
+        .nav-drawer.open .nav-drawer-cta { transform: translateY(0); opacity: 1 }
+        .nav-drawer-cta:hover { background: var(--gold-lt) }
 
         .nav-drawer-sub {
             margin-top: 14px;
@@ -2516,573 +2805,141 @@
             transition: transform .55s var(--r), opacity .5s;
         }
 
-        .nav-drawer.open .nav-drawer-sub {
-            transform: translateY(0);
-            opacity: 1
-        }
+        .nav-drawer.open .nav-drawer-sub { transform: translateY(0); opacity: 1 }
 
         /* ═══ RESPONSIVE — TABLET 960px ══════════════════════ */
         @media(max-width:960px) {
-
-            /* Cursor: disabilita su touch */
-            body {
-                cursor: auto
-            }
-
-            #cur,
-            #cur-ring,
-            #curCanvas {
-                display: none
-            }
-
-            /* Nav */
-            nav {
-                padding: 16px 28px
-            }
-
-            nav.scrolled {
-                padding: 14px 28px
-            }
-
-            .nlinks {
-                display: none
-            }
-
-            .ncta {
-                display: none
-            }
-
-            .nav-burger {
-                display: flex
-            }
-
-            #nav-dots {
-                display: none
-            }
-
-            /* Hero */
-            .hero {
-                padding: 0 28px 200px
-            }
-
-            .h-sub {
-                grid-template-columns: 1fr;
-                gap: 32px
-            }
-
-            .sbar {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .si {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, .05)
-            }
-
-            /* Stats */
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            /* Products */
-            .pgrid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            /* Section padding */
-            .sec {
-                padding: 88px 28px
-            }
-
-            .ticker-header {
-                padding: 12px 28px
-            }
-
-            /* Brands */
-            .brands-head {
-                grid-template-columns: 1fr;
-                gap: 28px;
-                padding: 88px 28px 0
-            }
-
-            .logo-grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            .logo-grid-4 {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            .logo-hero {
-                margin-left: 28px;
-                margin-right: 28px
-            }
-
-            /* Why */
-            .why-grid {
-                grid-template-columns: 1fr;
-                gap: 52px
-            }
-
-            /* Promo */
-            .promo3 {
-                grid-template-columns: 1fr
-            }
-
-            .p3-gold,
-            .p3-dark,
-            .p3-iron {
-                padding: 52px 36px
-            }
-
-            /* Orari */
-            .orari-grid {
-                grid-template-columns: 1fr;
-                gap: 48px
-            }
-
-            .live-bar {
-                grid-template-columns: auto 1fr;
-                gap: 20px;
-                padding: 20px 24px
-            }
-
-            .live-cta {
-                display: none
-            }
-
-            /* Footer */
-            footer {
-                padding: 64px 28px 40px
-            }
-
-            .ftop {
-                grid-template-columns: 1fr;
-                gap: 36px
-            }
-
-            .fbot {
-                flex-direction: column;
-                gap: 12px;
-                text-align: center
-            }
+            body { cursor: auto }
+            #cur, #cur-ring, #curCanvas { display: none }
+            nav { padding: 16px 28px }
+            nav.scrolled { padding: 14px 28px }
+            .nlinks { display: none }
+            .ncta { display: none }
+            .nav-burger { display: flex }
+            #nav-dots { display: none }
+            .hero { padding: 0 28px 200px }
+            .h-sub { grid-template-columns: 1fr; gap: 32px }
+            .sbar { grid-template-columns: 1fr 1fr }
+            .si { border-right: none; border-bottom: 1px solid rgba(255,255,255,.05) }
+            .stats-grid { grid-template-columns: repeat(2,1fr) }
+            .pgrid { grid-template-columns: repeat(2,1fr) }
+            .sec { padding: 88px 28px }
+            .ticker-header { padding: 12px 28px }
+            .brands-head { grid-template-columns: 1fr; gap: 28px; padding: 88px 28px 0 }
+            .logo-grid { grid-template-columns: repeat(2,1fr) }
+            .logo-grid-4 { grid-template-columns: repeat(2,1fr) }
+            .logo-hero { margin-left: 28px; margin-right: 28px }
+            .why-grid { grid-template-columns: 1fr; gap: 52px }
+            .promo3 { grid-template-columns: 1fr }
+            .p3-gold, .p3-dark, .p3-iron { padding: 52px 36px }
+            .orari-grid { grid-template-columns: 1fr; gap: 48px }
+            .live-bar { grid-template-columns: auto 1fr; gap: 20px; padding: 20px 24px }
+            .live-cta { display: none }
+            footer { padding: 64px 28px 40px }
+            .ftop { grid-template-columns: 1fr; gap: 36px }
+            .fbot { flex-direction: column; gap: 12px; text-align: center }
+            .promo-catalogs { padding: 0 20px; gap: 10px }
         }
 
         /* ═══ RESPONSIVE — MOBILE 640px ═══════════════════════ */
         @media(max-width:640px) {
-
-            /* Nav */
-            nav {
-                padding: 14px 20px
-            }
-
-            nav.scrolled {
-                padding: 12px 20px
-            }
-
-            /* Hero */
-            .hero {
-                padding: 100px 20px 200px;
-                justify-content: flex-start
-            }
-
-            .h-eye {
-                margin-bottom: 24px
-            }
-
-            .h-sub {
-                margin-top: 32px;
-                gap: 28px
-            }
-
-            .h-desc {
-                font-size: 15.5px;
-                line-height: 1.72
-            }
-
-            .h-acts {
-                width: 100%
-            }
-
-            .btn-primary,
-            .btn-ghost {
-                width: 100%;
-                text-align: center;
-                padding: 16px 24px;
-                font-size: 10px
-            }
-
-            /* Stats bar */
-            .sbar {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .si {
-                padding: 20px 16px
-            }
-
-            .sn {
-                font-size: 32px
-            }
-
-            .sn .sfx {
-                font-size: 18px
-            }
-
-            .sl {
-                font-size: 7px;
-                letter-spacing: .12em
-            }
-
-            /* Ticker */
-            .t-item {
-                padding: 0 24px;
-                min-width: 130px;
-                height: 76px
-            }
-
-            .t-item img {
-                height: 26px !important
-            }
-
-            .t-logo-svg {
-                height: 26px !important
-            }
-
-            .ticker-wrap {
-                height: 76px
-            }
-
-            /* Sections */
-            .sec {
-                padding: 72px 20px
-            }
-
-            .ticker-header {
-                padding: 10px 20px
-            }
-
-            /* Stats grid */
-            .stats-grid {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .stat-cell {
-                padding: 40px 8px
-            }
-
-            .stat-lbl {
-                font-size: 7.5px;
-                letter-spacing: .16em
-            }
-
-            /* Products — 1 col mobile */
-            .pgrid {
-                grid-template-columns: 1fr
-            }
-
-            .pc {
-                padding: 36px 24px 40px
-            }
-
-            /* Parallax banner */
-            .pban {
-                height: 280px
-            }
-
-            .pban-sub {
-                display: none
-            }
-
-            /* Brands */
-            .brands-head {
-                padding: 72px 20px 0
-            }
-
-            .brands-intro {
-                font-size: 15px
-            }
-
-            .logo-hero {
-                padding: 36px 20px;
-                min-height: 130px;
-                margin-left: 20px !important;
-                margin-right: 20px !important
-            }
-
-            .logo-hero img {
-                height: 44px !important
-            }
-
-            .logo-grid {
-                margin-left: 20px !important;
-                margin-right: 20px !important
-            }
-
-            .logo-grid-4 {
-                margin-left: 20px !important;
-                margin-right: 20px !important
-            }
-
-            .lc {
-                padding: 36px 20px;
-                min-height: 130px;
-                gap: 12px
-            }
-
-            .lc img,
-            .lc .lc-svg {
-                height: 30px !important
-            }
-
-            .lc-sm {
-                min-height: 100px;
-                padding: 24px 14px
-            }
-
-            /* Why/Reviews */
-            .why-grid {
-                gap: 36px
-            }
-
-            .rating-hero {
-                padding: 22px 24px;
-                gap: 14px
-            }
-
-            .rating-big {
-                font-size: 64px
-            }
-
-            .review-card {
-                padding: 24px 26px
-            }
-
-            .rv-txt {
-                font-size: 14px
-            }
-
-            /* Promo */
-            .p3-gold,
-            .p3-dark,
-            .p3-iron {
-                padding: 44px 20px
-            }
-
-            .p3-tit {
-                font-size: 32px !important
-            }
-
-            /* Orari / live bar */
-            .live-bar {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 12px;
-                padding: 18px 20px;
-                margin-bottom: 28px;
-            }
-
-            .live-clock {
-                font-size: 38px
-            }
-
-            .live-cta {
-                display: inline-block;
-                width: 100%;
-                text-align: center;
-                padding: 12px 20px
-            }
-
-            #schedule {
-                gap: 7px
-            }
-
-            .schedule-row {
-                min-height: 68px
-            }
-
-            .srow-num {
-                width: 48px;
-                font-size: 16px
-            }
-
-            .srow-body {
-                padding: 12px 14px;
-                gap: 4px
-            }
-
-            .stime {
-                font-size: 16px
-            }
-
-            .srow-status {
-                min-width: 68px;
-                padding: 0 12px
-            }
-
-            .status-pill {
-                font-size: 7px;
-                padding: 4px 8px
-            }
-
-            /* Contact */
-            .cblk {
-                padding: 18px 18px;
-                gap: 14px
-            }
-
-            .cval {
-                font-size: 13.5px
-            }
-
-            .cico {
-                font-size: 22px;
-                width: 32px
-            }
-
-            /* Map */
-            .map-section {
-                height: 280px
-            }
-
-            /* Marquee */
-            .mitem {
-                padding: 0 18px;
-                font-size: 8.5px
-            }
-
-            /* Footer */
-            footer {
-                padding: 52px 20px 32px
-            }
-
-            .ftop {
-                gap: 28px
-            }
-
-            .fph {
-                font-size: 22px
-            }
-
-            .fcopy {
-                font-size: 7.5px
-            }
-
-            .logo-name {
-                font-size: 18px
-            }
-
-            /* Loader */
-            .loader-logo {
-                font-size: 38px
-            }
-
-            .loader-bar-wrap {
-                width: 180px
-            }
-
-            /* Drawer */
-            .nav-drawer ul li a {
-                font-size: 36px;
-                padding: 20px 24px
-            }
-
-            .nav-drawer-cta {
-                padding: 14px 36px;
-                font-size: 10px
-            }
+            nav { padding: 14px 20px }
+            nav.scrolled { padding: 12px 20px }
+            .hero { padding: 100px 20px 200px; justify-content: flex-start }
+            .h-eye { margin-bottom: 24px }
+            .h-sub { margin-top: 32px; gap: 28px }
+            .h-desc { font-size: 15.5px; line-height: 1.72 }
+            .h-acts { width: 100% }
+            .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 16px 24px; font-size: 10px }
+            .sbar { grid-template-columns: 1fr 1fr }
+            .si { padding: 20px 16px }
+            .sn { font-size: 32px }
+            .sn .sfx { font-size: 18px }
+            .sl { font-size: 7px; letter-spacing: .12em }
+            .t-item { padding: 0 24px; min-width: 130px; height: 76px }
+            .t-item img { height: 26px !important }
+            .t-logo-svg { height: 26px !important }
+            .ticker-wrap { height: 76px }
+            .sec { padding: 72px 20px }
+            .ticker-header { padding: 10px 20px }
+            .stats-grid { grid-template-columns: 1fr 1fr }
+            .stat-cell { padding: 40px 8px }
+            .stat-lbl { font-size: 7.5px; letter-spacing: .16em }
+            .pgrid { grid-template-columns: 1fr }
+            .pc { padding: 36px 24px 40px }
+            .pban { height: 280px }
+            .pban-sub { display: none }
+            .brands-head { padding: 72px 20px 0 }
+            .brands-intro { font-size: 15px }
+            .logo-hero { padding: 36px 20px; min-height: 130px; margin-left: 20px !important; margin-right: 20px !important }
+            .logo-hero img { height: 44px !important }
+            .logo-grid { margin-left: 20px !important; margin-right: 20px !important }
+            .logo-grid-4 { margin-left: 20px !important; margin-right: 20px !important }
+            .lc { padding: 36px 20px; min-height: 130px; gap: 12px }
+            .lc img, .lc .lc-svg { height: 30px !important }
+            .lc-sm { min-height: 100px; padding: 24px 14px }
+            .why-grid { gap: 36px }
+            .rating-hero { padding: 22px 24px; gap: 14px }
+            .rating-big { font-size: 64px }
+            .review-card { padding: 24px 26px }
+            .rv-txt { font-size: 14px }
+            .p3-gold, .p3-dark, .p3-iron { padding: 44px 20px }
+            .p3-tit { font-size: 32px !important }
+            .live-bar { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 18px 20px; margin-bottom: 28px }
+            .live-clock { font-size: 38px }
+            .live-cta { display: inline-block; width: 100%; text-align: center; padding: 12px 20px }
+            #schedule { gap: 7px }
+            .schedule-row { min-height: 68px }
+            .srow-num { width: 48px; font-size: 16px }
+            .srow-body { padding: 12px 14px; gap: 4px }
+            .stime { font-size: 16px }
+            .srow-status { min-width: 68px; padding: 0 12px }
+            .status-pill { font-size: 7px; padding: 4px 8px }
+            .cblk { padding: 18px 18px; gap: 14px }
+            .cval { font-size: 13.5px }
+            .cico { font-size: 22px; width: 32px }
+            .map-section { height: 280px }
+            .mitem { padding: 0 18px; font-size: 8.5px }
+            footer { padding: 52px 20px 32px }
+            .ftop { gap: 28px }
+            .fph { font-size: 22px }
+            .fcopy { font-size: 7.5px }
+            .logo-name { font-size: 18px }
+            .loader-logo { font-size: 38px }
+            .loader-bar-wrap { width: 180px }
+            .nav-drawer ul li a { font-size: 36px; padding: 20px 24px }
+            .nav-drawer-cta { padding: 14px 36px; font-size: 10px }
+            .pcc-visual { height: 200px }
+            .fe-year { font-size: 64px }
+            .fervi-edition-block { padding: 18px 28px }
+            .usag-super { font-size: 40px }
+            .usag-super span { font-size: 22px }
+            .pcc-brand-badge, .pcc-content { padding-left: 20px; padding-right: 20px }
+            .pcc-title { font-size: 28px !important }
         }
 
         /* ═══ RESPONSIVE — SMALL 400px ════════════════════════ */
         @media(max-width:400px) {
-            .h-title {
-                font-size: clamp(48px, 15vw, 78px)
-            }
-
-            .sec-title {
-                font-size: clamp(36px, 11vw, 56px)
-            }
-
-            .sbar {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .si {
-                padding: 16px 10px
-            }
-
-            .sn {
-                font-size: 26px
-            }
-
-            .pgrid {
-                grid-template-columns: 1fr
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr
-            }
-
-            .stat-cell {
-                padding: 28px 6px
-            }
-
-            .sec {
-                padding: 56px 16px
-            }
-
-            .brands-head {
-                padding: 56px 16px 0
-            }
-
-            .logo-hero {
-                margin-left: 16px !important;
-                margin-right: 16px !important
-            }
-
-            .logo-grid {
-                margin-left: 16px !important;
-                margin-right: 16px !important;
-                grid-template-columns: 1fr 1fr
-            }
-
-            .logo-grid-4 {
-                margin-left: 16px !important;
-                margin-right: 16px !important;
-                grid-template-columns: 1fr 1fr
-            }
-
-            footer {
-                padding: 40px 16px 24px
-            }
-
-            nav {
-                padding: 12px 16px
-            }
-
-            nav.scrolled {
-                padding: 10px 16px
-            }
-
-            .p3-gold,
-            .p3-dark,
-            .p3-iron {
-                padding: 36px 16px
-            }
-
-            .nav-drawer ul li a {
-                font-size: 30px;
-                padding: 18px 20px
-            }
-
-            .review-card {
-                padding: 20px 20px
-            }
-
-            .rating-hero {
-                padding: 18px 20px
-            }
+            .h-title { font-size: clamp(48px,15vw,78px) }
+            .sec-title { font-size: clamp(36px,11vw,56px) }
+            .sbar { grid-template-columns: 1fr 1fr }
+            .si { padding: 16px 10px }
+            .sn { font-size: 26px }
+            .pgrid { grid-template-columns: 1fr }
+            .stats-grid { grid-template-columns: 1fr 1fr }
+            .stat-cell { padding: 28px 6px }
+            .sec { padding: 56px 16px }
+            .brands-head { padding: 56px 16px 0 }
+            .logo-hero { margin-left: 16px !important; margin-right: 16px !important }
+            .logo-grid { margin-left: 16px !important; margin-right: 16px !important; grid-template-columns: 1fr 1fr }
+            .logo-grid-4 { margin-left: 16px !important; margin-right: 16px !important; grid-template-columns: 1fr 1fr }
+            footer { padding: 40px 16px 24px }
+            nav { padding: 12px 16px }
+            nav.scrolled { padding: 10px 16px }
+            .p3-gold, .p3-dark, .p3-iron { padding: 36px 16px }
+            .nav-drawer ul li a { font-size: 30px; padding: 18px 20px }
+            .review-card { padding: 20px 20px }
+            .rating-hero { padding: 18px 20px }
         }
     </style>
 </head>
@@ -3095,56 +2952,48 @@
     <div id="pbar"></div>
     <div class="grain"></div>
 
-    <!-- Nav section dots -->
     <div id="nav-dots">
         <div class="ndot active" data-target="home"></div>
         <div class="ndot" data-target="prodotti"></div>
         <div class="ndot" data-target="marchi"></div>
+        <div class="ndot" data-target="promozioni"></div>
         <div class="ndot" data-target="perche"></div>
         <div class="ndot" data-target="orari"></div>
     </div>
 
-    <!-- ═══════ LOADER ═══════════════════════════════════ -->
     <div id="loader">
         <div class="loader-logo">BASCHIERI</div>
-        <div class="loader-bar-wrap">
-            <div class="loader-bar" id="lbar"></div>
-        </div>
+        <div class="loader-bar-wrap"><div class="loader-bar" id="lbar"></div></div>
         <div class="loader-sub">Scandiano · Dal 1970</div>
     </div>
 
-    <!-- ═══════ NAV ══════════════════════════════════════ -->
     <nav id="nav">
         <a href="#" class="nlogo">
-            <div class="sphere">
-                <div class="sphere-x"></div>
-                <div class="sphere-dot"></div>
-            </div>
+            <div class="sphere"><div class="sphere-x"></div><div class="sphere-dot"></div></div>
             <div class="logo-txt"><span class="logo-name">BASCHIERI</span><span class="logo-sub">Ricambi Industriali</span></div>
         </a>
         <ul class="nlinks">
             <li><a href="#prodotti">Prodotti</a></li>
             <li><a href="#marchi">Marchi</a></li>
+            <li><a href="#promozioni">Promozioni</a></li>
             <li><a href="#perche">Chi siamo</a></li>
-            <li><a href="#orari">Orari & Contatti</a></li>
+            <li><a href="#orari">Orari &amp; Contatti</a></li>
         </ul>
         <a href="tel:0522982772" class="ncta"><span>☎ &nbsp;0522 982772</span></a>
-        <button class="nav-burger" id="navBurger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
+        <button class="nav-burger" id="navBurger" aria-label="Menu"><span></span><span></span><span></span></button>
     </nav>
 
-    <!-- ═══════ MOBILE DRAWER ═════════════════════════════ -->
     <div class="nav-drawer" id="navDrawer">
         <ul>
             <li style="transition-delay:.05s"><a href="#prodotti" class="drawer-link">Prodotti</a></li>
             <li style="transition-delay:.10s"><a href="#marchi" class="drawer-link">Marchi</a></li>
-            <li style="transition-delay:.15s"><a href="#perche" class="drawer-link">Chi siamo</a></li>
-            <li style="transition-delay:.20s"><a href="#orari" class="drawer-link">Orari</a></li>
-            <li style="transition-delay:.25s"><a href="#orari" class="drawer-link">Contatti</a></li>
+            <li style="transition-delay:.15s"><a href="#promozioni" class="drawer-link">Promozioni</a></li>
+            <li style="transition-delay:.20s"><a href="#perche" class="drawer-link">Chi siamo</a></li>
+            <li style="transition-delay:.25s"><a href="#orari" class="drawer-link">Orari</a></li>
+            <li style="transition-delay:.30s"><a href="#orari" class="drawer-link">Contatti</a></li>
         </ul>
-        <a href="tel:0522982772" class="nav-drawer-cta" style="transition-delay:.32s">☎ &nbsp;0522 982772</a>
-        <div class="nav-drawer-sub" style="transition-delay:.38s">Via Gramsci 12 — Scandiano (RE)</div>
+        <a href="tel:0522982772" class="nav-drawer-cta" style="transition-delay:.38s">☎ &nbsp;0522 982772</a>
+        <div class="nav-drawer-sub" style="transition-delay:.44s">Via Gramsci 12 — Scandiano (RE)</div>
     </div>
 
     <!-- ═══════ 1. HERO ══════════════════════════════════ -->
@@ -3152,12 +3001,9 @@
         <div class="hero-bg-pattern"></div>
         <div class="hero-vline"></div>
         <svg class="hero-gear" viewBox="0 0 100 100" fill="none">
-            <path fill="white" d="M43.3 5.2l-2.7 8.3a35 35 0 00-8.8 3.7L23.5 13l-9 9 4.2 8.3a35 35 0 00-3.7 8.8l-8.3 2.7v12.7l8.3 2.7a35 35 0 003.7 8.8L14.5 75l9 9 8.3-4.2a35 35 0 008.8 3.7l2.7 8.3h12.7l2.7-8.3a35 35 0 008.8-3.7l8.3 4.2 9-9-4.2-8.3a35 35 0 003.7-8.8l8.3-2.7V43.3l-8.3-2.7a35 35 0 00-3.7-8.8L85.5 23l-9-9-8.3 4.2a35 35 0 00-8.8-3.7L56.7 5.2H43.3zm6.7 22a23 23 0 110 46 23 23 0 010-46z" />
+            <path fill="white" d="M43.3 5.2l-2.7 8.3a35 35 0 00-8.8 3.7L23.5 13l-9 9 4.2 8.3a35 35 0 00-3.7 8.8l-8.3 2.7v12.7l8.3 2.7a35 35 0 003.7 8.8L14.5 75l9 9 8.3-4.2a35 35 0 008.8 3.7l2.7 8.3h12.7l2.7-8.3a35 35 0 008.8-3.7l8.3 4.2 9-9-4.2-8.3a35 35 0 003.7-8.8l8.3-2.7V43.3l-8.3-2.7a35 35 0 00-3.7-8.8L85.5 23l-9-9-8.3 4.2a35 35 0 00-8.8-3.7L56.7 5.2H43.3zm6.7 22a23 23 0 110 46 23 23 0 010-46z"/>
         </svg>
-
-        <div class="h-eye">
-            <div class="h-eye-inner">Dal 1970 — Scandiano, Reggio Emilia</div>
-        </div>
+        <div class="h-eye"><div class="h-eye-inner">Dal 1970 — Scandiano, Reggio Emilia</div></div>
         <h1 class="h-title">
             <div class="word"><span>BASCHIERI</span></div>
             <div class="word"><span>UTENSILI</span></div>
@@ -3167,26 +3013,14 @@
             <p class="h-desc">Il riferimento per <strong>professionisti e officine</strong> nel cuore dell'Emilia. Dagli utensili manuali alle parti di ricambio per camion — in un solo posto, con personale competente e consegna rapida.</p>
             <div class="h-acts">
                 <a href="#prodotti" class="btn-primary magnetic"><span>Esplora i prodotti →</span></a>
-                <a href="#orari" class="btn-ghost magnetic"><span>Orari & posizione</span></a>
+                <a href="#orari" class="btn-ghost magnetic"><span>Orari &amp; posizione</span></a>
             </div>
         </div>
         <div class="sbar" id="sbar">
-            <div class="si">
-                <div class="sn"><span class="cnt" data-t="4.8" data-d="1">4.8</span><span class="sfx">/5</span></div>
-                <div class="sl">Rating Google</div>
-            </div>
-            <div class="si">
-                <div class="sn"><span class="cnt" data-t="75" data-d="0">75</span><span class="sfx">+</span></div>
-                <div class="sl">Recensioni</div>
-            </div>
-            <div class="si">
-                <div class="sn"><span class="cnt" data-t="50" data-d="0">50</span><span class="sfx">+</span></div>
-                <div class="sl">Anni di attività</div>
-            </div>
-            <div class="si">
-                <div class="sn"><span class="cnt" data-t="8" data-d="0">8</span><span class="sfx">K+</span></div>
-                <div class="sl">Prodotti disponibili</div>
-            </div>
+            <div class="si"><div class="sn"><span class="cnt" data-t="4.8" data-d="1">4.8</span><span class="sfx">/5</span></div><div class="sl">Rating Google</div></div>
+            <div class="si"><div class="sn"><span class="cnt" data-t="75" data-d="0">75</span><span class="sfx">+</span></div><div class="sl">Recensioni</div></div>
+            <div class="si"><div class="sn"><span class="cnt" data-t="50" data-d="0">50</span><span class="sfx">+</span></div><div class="sl">Anni di attività</div></div>
+            <div class="si"><div class="sn"><span class="cnt" data-t="8" data-d="0">8</span><span class="sfx">K+</span></div><div class="sl">Prodotti disponibili</div></div>
         </div>
     </section>
 
@@ -3195,77 +3029,30 @@
         <div class="ticker-header"><span>I Nostri Marchi</span></div>
         <div class="ticker-wrap">
             <div class="ticker-track" id="tickerTrack">
-                <!-- SET A — ripetuto 5x per riempire lo schermo -->
                 <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
                 <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
                 <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
                 <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
                 <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
                 <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
                 <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
+                <!-- SET B -->
+                <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
                 <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
                 <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
-                <!-- SET B — clone identico per loop senza salti -->
-                <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
                 <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
                 <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
                 <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
                 <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
-                <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
-                <div class="t-item"><img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools"></div>
-                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                        <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                        <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                    </svg></div>
+                <div class="t-item"><svg class="t-logo-svg" style="height:32px;opacity:.72" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg></div>
                 <div class="t-item"><svg class="t-logo-svg" style="height:30px;opacity:.72" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg></div>
             </div>
         </div>
@@ -3274,85 +3061,28 @@
     <!-- ═══════ 3. STATS ════════════════════════════════ -->
     <div class="stats-section">
         <div class="stats-grid">
-            <div class="stat-cell">
-                <div class="stat-num"><span class="cnt" data-t="50" data-d="0">50</span><span class="stat-sfx">+</span></div>
-                <div class="stat-lbl">Anni di attività</div>
-            </div>
-            <div class="stat-cell">
-                <div class="stat-num"><span class="cnt" data-t="8" data-d="0">8</span><span class="stat-sfx">K+</span></div>
-                <div class="stat-lbl">Prodotti a magazzino</div>
-            </div>
-            <div class="stat-cell">
-                <div class="stat-num"><span class="cnt" data-t="75" data-d="0">75</span><span class="stat-sfx">+</span></div>
-                <div class="stat-lbl">Recensioni Google</div>
-            </div>
-            <div class="stat-cell">
-                <div class="stat-num"><span class="cnt" data-t="4.8" data-d="1">4.8</span><span class="stat-sfx">/5</span></div>
-                <div class="stat-lbl">Rating medio</div>
-            </div>
-            <div class="stat-cell">
-                <div class="stat-num"><span class="cnt" data-t="200" data-d="0">200</span><span class="stat-sfx">+</span></div>
-                <div class="stat-lbl">Marchi disponibili</div>
-            </div>
+            <div class="stat-cell"><div class="stat-num"><span class="cnt" data-t="50" data-d="0">50</span><span class="stat-sfx">+</span></div><div class="stat-lbl">Anni di attività</div></div>
+            <div class="stat-cell"><div class="stat-num"><span class="cnt" data-t="8" data-d="0">8</span><span class="stat-sfx">K+</span></div><div class="stat-lbl">Prodotti a magazzino</div></div>
+            <div class="stat-cell"><div class="stat-num"><span class="cnt" data-t="75" data-d="0">75</span><span class="stat-sfx">+</span></div><div class="stat-lbl">Recensioni Google</div></div>
+            <div class="stat-cell"><div class="stat-num"><span class="cnt" data-t="4.8" data-d="1">4.8</span><span class="stat-sfx">/5</span></div><div class="stat-lbl">Rating medio</div></div>
+            <div class="stat-cell"><div class="stat-num"><span class="cnt" data-t="200" data-d="0">200</span><span class="stat-sfx">+</span></div><div class="stat-lbl">Marchi disponibili</div></div>
         </div>
     </div>
 
     <!-- ═══════ 4. PRODOTTI ══════════════════════════════ -->
     <section id="prodotti">
         <div class="sec">
-            <div class="sec-label">
-                <div class="sec-label-inner">Catalogo prodotti</div>
-            </div>
+            <div class="sec-label"><div class="sec-label-inner">Catalogo prodotti</div></div>
             <h2 class="sec-title" id="prodTitle" style="margin-bottom:8px">COSA <span class="out">TROVI</span> DA NOI</h2>
             <div class="pgrid" id="pgrid">
-                <div class="pc"><span class="ptag">Best seller</span><span class="pnum">01</span><span class="pico">🔧</span>
-                    <div class="pname">Utensili Manuali</div>
-                    <div class="pdesc">Chiavi, giraviti, pinze e set completi per officine professionali. Marchi selezionati, qualità garantita.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
-                <div class="pc"><span class="pnum">02</span><span class="pico">🔩</span>
-                    <div class="pname">Ricambi Camion</div>
-                    <div class="pdesc">Componenti originali e compatibili per veicoli pesanti. Filtri, cinghie, guarnizioni, freni e molto altro.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
-                <div class="pc"><span class="pnum">03</span><span class="pico">⚙️</span>
-                    <div class="pname">Utensileria Elettrica</div>
-                    <div class="pdesc">Trapani, smerigliatrici, avvitatori e saldatrici per uso professionale intensivo.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
-                <div class="pc"><span class="ptag">Nuovo</span><span class="pnum">04</span><span class="pico">🛢️</span>
-                    <div class="pname">Lubrificanti</div>
-                    <div class="pdesc">Oli, grassi, detergenti industriali e prodotti chimici per la manutenzione professionale.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
-                <div class="pc"><span class="pnum">05</span><span class="pico">🏗️</span>
-                    <div class="pname">Attrezzatura Officina</div>
-                    <div class="pdesc">Carrelli, banchi da lavoro, elevatori e tutto ciò che serve per allestire un'officina moderna.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
-                <div class="pc"><span class="pnum">06</span><span class="pico">🔐</span>
-                    <div class="pname">Bulloneria</div>
-                    <div class="pdesc">Viti, dadi, rondelle e raccorderia in tutti i materiali e standard metrici, UNF, BSP.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
-                <div class="pc"><span class="pnum">07</span><span class="pico">🦺</span>
-                    <div class="pname">DPI & Sicurezza</div>
-                    <div class="pdesc">Dispositivi di protezione individuale certificati: guanti, elmetti, scarpe antinfortunio, occhiali.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
-                <div class="pc"><span class="pnum">08</span><span class="pico">📦</span>
-                    <div class="pname">Abrasivi</div>
-                    <div class="pdesc">Mole, dischi da taglio, carte abrasive, spazzole metalliche per ogni applicazione industriale.</div>
-                    <div class="pc-line"></div>
-                    <div class="parr">→</div>
-                </div>
+                <div class="pc"><span class="ptag">Best seller</span><span class="pnum">01</span><span class="pico">🔧</span><div class="pname">Utensili Manuali</div><div class="pdesc">Chiavi, giraviti, pinze e set completi per officine professionali. Marchi selezionati, qualità garantita.</div><div class="pc-line"></div><div class="parr">→</div></div>
+                <div class="pc"><span class="pnum">02</span><span class="pico">🔩</span><div class="pname">Ricambi Camion</div><div class="pdesc">Componenti originali e compatibili per veicoli pesanti. Filtri, cinghie, guarnizioni, freni e molto altro.</div><div class="pc-line"></div><div class="parr">→</div></div>
+                <div class="pc"><span class="pnum">03</span><span class="pico">⚙️</span><div class="pname">Utensileria Elettrica</div><div class="pdesc">Trapani, smerigliatrici, avvitatori e saldatrici per uso professionale intensivo.</div><div class="pc-line"></div><div class="parr">→</div></div>
+                <div class="pc"><span class="ptag">Nuovo</span><span class="pnum">04</span><span class="pico">🛢️</span><div class="pname">Lubrificanti</div><div class="pdesc">Oli, grassi, detergenti industriali e prodotti chimici per la manutenzione professionale.</div><div class="pc-line"></div><div class="parr">→</div></div>
+                <div class="pc"><span class="pnum">05</span><span class="pico">🏗️</span><div class="pname">Attrezzatura Officina</div><div class="pdesc">Carrelli, banchi da lavoro, elevatori e tutto ciò che serve per allestire un'officina moderna.</div><div class="pc-line"></div><div class="parr">→</div></div>
+                <div class="pc"><span class="pnum">06</span><span class="pico">🔐</span><div class="pname">Bulloneria</div><div class="pdesc">Viti, dadi, rondelle e raccorderia in tutti i materiali e standard metrici, UNF, BSP.</div><div class="pc-line"></div><div class="parr">→</div></div>
+                <div class="pc"><span class="pnum">07</span><span class="pico">🦺</span><div class="pname">DPI &amp; Sicurezza</div><div class="pdesc">Dispositivi di protezione individuale certificati: guanti, elmetti, scarpe antinfortunio, occhiali.</div><div class="pc-line"></div><div class="parr">→</div></div>
+                <div class="pc"><span class="pnum">08</span><span class="pico">📦</span><div class="pname">Abrasivi</div><div class="pdesc">Mole, dischi da taglio, carte abrasive, spazzole metalliche per ogni applicazione industriale.</div><div class="pc-line"></div><div class="parr">→</div></div>
             </div>
         </div>
     </section>
@@ -3367,108 +3097,131 @@
         </div>
     </div>
 
-    <!-- ═══════ 6. MARCHI (Duravit editorial) ════════════ -->
+    <!-- ═══════ 6. MARCHI ════════════════════════════════ -->
     <section id="marchi">
         <div class="brands-head">
             <div>
-                <div class="sec-label" style="margin-bottom:16px">
-                    <div class="sec-label-inner">Partner ufficiali</div>
-                </div>
+                <div class="sec-label" style="margin-bottom:16px"><div class="sec-label-inner">Partner ufficiali</div></div>
                 <h2 class="sec-title" id="marchiTitle">I NOSTRI<br><span class="out">MARCHI</span></h2>
             </div>
             <p class="brands-intro">Lavoriamo esclusivamente con <strong>marchi leader mondiali</strong> — selezionati per affidabilità, durabilità e supporto tecnico. Nessun compromesso sulla qualità.</p>
         </div>
-
-        <!-- BETA hero -->
         <a href="https://www.beta-tools.com/it/" target="_blank" rel="noopener" class="logo-hero" style="margin-left:70px;margin-right:70px">
             <div class="lh-glow"></div>
             <img src="https://i.ibb.co/LXy5hXxj/transparent-image.png" alt="Beta Tools — Partner Principale">
             <div class="lh-visit">visita il sito</div>
         </a>
-
-        <!-- 2-col: USAG + Fervit -->
         <div class="logo-grid" style="margin:1px 70px 0;grid-template-columns:repeat(2,1fr)" id="lgrid1">
             <a href="https://www.usag.it/" target="_blank" rel="noopener" class="lc">
-                <svg class="lc-svg" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg" style="height:42px;opacity:.7">
-                    <rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400" /><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text>
-                    <line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5" />
-                    <line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5" />
-                </svg>
-                <span class="lc-name">Utensileria Italiana</span>
-                <span class="lc-visit">visita il sito</span>
+                <svg class="lc-svg" viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg" style="height:42px;opacity:.7"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,Arial,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg>
+                <span class="lc-name">Utensileria Italiana</span><span class="lc-visit">visita il sito</span>
             </a>
             <a href="https://www.fervit.it/" target="_blank" rel="noopener" class="lc">
                 <svg class="lc-svg" viewBox="0 0 160 46" xmlns="http://www.w3.org/2000/svg" style="height:40px;opacity:.7"><text x="0" y="36" font-family="Arial Black,Arial,sans-serif" font-size="36" font-weight="900" fill="#cc2222" letter-spacing="1">FERVIT</text></svg>
-                <span class="lc-name">Ricambi Veicoli</span>
-                <span class="lc-visit">visita il sito</span>
+                <span class="lc-name">Ricambi Veicoli</span><span class="lc-visit">visita il sito</span>
             </a>
         </div>
         <div style="height:100px"></div>
     </section>
 
+    <!-- ═══════ 6b. PROMOZIONI IN CORSO ════════════════════ -->
+    <section id="promozioni" style="background:var(--black);position:relative;z-index:3">
+        <div class="sec" style="padding-bottom:0">
+            <div class="sec-label"><div class="sec-label-inner">Offerte &amp; Cataloghi</div></div>
+            <h2 class="sec-title" id="promoTitle" style="margin-bottom:52px">PROMOZIONI<br><span class="out">IN CORSO</span></h2>
+        </div>
+        <div class="promo-slider-wrap">
+            <div class="promo-catalogs" id="promoCatalogs">
+
+            <!-- FERVI CARD -->
+            <div class="promo-cat-card fervi-card">
+                <div class="pcc-bg-pattern fervi-bg"></div>
+                <div class="pcc-inner">
+                    <div class="pcc-brand-badge fervi-badge">
+                        <svg viewBox="0 0 130 36" xmlns="http://www.w3.org/2000/svg" style="height:26px">
+                            <text x="0" y="28" font-family="Arial Black,sans-serif" font-size="30" font-weight="900" fill="#1a4fa0" letter-spacing="1">FERVI</text>
+                        </svg>
+                        <span class="pcc-badge-label">Pro Smart Equipment</span>
+                    </div>
+                    <div class="pcc-visual fervi-visual pcc-visual-img">
+                        <img src="https://toniuttiwalter.it/wp-content/uploads/2026/03/Fervi-Selection-2026-1.jpg" alt="FERVI Selection 2026 Edizione 01" class="pcc-cover-img">
+                        <div class="pcc-img-overlay"></div>
+                    </div>
+                    <div class="pcc-content">
+                        <div class="pcc-tag fervi-tag">Catalogo 2026</div>
+                        <div class="pcc-title">Selezione Prodotti<br>Edizione 1</div>
+                        <div class="pcc-desc">Il nuovo catalogo FERVI raccoglie l'intera gamma di attrezzature per officina, utensili pneumatici, elevatori e molto altro. Oltre 500 referenze selezionate per i professionisti.</div>
+                        <div class="pcc-validity"><span class="pcc-val-dot fervi-dot"></span>Disponibile in negozio</div>
+                        <div class="pcc-ctas">
+                            <a href="https://www.fervi.it/it/catalogo" target="_blank" rel="noopener" class="pcc-cta fervi-cta">
+                                <span>Scopri il catalogo</span>
+                                <svg viewBox="0 0 20 20" fill="none" style="width:13px;height:13px"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcc-corner-deco fervi-corner">FERVI.COM</div>
+            </div>
+
+            <!-- USAG CARD -->
+            <div class="promo-cat-card usag-card">
+                <div class="pcc-bg-pattern usag-bg"></div>
+                <div class="pcc-inner">
+                    <div class="pcc-brand-badge usag-badge">
+                        <svg viewBox="0 0 140 50" xmlns="http://www.w3.org/2000/svg" style="height:28px"><rect x="1" y="1" width="138" height="48" rx="2" stroke="#e8a000" stroke-width="3" fill="#1a1400"/><text x="11" y="36" font-family="Arial Black,sans-serif" font-size="28" font-weight="900" fill="#e8a000" letter-spacing="5">USAG</text><line x1="113" y1="6" x2="127" y2="44" stroke="#e8a000" stroke-width="3.5"/><line x1="122" y1="6" x2="136" y2="44" stroke="#e8a000" stroke-width="2.5" opacity=".5"/></svg>
+                        <span class="pcc-badge-label usag-bl">Utensileria Professionale</span>
+                    </div>
+                    <div class="pcc-visual usag-visual pcc-visual-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShfidOc0QyxFiCflPUb-tQ9k0SeUU39P3kRA&s" alt="USAG SuperOfferta 2025 XGRIP" class="pcc-cover-img">
+                        <div class="pcc-img-overlay"></div>
+                    </div>
+                    <div class="pcc-content">
+                        <div class="pcc-tag usag-tag">Offerta Speciale 2025</div>
+                        <div class="pcc-title">SuperOfferta<br>XGRIP 2025</div>
+                        <div class="pcc-desc">La promozione USAG dell'anno: la nuova linea X-Grip con impugnature ergonomiche ad alte prestazioni. Oltre 100 referenze a prezzi eccezionali. Prezzi Senza IVA 65/2025.</div>
+                        <div class="pcc-validity"><span class="pcc-val-dot usag-dot"></span>Valida fino al 31/01/2026</div>
+                        <div class="pcc-ctas">
+                            <a href="https://www.usag.it/" target="_blank" rel="noopener" class="pcc-cta usag-cta">
+                                <span>Scopri l'offerta</span>
+                                <svg viewBox="0 0 20 20" fill="none" style="width:13px;height:13px"><path d="M4 10h12M10 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </a>
+                            <a href="tel:0522982772" class="pcc-cta-ghost">Chiedi in negozio</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pcc-corner-deco usag-corner">USAG.IT</div>
+            </div>
+
+        </div><!-- /promo-catalogs -->
+            <div class="promo-slider-dots" id="promoSliderDots">
+                <button class="psd active" data-idx="0" aria-label="Card 1"></button>
+                <button class="psd" data-idx="1" aria-label="Card 2"></button>
+            </div>
+        </div><!-- /promo-slider-wrap -->
+        <div style="height:120px"></div>
+    </section>
+
     <!-- ═══════ 7. WHY US + REVIEWS ══════════════════════ -->
     <section id="perche">
         <div class="sec">
-            <div class="sec-label">
-                <div class="sec-label-inner">Chi siamo</div>
-            </div>
+            <div class="sec-label"><div class="sec-label-inner">Chi siamo</div></div>
             <h2 class="sec-title" style="margin-bottom:56px" id="percheTitle">PERCHÉ <span class="out">SCELGONO</span><br>BASCHIERI</h2>
             <div class="why-grid">
                 <div id="reviews-col">
                     <div class="rating-hero">
                         <div class="rating-big">4.8</div>
-                        <div class="rating-info">
-                            <div class="rl">Rating medio</div>
-                            <div class="rv2">Su Google Maps</div>
-                            <div class="rs">★★★★★</div>
-                        </div>
+                        <div class="rating-info"><div class="rl">Rating medio</div><div class="rv2">Su Google Maps</div><div class="rs">★★★★★</div></div>
                     </div>
-                    <div class="review-card">
-                        <div class="rv-stars">★★★★★</div>
-                        <div class="rv-txt">Negozio di fiducia da anni. Trovi tutto quello che serve per l'officina, personale preparato e sempre disponibile a consigliarti il prodotto giusto.</div>
-                        <div class="rv-name">— Roberto F., autoriparatore</div>
-                    </div>
-                    <div class="review-card">
-                        <div class="rv-stars">★★★★★</div>
-                        <div class="rv-txt">Pezzi di ricambio per camion introvabili altrove? Qui li hanno. Stock enorme e tempi zero. Per noi trasportatori è un punto di riferimento imprescindibile.</div>
-                        <div class="rv-name">— Mirko D., autotrasportatore</div>
-                    </div>
-                    <div class="review-card">
-                        <div class="rv-stars">★★★★★</div>
-                        <div class="rv-txt">Utensili Beta e USAG sempre disponibili, prezzi competitivi e nessuna perdita di tempo. Professionalità vera, quella delle realtà locali con esperienza.</div>
-                        <div class="rv-name">— Stefano P., officina carrozzeria</div>
-                    </div>
+                    <div class="review-card"><div class="rv-stars">★★★★★</div><div class="rv-txt">Negozio di fiducia da anni. Trovi tutto quello che serve per l'officina, personale preparato e sempre disponibile a consigliarti il prodotto giusto.</div><div class="rv-name">— Roberto F., autoriparatore</div></div>
+                    <div class="review-card"><div class="rv-stars">★★★★★</div><div class="rv-txt">Pezzi di ricambio per camion introvabili altrove? Qui li hanno. Stock enorme e tempi zero. Per noi trasportatori è un punto di riferimento imprescindibile.</div><div class="rv-name">— Mirko D., autotrasportatore</div></div>
+                    <div class="review-card"><div class="rv-stars">★★★★★</div><div class="rv-txt">Utensili Beta e USAG sempre disponibili, prezzi competitivi e nessuna perdita di tempo. Professionalità vera, quella delle realtà locali con esperienza.</div><div class="rv-name">— Stefano P., officina carrozzeria</div></div>
                 </div>
                 <div id="reasons-col">
                     <div class="reasons">
-                        <div class="reason-row">
-                            <div class="rn">01</div>
-                            <div>
-                                <div class="rt">Competenza Tecnica</div>
-                                <div class="rb">Oltre 50 anni nel settore significano una conoscenza profonda dei prodotti. Il nostro team ti aiuta a trovare il componente giusto, anche per veicoli e macchine datate.</div>
-                            </div>
-                        </div>
-                        <div class="reason-row">
-                            <div class="rn">02</div>
-                            <div>
-                                <div class="rt">Stock Ampio & Immediato</div>
-                                <div class="rb">Più di 8.000 referenze in magazzino. Nella maggior parte dei casi il pezzo che cerchi è disponibile subito.</div>
-                            </div>
-                        </div>
-                        <div class="reason-row">
-                            <div class="rn">03</div>
-                            <div>
-                                <div class="rt">Marchi di Qualità</div>
-                                <div class="rb">Beta Tools, USAG e Fervit — partner ufficiali selezionati per affidabilità, durabilità e supporto tecnico. Nessun compromesso.</div>
-                            </div>
-                        </div>
-                        <div class="reason-row">
-                            <div class="rn">04</div>
-                            <div>
-                                <div class="rt">Rapporto Diretto</div>
-                                <div class="rb">Siamo una realtà locale. Nessun call center, parli direttamente con chi conosce i prodotti.</div>
-                            </div>
-                        </div>
+                        <div class="reason-row"><div class="rn">01</div><div><div class="rt">Competenza Tecnica</div><div class="rb">Oltre 50 anni nel settore significano una conoscenza profonda dei prodotti. Il nostro team ti aiuta a trovare il componente giusto, anche per veicoli e macchine datate.</div></div></div>
+                        <div class="reason-row"><div class="rn">02</div><div><div class="rt">Stock Ampio &amp; Immediato</div><div class="rb">Più di 8.000 referenze in magazzino. Nella maggior parte dei casi il pezzo che cerchi è disponibile subito.</div></div></div>
+                        <div class="reason-row"><div class="rn">03</div><div><div class="rt">Marchi di Qualità</div><div class="rb">Beta Tools, USAG e Fervit — partner ufficiali selezionati per affidabilità, durabilità e supporto tecnico. Nessun compromesso.</div></div></div>
+                        <div class="reason-row"><div class="rn">04</div><div><div class="rt">Rapporto Diretto</div><div class="rb">Siamo una realtà locale. Nessun call center, parli direttamente con chi conosce i prodotti.</div></div></div>
                     </div>
                 </div>
             </div>
@@ -3477,212 +3230,37 @@
 
     <!-- ═══════ 8. PROMO 3-PANEL ══════════════════════════ -->
     <div class="promo3" id="promo3">
-        <div class="p3-gold">
-            <div>
-                <div class="p3-lbl">Dal 1970 — Scandiano RE</div>
-                <div class="p3-tit">50+ ANNI<br>AL FIANCO<br>DEI PRO</div><a href="#orari" class="p3-cta">Vieni a trovarci →</a>
-            </div>
-        </div>
-        <div class="p3-dark">
-            <div class="p3-dark-lbl">Perché scegliere Baschieri</div>
-            <div class="p3-dark-tit">TUTTO QUELLO<br>CHE CERCHI,<br>SUBITO</div>
-            <ul class="p3-list">
-                <li>Stock immediato su 8.000+ referenze</li>
-                <li>Consulenza tecnica specializzata</li>
-                <li>Marchi leader mondiali certificati</li>
-                <li>Realtà locale dal 1970</li>
-            </ul>
-        </div>
-        <div class="p3-iron">
-            <div class="p3-iron-lbl">Soddisfazione clienti</div>
-            <div>
-                <div class="p3-iron-num">4.8<span class="su">/5</span></div>
-                <div class="p3-iron-desc">Rating su Google Maps<br>con oltre 75 recensioni verificate</div>
-            </div>
-            <a href="tel:0522982772" class="p3-iron-btn">☎ 0522 982772</a>
-        </div>
+        <div class="p3-gold"><div><div class="p3-lbl">Dal 1970 — Scandiano RE</div><div class="p3-tit">50+ ANNI<br>AL FIANCO<br>DEI PRO</div><a href="#orari" class="p3-cta">Vieni a trovarci →</a></div></div>
+        <div class="p3-dark"><div class="p3-dark-lbl">Perché scegliere Baschieri</div><div class="p3-dark-tit">TUTTO QUELLO<br>CHE CERCHI,<br>SUBITO</div><ul class="p3-list"><li>Stock immediato su 8.000+ referenze</li><li>Consulenza tecnica specializzata</li><li>Marchi leader mondiali certificati</li><li>Realtà locale dal 1970</li></ul></div>
+        <div class="p3-iron"><div class="p3-iron-lbl">Soddisfazione clienti</div><div><div class="p3-iron-num">4.8<span class="su">/5</span></div><div class="p3-iron-desc">Rating su Google Maps<br>con oltre 75 recensioni verificate</div></div><a href="tel:0522982772" class="p3-iron-btn">☎ 0522 982772</a></div>
     </div>
 
     <!-- ═══════ 9. ORARI ══════════════════════════════════ -->
     <section id="orari">
         <div class="sec">
-            <div class="sec-label">
-                <div class="sec-label-inner">Informazioni pratiche</div>
-            </div>
-            <h2 class="sec-title" style="margin-bottom:36px" id="orariTitle">ORARI &<br><span class="out">CONTATTI</span></h2>
-
-            <!-- Live status bar -->
+            <div class="sec-label"><div class="sec-label-inner">Informazioni pratiche</div></div>
+            <h2 class="sec-title" style="margin-bottom:36px" id="orariTitle">ORARI &amp;<br><span class="out">CONTATTI</span></h2>
             <div class="live-bar" id="liveBar">
-                <div class="live-clock">
-                    <span id="liveClock">--:--</span><span class="secs" id="liveSecs">:--</span>
-                </div>
-                <div class="live-status">
-                    <div class="live-status-row">
-                        <span class="live-dot" id="liveDot"></span>
-                        <span class="live-label" id="liveLabel">Verifica in corso…</span>
-                    </div>
-                    <div class="live-next" id="liveNext"></div>
-                </div>
+                <div class="live-clock"><span id="liveClock">--:--</span><span class="secs" id="liveSecs">:--</span></div>
+                <div class="live-status"><div class="live-status-row"><span class="live-dot" id="liveDot"></span><span class="live-label" id="liveLabel">Verifica in corso…</span></div><div class="live-next" id="liveNext"></div></div>
                 <a href="tel:0522982772" class="live-cta">☎ Chiama ora</a>
             </div>
-
             <div class="orari-grid" style="margin-top:0">
                 <div id="schedule">
-
-                    <div class="schedule-row" id="row-lun" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080">
-                        <div class="srow-num">LU</div>
-                        <div class="srow-body">
-                            <div class="sday">Lunedì</div>
-                            <div class="stime">
-                                <span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span>
-                                <span style="font-size:14px;color:var(--muted);margin:0 4px">/</span>
-                                <span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span>
-                            </div>
-                            <div class="srow-progress">
-                                <div class="srow-progress-fill"></div>
-                            </div>
-                        </div>
-                        <div class="srow-status">
-                            <div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-row" id="row-mar" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080">
-                        <div class="srow-num">MA</div>
-                        <div class="srow-body">
-                            <div class="sday">Martedì</div>
-                            <div class="stime">
-                                <span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span>
-                                <span style="font-size:14px;color:var(--muted);margin:0 4px">/</span>
-                                <span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span>
-                            </div>
-                            <div class="srow-progress">
-                                <div class="srow-progress-fill"></div>
-                            </div>
-                        </div>
-                        <div class="srow-status">
-                            <div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-row" id="row-mer" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080">
-                        <div class="srow-num">ME</div>
-                        <div class="srow-body">
-                            <div class="sday">Mercoledì</div>
-                            <div class="stime">
-                                <span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span>
-                                <span style="font-size:14px;color:var(--muted);margin:0 4px">/</span>
-                                <span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span>
-                            </div>
-                            <div class="srow-progress">
-                                <div class="srow-progress-fill"></div>
-                            </div>
-                        </div>
-                        <div class="srow-status">
-                            <div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-row" id="row-gio" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080">
-                        <div class="srow-num">GI</div>
-                        <div class="srow-body">
-                            <div class="sday">Giovedì</div>
-                            <div class="stime">
-                                <span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span>
-                                <span style="font-size:14px;color:var(--muted);margin:0 4px">/</span>
-                                <span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span>
-                            </div>
-                            <div class="srow-progress">
-                                <div class="srow-progress-fill"></div>
-                            </div>
-                        </div>
-                        <div class="srow-status">
-                            <div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-row" id="row-ven" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080">
-                        <div class="srow-num">VE</div>
-                        <div class="srow-body">
-                            <div class="sday">Venerdì</div>
-                            <div class="stime">
-                                <span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span>
-                                <span style="font-size:14px;color:var(--muted);margin:0 4px">/</span>
-                                <span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span>
-                            </div>
-                            <div class="srow-progress">
-                                <div class="srow-progress-fill"></div>
-                            </div>
-                        </div>
-                        <div class="srow-status">
-                            <div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-row" id="row-sab" data-opens="480" data-closes="720">
-                        <div class="srow-num">SA</div>
-                        <div class="srow-body">
-                            <div class="sday">Sabato</div>
-                            <div class="stime">
-                                <span class="stime-slot">08:00<span class="stime-sep"></span>12:00</span>
-                            </div>
-                            <div class="srow-progress">
-                                <div class="srow-progress-fill"></div>
-                            </div>
-                        </div>
-                        <div class="srow-status">
-                            <div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div>
-                        </div>
-                    </div>
-
-                    <div class="schedule-row closed-day" id="row-dom" data-opens="-1" data-closes="-1">
-                        <div class="srow-num" style="opacity:.3">DO</div>
-                        <div class="srow-body">
-                            <div class="sday">Domenica</div>
-                            <div class="sclosed">Chiuso</div>
-                        </div>
-                        <div class="srow-status">
-                            <div class="status-pill closed-s"><span class="status-pill-dot"></span>Chiuso</div>
-                        </div>
-                    </div>
-
+                    <div class="schedule-row" id="row-lun" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080"><div class="srow-num">LU</div><div class="srow-body"><div class="sday">Lunedì</div><div class="stime"><span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span><span style="font-size:14px;color:var(--muted);margin:0 4px">/</span><span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span></div><div class="srow-progress"><div class="srow-progress-fill"></div></div></div><div class="srow-status"><div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div></div></div>
+                    <div class="schedule-row" id="row-mar" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080"><div class="srow-num">MA</div><div class="srow-body"><div class="sday">Martedì</div><div class="stime"><span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span><span style="font-size:14px;color:var(--muted);margin:0 4px">/</span><span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span></div><div class="srow-progress"><div class="srow-progress-fill"></div></div></div><div class="srow-status"><div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div></div></div>
+                    <div class="schedule-row" id="row-mer" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080"><div class="srow-num">ME</div><div class="srow-body"><div class="sday">Mercoledì</div><div class="stime"><span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span><span style="font-size:14px;color:var(--muted);margin:0 4px">/</span><span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span></div><div class="srow-progress"><div class="srow-progress-fill"></div></div></div><div class="srow-status"><div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div></div></div>
+                    <div class="schedule-row" id="row-gio" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080"><div class="srow-num">GI</div><div class="srow-body"><div class="sday">Giovedì</div><div class="stime"><span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span><span style="font-size:14px;color:var(--muted);margin:0 4px">/</span><span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span></div><div class="srow-progress"><div class="srow-progress-fill"></div></div></div><div class="srow-status"><div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div></div></div>
+                    <div class="schedule-row" id="row-ven" data-opens="480" data-lunch-close="750" data-lunch-open="870" data-closes="1080"><div class="srow-num">VE</div><div class="srow-body"><div class="sday">Venerdì</div><div class="stime"><span class="stime-slot">08:00<span class="stime-sep"></span>12:30</span><span style="font-size:14px;color:var(--muted);margin:0 4px">/</span><span class="stime-slot">14:30<span class="stime-sep"></span>18:00</span></div><div class="srow-progress"><div class="srow-progress-fill"></div></div></div><div class="srow-status"><div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div></div></div>
+                    <div class="schedule-row" id="row-sab" data-opens="480" data-closes="720"><div class="srow-num">SA</div><div class="srow-body"><div class="sday">Sabato</div><div class="stime"><span class="stime-slot">08:00<span class="stime-sep"></span>12:00</span></div><div class="srow-progress"><div class="srow-progress-fill"></div></div></div><div class="srow-status"><div class="status-pill closed-s"><span class="status-pill-dot"></span>—</div></div></div>
+                    <div class="schedule-row closed-day" id="row-dom" data-opens="-1" data-closes="-1"><div class="srow-num" style="opacity:.3">DO</div><div class="srow-body"><div class="sday">Domenica</div><div class="sclosed">Chiuso</div></div><div class="srow-status"><div class="status-pill closed-s"><span class="status-pill-dot"></span>Chiuso</div></div></div>
                 </div>
                 <div class="contact-panel">
-                    <div class="cblk">
-                        <div class="cico">📍</div>
-                        <div>
-                            <div class="clbl">Indirizzo</div>
-                            <div class="cval">Via Gramsci 12 — 42019 Scandiano (RE)</div>
-                        </div>
-                    </div>
-                    <div class="cblk">
-                        <div class="cico">📞</div>
-                        <div>
-                            <div class="clbl">Telefono</div>
-                            <div class="cval"><a href="tel:0522982772">0522 982772</a></div>
-                        </div>
-                    </div>
-                    <div class="cblk">
-                        <div class="cico">📠</div>
-                        <div>
-                            <div class="clbl">Fax</div>
-                            <div class="cval">0522 982773</div>
-                        </div>
-                    </div>
-                    <div class="cblk">
-                        <div class="cico">✉️</div>
-                        <div>
-                            <div class="clbl">Email</div>
-                            <div class="cval"><a href="/cdn-cgi/l/email-protection#462f28202906242735252e2f23342f682f32"><span class="__cf_email__" data-cfemail="7811161e17381a190b1b10111d0a1156110c">[email&#160;protected]</span></a></div>
-                        </div>
-                    </div>
-                    <div class="cblk">
-                        <div class="cico">🚗</div>
-                        <div>
-                            <div class="clbl">Come raggiungerci</div>
-                            <div class="cval">A22 uscita Reggio Emilia Sud — 8 min dal casello</div>
-                        </div>
-                    </div>
+                    <div class="cblk"><div class="cico">📍</div><div><div class="clbl">Indirizzo</div><div class="cval">Via Gramsci 12 — 42019 Scandiano (RE)</div></div></div>
+                    <div class="cblk"><div class="cico">📞</div><div><div class="clbl">Telefono</div><div class="cval"><a href="tel:0522982772">0522 982772</a></div></div></div>
+                    <div class="cblk"><div class="cico">📠</div><div><div class="clbl">Fax</div><div class="cval">0522 982773</div></div></div>
+                    <div class="cblk"><div class="cico">✉️</div><div><div class="clbl">Email</div><div class="cval"><a href="mailto:info@baschieri.it">info@baschieri.it</a></div></div></div>
+                    <div class="cblk"><div class="cico">🚗</div><div><div class="clbl">Come raggiungerci</div><div class="cval">A22 uscita Reggio Emilia Sud — 8 min dal casello</div></div></div>
                 </div>
             </div>
         </div>
@@ -3698,7 +3276,6 @@
         </div>
     </div>
 
-    <!-- ═══════ MARQUEE ══════════════════════════════════ -->
     <div class="marquee">
         <div class="mtrack">
             <span class="mitem">Utensili Professionali</span><span class="mitem">Ricambi Camion</span><span class="mitem">Ferramenta Industriale</span><span class="mitem">Accessori Officina</span><span class="mitem">Scandiano RE</span><span class="mitem">Dal 1970</span><span class="mitem">Consegna Rapida</span><span class="mitem">Qualità Garantita</span>
@@ -3706,15 +3283,11 @@
         </div>
     </div>
 
-    <!-- ═══════ FOOTER ════════════════════════════════════ -->
     <footer>
         <div class="ftop">
             <div>
                 <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-                    <div class="sphere" style="width:34px;height:34px">
-                        <div class="sphere-x"></div>
-                        <div class="sphere-dot"></div>
-                    </div>
+                    <div class="sphere" style="width:34px;height:34px"><div class="sphere-x"></div><div class="sphere-dot"></div></div>
                     <div class="logo-txt"><span class="logo-name" style="font-size:19px">BASCHIERI</span><span class="logo-sub">Ricambi Industriali Srl</span></div>
                 </div>
                 <p class="ftag">Il punto di riferimento per utensili professionali e ricambi industriali nel cuore dell'Emilia, dal 1970.</p>
@@ -3725,6 +3298,7 @@
                 <ul class="flinks">
                     <li><a href="#prodotti">Prodotti</a></li>
                     <li><a href="#marchi">Marchi</a></li>
+                    <li><a href="#promozioni">Promozioni</a></li>
                     <li><a href="#perche">Chi siamo</a></li>
                     <li><a href="#orari">Orari</a></li>
                     <li><a href="#orari">Contatti</a></li>
@@ -3734,7 +3308,7 @@
                 <div class="fct">Contatti</div>
                 <ul class="flinks">
                     <li><a href="tel:0522982772">0522 982772</a></li>
-                    <li><a href="/cdn-cgi/l/email-protection#4b22252d240b292a382823222e392265223f"><span class="__cf_email__" data-cfemail="2f464149406f4d4e5c4c47464a5d4601465b">[email&#160;protected]</span></a></li>
+                    <li><a href="mailto:info@baschieri.it">info@baschieri.it</a></li>
                     <li>Via Gramsci 12</li>
                     <li>42019 Scandiano (RE)</li>
                 </ul>
@@ -3746,53 +3320,24 @@
         </div>
     </footer>
 
-    <!-- ═══════════════════════════════════════════════════
-     JAVASCRIPT
-════════════════════════════════════════════════════ -->
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        /* ══════════════════════════════════════════════════════
-           LOADER
-        ══════════════════════════════════════════════════════ */
+        /* ══ LOADER ══════════════════════════════════════════ */
         window.addEventListener('load', () => {
             const logo = document.querySelector('.loader-logo');
             const bar = document.getElementById('lbar');
             const sub = document.querySelector('.loader-sub');
             const loader = document.getElementById('loader');
-
             gsap.timeline()
-                .to(logo, {
-                    opacity: 1,
-                    y: 0,
-                    duration: .5,
-                    ease: 'power2.out'
-                })
-                .to(bar, {
-                    width: '100%',
-                    duration: .9,
-                    ease: 'power2.inOut'
-                }, '-=.1')
-                .to(sub, {
-                    opacity: 1,
-                    duration: .4
-                }, '-=.3')
-                .to(loader, {
-                    opacity: 0,
-                    duration: .5,
-                    ease: 'power2.in',
-                    delay: .25
-                })
-                .set(loader, {
-                    display: 'none'
-                })
+                .to(logo, { opacity: 1, y: 0, duration: .5, ease: 'power2.out' })
+                .to(bar,  { width: '100%', duration: .9, ease: 'power2.inOut' }, '-=.1')
+                .to(sub,  { opacity: 1, duration: .4 }, '-=.3')
+                .to(loader, { opacity: 0, duration: .5, ease: 'power2.in', delay: .25 })
+                .set(loader, { display: 'none' })
                 .call(initSite);
         });
 
-        /* ══════════════════════════════════════════════════════
-           INIT — all modules
-        ══════════════════════════════════════════════════════ */
         function initSite() {
             setupCursorParticles();
             setupNav();
@@ -3813,954 +3358,340 @@
             setupMouseTrailTicker();
             setupLogoHoverSpark();
             setupSmoothHover();
-            setupKonamiEasterEgg();
+            setupPromoSection();
         }
 
-        /* ══════════════════════════════════════════════════════
-           1. CURSOR + PARTICLE TRAIL CANVAS
-        ══════════════════════════════════════════════════════ */
+        /* ══ CURSOR + PARTICLE TRAIL ═════════════════════════ */
         function setupCursorParticles() {
             const dot = document.getElementById('cur');
             const ring = document.getElementById('cur-ring');
             const canvas = document.getElementById('curCanvas');
             const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            window.addEventListener('resize', () => {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
-            });
-
-            let mx = window.innerWidth / 2,
-                my = window.innerHeight / 2;
-            let rx = mx,
-                ry = my;
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+            let mx = window.innerWidth/2, my = window.innerHeight/2, rx = mx, ry = my;
             const particles = [];
-
-            document.addEventListener('mousemove', e => {
-                mx = e.clientX;
-                my = e.clientY;
-            });
-
+            document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
             class Particle {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.size = Math.random() * 2.4 + .4;
-                    this.vx = (Math.random() - .5) * 1.8;
-                    this.vy = (Math.random() - .5) * 1.8 - .5;
-                    this.life = 1;
-                    this.decay = Math.random() * .032 + .016;
-                    this.color = Math.random() > .5 ? '#c8a84b' : '#dfc06a';
-                }
-                update() {
-                    this.x += this.vx;
-                    this.y += this.vy;
-                    this.life -= this.decay;
-                    this.size *= .96;
-                }
-                draw() {
-                    ctx.save();
-                    ctx.globalAlpha = this.life * .5;
-                    ctx.fillStyle = this.color;
-                    ctx.shadowColor = this.color;
-                    ctx.shadowBlur = 7;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.restore();
-                }
+                constructor(x,y){ this.x=x; this.y=y; this.size=Math.random()*2.4+.4; this.vx=(Math.random()-.5)*1.8; this.vy=(Math.random()-.5)*1.8-.5; this.life=1; this.decay=Math.random()*.032+.016; this.color=Math.random()>.5?'#c8a84b':'#dfc06a'; }
+                update(){ this.x+=this.vx; this.y+=this.vy; this.life-=this.decay; this.size*=.96; }
+                draw(){ ctx.save(); ctx.globalAlpha=this.life*.5; ctx.fillStyle=this.color; ctx.shadowColor=this.color; ctx.shadowBlur=7; ctx.beginPath(); ctx.arc(this.x,this.y,this.size,0,Math.PI*2); ctx.fill(); ctx.restore(); }
             }
-
-            let fc = 0;
-            (function loop() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                dot.style.left = mx + 'px';
-                dot.style.top = my + 'px';
-                rx += (mx - rx) * .1;
-                ry += (my - ry) * .1;
-                ring.style.left = rx + 'px';
-                ring.style.top = ry + 'px';
-                if (++fc % 2 === 0) particles.push(new Particle(mx, my));
-                for (let i = particles.length - 1; i >= 0; i--) {
-                    particles[i].update();
-                    particles[i].draw();
-                    if (particles[i].life <= 0) particles.splice(i, 1);
-                }
+            let fc=0;
+            (function loop(){
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                dot.style.left=mx+'px'; dot.style.top=my+'px';
+                rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+                ring.style.left=rx+'px'; ring.style.top=ry+'px';
+                if(++fc%2===0) particles.push(new Particle(mx,my));
+                for(let i=particles.length-1;i>=0;i--){ particles[i].update(); particles[i].draw(); if(particles[i].life<=0) particles.splice(i,1); }
                 requestAnimationFrame(loop);
             })();
-
-            document.querySelectorAll('a,button,.pc,.lc,.t-item,.logo-hero,.cblk,.schedule-row').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    dot.classList.add('big');
-                    ring.classList.add('big');
-                });
-                el.addEventListener('mouseleave', () => {
-                    dot.classList.remove('big');
-                    ring.classList.remove('big');
-                });
+            document.querySelectorAll('a,button,.pc,.lc,.t-item,.logo-hero,.cblk,.schedule-row,.promo-cat-card').forEach(el => {
+                el.addEventListener('mouseenter', () => { dot.classList.add('big'); ring.classList.add('big'); });
+                el.addEventListener('mouseleave', () => { dot.classList.remove('big'); ring.classList.remove('big'); });
             });
-
-            // Magnetic CTA buttons
             document.querySelectorAll('.magnetic').forEach(btn => {
-                btn.addEventListener('mousemove', e => {
-                    const r = btn.getBoundingClientRect();
-                    gsap.to(btn, {
-                        x: (e.clientX - r.left - r.width / 2) * .26,
-                        y: (e.clientY - r.top - r.height / 2) * .26,
-                        duration: .3,
-                        ease: 'power2.out'
-                    });
-                });
-                btn.addEventListener('mouseleave', () => gsap.to(btn, {
-                    x: 0,
-                    y: 0,
-                    duration: .55,
-                    ease: 'elastic.out(1,.4)'
-                }));
+                btn.addEventListener('mousemove', e => { const r=btn.getBoundingClientRect(); gsap.to(btn,{x:(e.clientX-r.left-r.width/2)*.26,y:(e.clientY-r.top-r.height/2)*.26,duration:.3,ease:'power2.out'}); });
+                btn.addEventListener('mouseleave', () => gsap.to(btn,{x:0,y:0,duration:.55,ease:'elastic.out(1,.4)'}));
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           2. NAV + PROGRESS + HAMBURGER
-        ══════════════════════════════════════════════════════ */
+        /* ══ NAV ═════════════════════════════════════════════ */
         function setupNav() {
-            const nav = document.getElementById('nav');
-            const burger = document.getElementById('navBurger');
-            const drawer = document.getElementById('navDrawer');
-            let isOpen = false;
-
-            window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60), {
-                passive: true
-            });
-
-            function openDrawer() {
-                isOpen = true;
-                burger.classList.add('open');
-                drawer.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeDrawer() {
-                isOpen = false;
-                burger.classList.remove('open');
-                drawer.classList.remove('open');
-                document.body.style.overflow = '';
-            }
-
-            burger.addEventListener('click', () => isOpen ? closeDrawer() : openDrawer());
-
-            // Close on link click
-            drawer.querySelectorAll('.drawer-link').forEach(link => {
-                link.addEventListener('click', () => {
-                    closeDrawer();
-                });
-            });
-
-            // Close on backdrop click (outside content area)
-            drawer.addEventListener('click', e => {
-                if (e.target === drawer) closeDrawer();
-            });
-
-            // Close on Escape
-            document.addEventListener('keydown', e => {
-                if (e.key === 'Escape' && isOpen) closeDrawer();
-            });
+            const nav=document.getElementById('nav'), burger=document.getElementById('navBurger'), drawer=document.getElementById('navDrawer');
+            let isOpen=false;
+            window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+            function openDrawer(){isOpen=true;burger.classList.add('open');drawer.classList.add('open');document.body.style.overflow='hidden';}
+            function closeDrawer(){isOpen=false;burger.classList.remove('open');drawer.classList.remove('open');document.body.style.overflow='';}
+            burger.addEventListener('click',()=>isOpen?closeDrawer():openDrawer());
+            drawer.querySelectorAll('.drawer-link').forEach(l=>l.addEventListener('click',closeDrawer));
+            drawer.addEventListener('click',e=>{if(e.target===drawer)closeDrawer();});
+            document.addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen)closeDrawer();});
         }
 
         function setupProgressBar() {
-            const bar = document.getElementById('pbar');
-            window.addEventListener('scroll', () => {
-                bar.style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
-            }, {
-                passive: true
-            });
+            const bar=document.getElementById('pbar');
+            window.addEventListener('scroll',()=>{bar.style.width=(window.scrollY/(document.body.scrollHeight-window.innerHeight)*100)+'%';},{passive:true});
         }
 
-        /* ══════════════════════════════════════════════════════
-           3. SIDE NAV DOTS
-        ══════════════════════════════════════════════════════ */
+        /* ══ NAV DOTS ════════════════════════════════════════ */
         function setupNavDots() {
-            const dots = ['home', 'prodotti', 'marchi', 'perche', 'orari'];
-            const els = document.querySelectorAll('.ndot');
-            els.forEach((d, i) => d.addEventListener('click', () => {
-                const t = document.getElementById(dots[i]);
-                if (t) t.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }));
-            const sections = dots.map(id => document.getElementById(id)).filter(Boolean);
-            new IntersectionObserver(entries => {
-                entries.forEach(e => {
-                    if (!e.isIntersecting) return;
-                    const i = dots.indexOf(e.target.id);
-                    els.forEach((d, j) => d.classList.toggle('active', j === i));
-                });
-            }, {
-                threshold: .35
-            }).observe && sections.forEach(s => {
-                new IntersectionObserver(entries => {
-                    entries.forEach(e => {
-                        if (!e.isIntersecting) return;
-                        const i = dots.indexOf(e.target.id);
-                        els.forEach((d, j) => d.classList.toggle('active', j === i));
-                    });
-                }, {
-                    threshold: .35
-                }).observe(s);
+            const dots=['home','prodotti','marchi','promozioni','perche','orari'];
+            const els=document.querySelectorAll('.ndot');
+            els.forEach((d,i)=>d.addEventListener('click',()=>{const t=document.getElementById(dots[i]);if(t)t.scrollIntoView({behavior:'smooth'});}));
+            const sections=dots.map(id=>document.getElementById(id)).filter(Boolean);
+            sections.forEach(s=>{
+                new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;const i=dots.indexOf(e.target.id);els.forEach((d,j)=>d.classList.toggle('active',j===i));});},{threshold:.35}).observe(s);
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           4. HERO
-        ══════════════════════════════════════════════════════ */
+        /* ══ HERO ════════════════════════════════════════════ */
         function setupHeroAnim() {
-            gsap.set('#sbar', {
-                opacity: 0,
-                y: 20
-            });
-            gsap.timeline({
-                    delay: .15
-                })
-                .to('.h-eye-inner', {
-                    y: 0,
-                    opacity: 1,
-                    duration: .8,
-                    ease: 'power3.out'
-                })
-                .to('.h-title .word span', {
-                    y: 0,
-                    duration: .95,
-                    stagger: .13,
-                    ease: 'power4.out'
-                }, '-=.5')
-                .to('#hsub', {
-                    opacity: 1,
-                    y: 0,
-                    duration: .8,
-                    ease: 'power3.out'
-                }, '-=.5')
-                .to('#sbar', {
-                    opacity: 1,
-                    y: 0,
-                    duration: .7,
-                    ease: 'power3.out'
-                }, '-=.4');
+            gsap.set('#sbar',{opacity:0,y:20});
+            gsap.timeline({delay:.15})
+                .to('.h-eye-inner',{y:0,opacity:1,duration:.8,ease:'power3.out'})
+                .to('.h-title .word span',{y:0,duration:.95,stagger:.13,ease:'power4.out'},'-=.5')
+                .to('#hsub',{opacity:1,y:0,duration:.8,ease:'power3.out'},'-=.5')
+                .to('#sbar',{opacity:1,y:0,duration:.7,ease:'power3.out'},'-=.4');
         }
 
-        /* ══════════════════════════════════════════════════════
-           5. PARALLAX
-        ══════════════════════════════════════════════════════ */
+        /* ══ PARALLAX ════════════════════════════════════════ */
         function setupParallax() {
-            gsap.to('#pl1', {
-                y: 130,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '#pban',
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.3
-                }
-            });
-            gsap.from('.pban-content', {
-                y: 60,
-                opacity: 0,
-                duration: 1.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '#pban',
-                    start: 'top 72%'
-                }
-            });
-            gsap.to('.hero-gear', {
-                y: 180,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '.hero',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 2
-                }
-            });
+            gsap.to('#pl1',{y:130,ease:'none',scrollTrigger:{trigger:'#pban',start:'top bottom',end:'bottom top',scrub:1.3}});
+            gsap.from('.pban-content',{y:60,opacity:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#pban',start:'top 72%'}});
+            gsap.to('.hero-gear',{y:180,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:2}});
         }
 
-        /* ══════════════════════════════════════════════════════
-           6. SECTION LABELS — clip-path wipe
-        ══════════════════════════════════════════════════════ */
+        /* ══ SECTION LABELS ══════════════════════════════════ */
         function setupSectionLabels() {
-            document.querySelectorAll('.sec-label-inner').forEach(el => {
-                gsap.to(el, {
-                    clipPath: 'inset(0 0% 0 0)',
-                    duration: .9,
-                    ease: 'power3.inOut',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 89%'
-                    }
-                });
+            document.querySelectorAll('.sec-label-inner').forEach(el=>{
+                gsap.to(el,{clipPath:'inset(0 0% 0 0)',duration:.9,ease:'power3.inOut',scrollTrigger:{trigger:el,start:'top 89%'}});
             });
-            document.querySelectorAll('#prodTitle,#marchiTitle,#percheTitle,#orariTitle').forEach(el => {
-                gsap.from(el, {
-                    y: 55,
-                    opacity: 0,
-                    duration: 1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 86%'
-                    }
-                });
+            document.querySelectorAll('#prodTitle,#marchiTitle,#percheTitle,#orariTitle,#promoTitle').forEach(el=>{
+                gsap.from(el,{y:55,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%'}});
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           7. SCRAMBLE TEXT — titles randomise then settle
-        ══════════════════════════════════════════════════════ */
-        const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!&%';
-
+        /* ══ SCRAMBLE ════════════════════════════════════════ */
+        const GLYPHS='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789#@!&%';
         function scrambleEl(el) {
-            const orig = el.innerHTML;
-            const txt = el.textContent;
-            let frame = 0;
-            const total = 22;
-            const iv = setInterval(() => {
+            const orig=el.innerHTML, txt=el.textContent;
+            let frame=0; const total=22;
+            const iv=setInterval(()=>{
                 frame++;
-                const revealed = Math.floor(frame / total * txt.length);
-                let out = '';
-                for (let i = 0; i < txt.length; i++) {
-                    if (txt[i] === ' ' || txt[i] === '\n') {
-                        out += txt[i];
-                        continue;
-                    }
-                    out += i < revealed ? txt[i] : GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
+                const revealed=Math.floor(frame/total*txt.length);
+                let out='';
+                for(let i=0;i<txt.length;i++){
+                    if(txt[i]===' '||txt[i]==='\n'){out+=txt[i];continue;}
+                    out+=i<revealed?txt[i]:GLYPHS[Math.floor(Math.random()*GLYPHS.length)];
                 }
-                el.textContent = out;
-                if (frame >= total) {
-                    clearInterval(iv);
-                    el.innerHTML = orig;
-                }
-            }, 38);
+                el.textContent=out;
+                if(frame>=total){clearInterval(iv);el.innerHTML=orig;}
+            },38);
         }
 
         function setupScrambleTitles() {
-            document.querySelectorAll('#prodTitle,#marchiTitle,#percheTitle,#orariTitle').forEach(el => {
-                let done = false;
-                ScrollTrigger.create({
-                    trigger: el,
-                    start: 'top 86%',
-                    onEnter: () => {
-                        if (!done) {
-                            done = true;
-                            scrambleEl(el);
-                        }
-                    }
-                });
+            document.querySelectorAll('#prodTitle,#marchiTitle,#percheTitle,#orariTitle,#promoTitle').forEach(el=>{
+                let done=false;
+                ScrollTrigger.create({trigger:el,start:'top 86%',onEnter:()=>{if(!done){done=true;scrambleEl(el);}}});
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           8. PRODUCTS
-        ══════════════════════════════════════════════════════ */
+        /* ══ PRODUCTS ════════════════════════════════════════ */
         function setupProducts() {
-            document.querySelectorAll('.pc').forEach((c, i) => {
-                gsap.to(c, {
-                    y: 0,
-                    opacity: 1,
-                    duration: .75,
-                    ease: 'power3.out',
-                    delay: (i % 4) * .07,
-                    scrollTrigger: {
-                        trigger: c,
-                        start: 'top 88%'
-                    }
-                });
+            document.querySelectorAll('.pc').forEach((c,i)=>{
+                gsap.to(c,{y:0,opacity:1,duration:.75,ease:'power3.out',delay:(i%4)*.07,scrollTrigger:{trigger:c,start:'top 88%'}});
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           9. BRAND GRID
-        ══════════════════════════════════════════════════════ */
+        /* ══ BRAND GRID ══════════════════════════════════════ */
         function setupBrandGrid() {
-            gsap.from('.logo-hero', {
-                opacity: 0,
-                scale: .94,
-                duration: 1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.logo-hero',
-                    start: 'top 83%'
-                }
-            });
-            document.querySelectorAll('.lc').forEach((c, i) => {
-                gsap.to(c, {
-                    y: 0,
-                    opacity: 1,
-                    duration: .65,
-                    ease: 'power3.out',
-                    delay: (i % 4) * .065,
-                    scrollTrigger: {
-                        trigger: c,
-                        start: 'top 91%'
-                    }
-                });
+            gsap.from('.logo-hero',{opacity:0,scale:.94,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.logo-hero',start:'top 83%'}});
+            document.querySelectorAll('.lc').forEach((c,i)=>{
+                gsap.to(c,{y:0,opacity:1,duration:.65,ease:'power3.out',delay:(i%4)*.065,scrollTrigger:{trigger:c,start:'top 91%'}});
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           10. 3D TILT — product + brand cards
-        ══════════════════════════════════════════════════════ */
+        /* ══ TILT ════════════════════════════════════════════ */
         function setupTilt() {
-            function tilt(el, intensity) {
-                const shine = document.createElement('div');
-                shine.style.cssText = 'position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;border-radius:inherit';
+            function tilt(el,intensity){
+                const shine=document.createElement('div');
+                shine.style.cssText='position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;border-radius:inherit';
                 el.appendChild(shine);
-                el.addEventListener('mousemove', e => {
-                    const r = el.getBoundingClientRect();
-                    const dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
-                    const dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
-                    gsap.to(el, {
-                        rotateX: -dy * intensity,
-                        rotateY: dx * intensity,
-                        transformPerspective: 800,
-                        duration: .3,
-                        ease: 'power2.out'
-                    });
-                    const px = ((e.clientX - r.left) / r.width) * 100,
-                        py = ((e.clientY - r.top) / r.height) * 100;
-                    shine.style.background = `radial-gradient(circle at ${px}% ${py}%,rgba(255,255,255,.07),transparent 58%)`;
-                    shine.style.opacity = '1';
+                el.addEventListener('mousemove',e=>{
+                    const r=el.getBoundingClientRect(),dx=(e.clientX-r.left-r.width/2)/(r.width/2),dy=(e.clientY-r.top-r.height/2)/(r.height/2);
+                    gsap.to(el,{rotateX:-dy*intensity,rotateY:dx*intensity,transformPerspective:800,duration:.3,ease:'power2.out'});
+                    const px=((e.clientX-r.left)/r.width)*100,py=((e.clientY-r.top)/r.height)*100;
+                    shine.style.background=`radial-gradient(circle at ${px}% ${py}%,rgba(255,255,255,.07),transparent 58%)`;
+                    shine.style.opacity='1';
                 });
-                el.addEventListener('mouseleave', () => {
-                    gsap.to(el, {
-                        rotateX: 0,
-                        rotateY: 0,
-                        duration: .6,
-                        ease: 'elastic.out(1,.5)'
-                    });
-                    shine.style.opacity = '0';
-                });
+                el.addEventListener('mouseleave',()=>{ gsap.to(el,{rotateX:0,rotateY:0,duration:.6,ease:'elastic.out(1,.5)'}); shine.style.opacity='0'; });
             }
-            document.querySelectorAll('.pc').forEach(el => tilt(el, 9));
-            document.querySelectorAll('.lc').forEach(el => tilt(el, 6));
+            document.querySelectorAll('.pc').forEach(el=>tilt(el,9));
+            document.querySelectorAll('.lc').forEach(el=>tilt(el,6));
         }
 
-        /* ══════════════════════════════════════════════════════
-           11. REVIEWS
-        ══════════════════════════════════════════════════════ */
+        /* ══ REVIEWS ═════════════════════════════════════════ */
         function setupReviews() {
-            gsap.from('#reviews-col', {
-                x: -60,
-                opacity: 0,
-                duration: 1.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '#reviews-col',
-                    start: 'top 82%'
-                }
-            });
-            gsap.from('#reasons-col', {
-                x: 60,
-                opacity: 0,
-                duration: 1.1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '#reasons-col',
-                    start: 'top 82%'
-                }
-            });
-            gsap.from('.review-card', {
-                y: 35,
-                opacity: 0,
-                duration: .7,
-                stagger: .12,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.review-card',
-                    start: 'top 83%'
-                }
-            });
-            gsap.from('.reason-row', {
-                x: 30,
-                opacity: 0,
-                duration: .6,
-                stagger: .1,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '.reasons',
-                    start: 'top 83%'
-                }
-            });
+            gsap.from('#reviews-col',{x:-60,opacity:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#reviews-col',start:'top 82%'}});
+            gsap.from('#reasons-col',{x:60,opacity:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:'#reasons-col',start:'top 82%'}});
+            gsap.from('.review-card',{y:35,opacity:0,duration:.7,stagger:.12,ease:'power3.out',scrollTrigger:{trigger:'.review-card',start:'top 83%'}});
+            gsap.from('.reason-row',{x:30,opacity:0,duration:.6,stagger:.1,ease:'power3.out',scrollTrigger:{trigger:'.reasons',start:'top 83%'}});
         }
 
-        /* ══════════════════════════════════════════════════════
-           12. PROMO — each panel from a different direction
-        ══════════════════════════════════════════════════════ */
+        /* ══ PROMO 3-PANEL ═══════════════════════════════════ */
         function setupPromo() {
-            gsap.from('.p3-gold', {
-                x: -60,
-                opacity: 0,
-                duration: .9,
-                ease: 'power3.out',
-                scrollTrigger: {
-                    trigger: '#promo3',
-                    start: 'top 82%'
-                }
-            });
-            gsap.from('.p3-dark', {
-                y: 60,
-                opacity: 0,
-                duration: .9,
-                ease: 'power3.out',
-                delay: .1,
-                scrollTrigger: {
-                    trigger: '#promo3',
-                    start: 'top 82%'
-                }
-            });
-            gsap.from('.p3-iron', {
-                x: 60,
-                opacity: 0,
-                duration: .9,
-                ease: 'power3.out',
-                delay: .2,
-                scrollTrigger: {
-                    trigger: '#promo3',
-                    start: 'top 82%'
-                }
-            });
+            gsap.from('.p3-gold',{x:-60,opacity:0,duration:.9,ease:'power3.out',scrollTrigger:{trigger:'#promo3',start:'top 82%'}});
+            gsap.from('.p3-dark',{y:60,opacity:0,duration:.9,ease:'power3.out',delay:.1,scrollTrigger:{trigger:'#promo3',start:'top 82%'}});
+            gsap.from('.p3-iron',{x:60,opacity:0,duration:.9,ease:'power3.out',delay:.2,scrollTrigger:{trigger:'#promo3',start:'top 82%'}});
         }
 
-        /* ══════════════════════════════════════════════════════
-           13. COUNTERS — scramble digits then settle
-        ══════════════════════════════════════════════════════ */
-        function setupCountersScramble() {
-            const done = new Set();
-
-            function animCount(el) {
-                if (done.has(el)) return;
-                done.add(el);
-                const target = parseFloat(el.dataset.t),
-                    dec = parseInt(el.dataset.d) || 0;
-                const dur = 1900,
-                    scramEnd = 450,
-                    s = performance.now();
-                (function f(now) {
-                    const elapsed = now - s,
-                        p = Math.min(elapsed / dur, 1),
-                        eased = 1 - Math.pow(1 - p, 3);
-                    if (elapsed < scramEnd) {
-                        const str = target.toFixed(dec);
-                        el.textContent = str.split('').map(c => (c === '.' || c === ',') ? c : Math.floor(Math.random() * 10)).join('');
-                    } else {
-                        el.textContent = (target * eased).toFixed(dec);
-                    }
-                    if (p < 1) requestAnimationFrame(f);
-                    else el.textContent = target.toFixed(dec);
-                })(s);
-            }
-            document.querySelectorAll('.stat-cell').forEach(cell => {
-                ScrollTrigger.create({
-                    trigger: cell,
-                    start: 'top 83%',
-                    onEnter: () => {
-                        cell.classList.add('in-view');
-                        cell.querySelectorAll('.cnt').forEach(animCount);
-                    }
-                });
-            });
-            setTimeout(() => document.querySelectorAll('.sbar .cnt').forEach(animCount), 1900);
-        }
-
-        /* ══════════════════════════════════════════════════════
-           14. LIVE CLOCK + PER-ROW STATUS PILLS + PROGRESS BAR
-        ══════════════════════════════════════════════════════ */
-        function setupLiveClock() {
-            const clockEl = document.getElementById('liveClock');
-            const secsEl = document.getElementById('liveSecs');
-            const dotEl = document.getElementById('liveDot');
-            const labelEl = document.getElementById('liveLabel');
-            const nextEl = document.getElementById('liveNext');
-            if (!clockEl) return;
-
-            // [opens, lunchClose, lunchOpen, closes] — minutes from midnight. -1 = closed
-            const sched = [{
-                    opens: -1,
-                    closes: -1
-                }, // 0 Sun
-                {
-                    opens: 480,
-                    lunchClose: 750,
-                    lunchOpen: 870,
-                    closes: 1080
-                }, // 1 Mon
-                {
-                    opens: 480,
-                    lunchClose: 750,
-                    lunchOpen: 870,
-                    closes: 1080
-                }, // 2 Tue
-                {
-                    opens: 480,
-                    lunchClose: 750,
-                    lunchOpen: 870,
-                    closes: 1080
-                }, // 3 Wed
-                {
-                    opens: 480,
-                    lunchClose: 750,
-                    lunchOpen: 870,
-                    closes: 1080
-                }, // 4 Thu
-                {
-                    opens: 480,
-                    lunchClose: 750,
-                    lunchOpen: 870,
-                    closes: 1080
-                }, // 5 Fri
-                {
-                    opens: 480,
-                    closes: 720
-                }, // 6 Sat
-            ];
-
-            const rowIds = [null, 'row-lun', 'row-mar', 'row-mer', 'row-gio', 'row-ven', 'row-sab', 'row-dom'];
-            const fmt = m => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0');
-
-            function statusForDayTime(sc, total) {
-                if (sc.opens === -1) return 'closed';
-                if (total >= sc.opens && total < (sc.lunchClose || sc.closes)) return 'open';
-                if (sc.lunchClose && total >= sc.lunchClose && total < sc.lunchOpen) return 'lunch';
-                if (sc.lunchOpen && total >= sc.lunchOpen && total < sc.closes) return 'open';
-                return 'closed';
-            }
-
-            function progressPercent(sc, total) {
-                // What % through the working day is it?
-                if (sc.opens === -1 || total < sc.opens || total > sc.closes) return 0;
-                const totalMinutes = sc.closes - sc.opens - (sc.lunchClose ? (sc.lunchOpen - sc.lunchClose) : 0);
-                let elapsed = total - sc.opens;
-                if (sc.lunchClose && total > sc.lunchClose) elapsed -= Math.min(total - sc.lunchClose, sc.lunchOpen - sc.lunchClose);
-                return Math.min(100, Math.max(0, (elapsed / totalMinutes) * 100));
-            }
-
-            function setPill(row, status) {
-                if (!row) return;
-                const pill = row.querySelector('.status-pill');
-                if (!pill) return;
-                pill.className = 'status-pill';
-                if (status === 'open') {
-                    pill.classList.add('open');
-                    pill.innerHTML = '<span class="status-pill-dot"></span>Aperto';
-                } else if (status === 'lunch') {
-                    pill.classList.add('lunch');
-                    pill.innerHTML = '<span class="status-pill-dot"></span>Pausa';
-                } else {
-                    pill.classList.add('closed-s');
-                    pill.innerHTML = '<span class="status-pill-dot"></span>Chiuso';
-                }
-            }
-
-            function tick() {
-                const now = new Date();
-                const h = now.getHours(),
-                    m = now.getMinutes(),
-                    s = now.getSeconds();
-                const total = h * 60 + m;
-                const day = now.getDay(); // 0=Sun … 6=Sat
-                const sc = sched[day];
-
-                // Clock
-                clockEl.textContent = String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
-                secsEl.textContent = ':' + String(s).padStart(2, '0');
-
-                // Today's status
-                const todayStatus = statusForDayTime(sc, total);
-                dotEl.className = 'live-dot ' + todayStatus;
-
-                let nextInfo = '';
-                if (sc.opens !== -1) {
-                    if (todayStatus === 'open') {
-                        const closeAt = (sc.lunchClose && total < sc.lunchClose) ? sc.lunchClose : sc.closes;
-                        nextInfo = 'Chiude alle ' + fmt(closeAt);
-                    } else if (todayStatus === 'lunch') {
-                        nextInfo = 'Riapre alle ' + fmt(sc.lunchOpen);
-                    } else if (total < sc.opens) {
-                        nextInfo = 'Apre alle ' + fmt(sc.opens);
-                    }
-                }
-                nextEl.textContent = nextInfo;
-
-                if (todayStatus === 'open') {
-                    labelEl.textContent = 'Aperto adesso';
-                    labelEl.style.color = '#4ade80';
-                } else if (todayStatus === 'lunch') {
-                    labelEl.textContent = 'Pausa pranzo';
-                    labelEl.style.color = 'var(--gold-lt)';
-                } else {
-                    labelEl.textContent = 'Chiuso';
-                    labelEl.style.color = '#f87171';
-                }
-
-                // Per-row status pills + progress bar
-                // Day index mapping: Mon=1, Tue=2 … Sat=6, Sun=0
-                // Our rows: lun=1,mar=2,mer=3,gio=4,ven=5,sab=6,dom=0
-                const rowDayMap = [{
-                        id: 'row-lun',
-                        dayIdx: 1
-                    },
-                    {
-                        id: 'row-mar',
-                        dayIdx: 2
-                    },
-                    {
-                        id: 'row-mer',
-                        dayIdx: 3
-                    },
-                    {
-                        id: 'row-gio',
-                        dayIdx: 4
-                    },
-                    {
-                        id: 'row-ven',
-                        dayIdx: 5
-                    },
-                    {
-                        id: 'row-sab',
-                        dayIdx: 6
-                    },
-                    {
-                        id: 'row-dom',
-                        dayIdx: 0
-                    },
-                ];
-                rowDayMap.forEach(({
-                    id,
-                    dayIdx
-                }) => {
-                    const row = document.getElementById(id);
-                    if (!row) return;
-                    const rowSc = sched[dayIdx];
-                    if (dayIdx === day) {
-                        // Today's row — show live status + progress
-                        const st = statusForDayTime(rowSc, total);
-                        setPill(row, st);
-                        const pct = progressPercent(rowSc, total);
-                        const fill = row.querySelector('.srow-progress-fill');
-                        if (fill) fill.style.width = pct + '%';
-                    } else {
-                        // Other rows — show generic open/closed for their typical time
-                        if (rowSc.opens === -1) setPill(row, 'closed');
-                        else setPill(row, 'closed-s');
-                        const fill = row.querySelector('.srow-progress-fill');
-                        if (fill) fill.style.width = '0%';
-                    }
-                });
-            }
-
-            tick();
-            setInterval(tick, 1000);
-        }
-
-        /* ══════════════════════════════════════════════════════
-           15. SCHEDULE HIGHLIGHT + STAGGER IN
-        ══════════════════════════════════════════════════════ */
-        function setupScheduleHighlight() {
-            // Map JS day index to row id
-            const dayToRow = {
-                0: 'row-dom',
-                1: 'row-lun',
-                2: 'row-mar',
-                3: 'row-mer',
-                4: 'row-gio',
-                5: 'row-ven',
-                6: 'row-sab'
-            };
-            const todayId = dayToRow[new Date().getDay()];
-            const todayRow = document.getElementById(todayId);
-            if (todayRow) {
-                todayRow.classList.add('today');
-                const dayEl = todayRow.querySelector('.sday');
-                if (dayEl) {
-                    const txt = dayEl.textContent.trim();
-                    dayEl.innerHTML = txt + ' <span class="today-badge">OGGI</span>';
-                }
-            }
-
-            // Stagger cards on scroll-in
+        /* ══ PROMO CATALOGS SECTION ══════════════════════════ */
+        function setupPromoSection() {
             ScrollTrigger.create({
-                trigger: '#schedule',
+                trigger: '#promoCatalogs',
                 start: 'top 82%',
                 onEnter: () => {
-                    gsap.from('.schedule-row', {
-                        x: -36,
-                        opacity: 0,
-                        duration: .55,
-                        stagger: {
-                            amount: .4,
-                            from: 'start'
-                        },
-                        ease: 'power3.out'
-                    });
+                    gsap.from('.fervi-card', { x: -60, opacity: 0, duration: .9, ease: 'power3.out' });
+                    gsap.from('.usag-card',  { x:  60, opacity: 0, duration: .9, ease: 'power3.out', delay: .1 });
                 }
             });
-
-            // Contact blocks stagger
+            let done = false;
             ScrollTrigger.create({
-                trigger: '.contact-panel',
-                start: 'top 82%',
-                onEnter: () => gsap.from('.cblk', {
-                    y: 22,
-                    opacity: 0,
-                    duration: .5,
-                    stagger: .08,
-                    ease: 'power3.out'
-                })
+                trigger: '#promoTitle', start: 'top 86%',
+                onEnter: () => { if (!done) { done = true; scrambleEl(document.getElementById('promoTitle')); } }
+            });
+            document.querySelectorAll('.promo-cat-card').forEach(el => {
+                el.addEventListener('mousemove', e => {
+                    const r = el.getBoundingClientRect();
+                    const dx = (e.clientX - r.left - r.width/2) / (r.width/2);
+                    const dy = (e.clientY - r.top - r.height/2) / (r.height/2);
+                    gsap.to(el, { rotateX: -dy*5, rotateY: dx*5, transformPerspective: 1200, duration: .3, ease: 'power2.out' });
+                });
+                el.addEventListener('mouseleave', () => {
+                    gsap.to(el, { rotateX: 0, rotateY: 0, duration: .7, ease: 'elastic.out(1,.5)' });
+                });
             });
 
-            // Live bar
-            ScrollTrigger.create({
-                trigger: '.live-bar',
-                start: 'top 88%',
-                onEnter: () => gsap.from('.live-bar', {
-                    x: -44,
-                    opacity: 0,
-                    duration: .75,
-                    ease: 'power3.out'
-                })
+            /* ── Mobile slider dots ── */
+            const rail  = document.getElementById('promoCatalogs');
+            const dots  = document.querySelectorAll('.psd');
+            if (!rail || !dots.length) return;
+
+            function updateDots() {
+                const cards = rail.querySelectorAll('.promo-cat-card');
+                let closest = 0, minDist = Infinity;
+                cards.forEach((c, i) => {
+                    const dist = Math.abs(c.getBoundingClientRect().left - rail.getBoundingClientRect().left);
+                    if (dist < minDist) { minDist = dist; closest = i; }
+                });
+                dots.forEach((d, i) => d.classList.toggle('active', i === closest));
+            }
+
+            rail.addEventListener('scroll', updateDots, { passive: true });
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const idx   = parseInt(dot.dataset.idx);
+                    const cards = rail.querySelectorAll('.promo-cat-card');
+                    if (cards[idx]) {
+                        const offset = cards[idx].offsetLeft - rail.offsetLeft;
+                        rail.scrollTo({ left: offset, behavior: 'smooth' });
+                    }
+                });
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           16. TICKER — pure JS rAF loop, no CSS animation glitch
-        ══════════════════════════════════════════════════════ */
-        function setupMouseTrailTicker() {
-            const track = document.getElementById('tickerTrack');
-            if (!track) return;
-
-            // Base speed in px/frame (positive = scroll left)
-            const BASE_SPEED = 1.1;
-            const MAX_BOOST = 3.5; // max extra px/frame from mouse
-            const FRICTION = 0.92; // how fast the boost decays
-
-            let x = 0;
-            let boost = 0;
-            let lastMX = 0;
-            let paused = false;
-            let halfW = 0;
-
-            // Measure loop point after fonts/images settle
-            function measureHalf() {
-                // The track is duplicated (SET A + SET B), so half its scrollWidth is the loop point
-                halfW = track.scrollWidth / 2;
+        /* ══ COUNTERS ════════════════════════════════════════ */
+        function setupCountersScramble() {
+            const done=new Set();
+            function animCount(el){
+                if(done.has(el))return; done.add(el);
+                const target=parseFloat(el.dataset.t),dec=parseInt(el.dataset.d)||0;
+                const dur=1900,scramEnd=450,s=performance.now();
+                (function f(now){
+                    const elapsed=now-s,p=Math.min(elapsed/dur,1),eased=1-Math.pow(1-p,3);
+                    if(elapsed<scramEnd){const str=target.toFixed(dec);el.textContent=str.split('').map(c=>(c==='.'||c===',')?c:Math.floor(Math.random()*10)).join('');}
+                    else{el.textContent=(target*eased).toFixed(dec);}
+                    if(p<1)requestAnimationFrame(f); else el.textContent=target.toFixed(dec);
+                })(s);
             }
-            measureHalf();
-            window.addEventListener('resize', measureHalf);
-
-            // Mouse velocity → boost
-            document.addEventListener('mousemove', e => {
-                const delta = e.clientX - lastMX;
-                lastMX = e.clientX;
-                // Moving right slows ticker, moving left speeds it up — feels natural
-                boost += delta * 0.12;
-                boost = Math.max(-MAX_BOOST, Math.min(MAX_BOOST, boost));
+            document.querySelectorAll('.stat-cell').forEach(cell=>{
+                ScrollTrigger.create({trigger:cell,start:'top 83%',onEnter:()=>{cell.classList.add('in-view');cell.querySelectorAll('.cnt').forEach(animCount);}});
             });
+            setTimeout(()=>document.querySelectorAll('.sbar .cnt').forEach(animCount),1900);
+        }
 
-            // Hover pause
-            track.addEventListener('mouseenter', () => paused = true);
-            track.addEventListener('mouseleave', () => paused = false);
+        /* ══ LIVE CLOCK ══════════════════════════════════════ */
+        function setupLiveClock() {
+            const clockEl=document.getElementById('liveClock'),secsEl=document.getElementById('liveSecs'),dotEl=document.getElementById('liveDot'),labelEl=document.getElementById('liveLabel'),nextEl=document.getElementById('liveNext');
+            if(!clockEl)return;
+            const sched=[{opens:-1,closes:-1},{opens:480,lunchClose:750,lunchOpen:870,closes:1080},{opens:480,lunchClose:750,lunchOpen:870,closes:1080},{opens:480,lunchClose:750,lunchOpen:870,closes:1080},{opens:480,lunchClose:750,lunchOpen:870,closes:1080},{opens:480,lunchClose:750,lunchOpen:870,closes:1080},{opens:480,closes:720}];
+            const fmt=m=>String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0');
+            function statusForDayTime(sc,total){if(sc.opens===-1)return'closed';if(total>=sc.opens&&total<(sc.lunchClose||sc.closes))return'open';if(sc.lunchClose&&total>=sc.lunchClose&&total<sc.lunchOpen)return'lunch';if(sc.lunchOpen&&total>=sc.lunchOpen&&total<sc.closes)return'open';return'closed';}
+            function progressPercent(sc,total){if(sc.opens===-1||total<sc.opens||total>sc.closes)return 0;const totalMinutes=sc.closes-sc.opens-(sc.lunchClose?(sc.lunchOpen-sc.lunchClose):0);let elapsed=total-sc.opens;if(sc.lunchClose&&total>sc.lunchClose)elapsed-=Math.min(total-sc.lunchClose,sc.lunchOpen-sc.lunchClose);return Math.min(100,Math.max(0,(elapsed/totalMinutes)*100));}
+            function setPill(row,status){if(!row)return;const pill=row.querySelector('.status-pill');if(!pill)return;pill.className='status-pill';if(status==='open'){pill.classList.add('open');pill.innerHTML='<span class="status-pill-dot"></span>Aperto';}else if(status==='lunch'){pill.classList.add('lunch');pill.innerHTML='<span class="status-pill-dot"></span>Pausa';}else{pill.classList.add('closed-s');pill.innerHTML='<span class="status-pill-dot"></span>Chiuso';}}
+            function tick(){
+                const now=new Date(),h=now.getHours(),m=now.getMinutes(),s=now.getSeconds(),total=h*60+m,day=now.getDay(),sc=sched[day];
+                clockEl.textContent=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+                secsEl.textContent=':'+String(s).padStart(2,'0');
+                const todayStatus=statusForDayTime(sc,total);
+                dotEl.className='live-dot '+todayStatus;
+                let nextInfo='';
+                if(sc.opens!==-1){if(todayStatus==='open'){const closeAt=(sc.lunchClose&&total<sc.lunchClose)?sc.lunchClose:sc.closes;nextInfo='Chiude alle '+fmt(closeAt);}else if(todayStatus==='lunch'){nextInfo='Riapre alle '+fmt(sc.lunchOpen);}else if(total<sc.opens){nextInfo='Apre alle '+fmt(sc.opens);}}
+                nextEl.textContent=nextInfo;
+                if(todayStatus==='open'){labelEl.textContent='Aperto adesso';labelEl.style.color='#4ade80';}else if(todayStatus==='lunch'){labelEl.textContent='Pausa pranzo';labelEl.style.color='var(--gold-lt)';}else{labelEl.textContent='Chiuso';labelEl.style.color='#f87171';}
+                const rowDayMap=[{id:'row-lun',dayIdx:1},{id:'row-mar',dayIdx:2},{id:'row-mer',dayIdx:3},{id:'row-gio',dayIdx:4},{id:'row-ven',dayIdx:5},{id:'row-sab',dayIdx:6},{id:'row-dom',dayIdx:0}];
+                rowDayMap.forEach(({id,dayIdx})=>{
+                    const row=document.getElementById(id);if(!row)return;
+                    const rowSc=sched[dayIdx];
+                    if(dayIdx===day){const st=statusForDayTime(rowSc,total);setPill(row,st);const pct=progressPercent(rowSc,total);const fill=row.querySelector('.srow-progress-fill');if(fill)fill.style.width=pct+'%';}
+                    else{if(rowSc.opens===-1)setPill(row,'closed');else setPill(row,'closed-s');const fill=row.querySelector('.srow-progress-fill');if(fill)fill.style.width='0%';}
+                });
+            }
+            tick(); setInterval(tick,1000);
+        }
 
-            (function loop() {
+        /* ══ SCHEDULE HIGHLIGHT ══════════════════════════════ */
+        function setupScheduleHighlight() {
+            const dayToRow={0:'row-dom',1:'row-lun',2:'row-mar',3:'row-mer',4:'row-gio',5:'row-ven',6:'row-sab'};
+            const todayId=dayToRow[new Date().getDay()];
+            const todayRow=document.getElementById(todayId);
+            if(todayRow){todayRow.classList.add('today');const dayEl=todayRow.querySelector('.sday');if(dayEl){const txt=dayEl.textContent.trim();dayEl.innerHTML=txt+' <span class="today-badge">OGGI</span>';}}
+            ScrollTrigger.create({trigger:'#schedule',start:'top 82%',onEnter:()=>{gsap.from('.schedule-row',{x:-36,opacity:0,duration:.55,stagger:{amount:.4,from:'start'},ease:'power3.out'});}});
+            ScrollTrigger.create({trigger:'.contact-panel',start:'top 82%',onEnter:()=>gsap.from('.cblk',{y:22,opacity:0,duration:.5,stagger:.08,ease:'power3.out'})});
+            ScrollTrigger.create({trigger:'.live-bar',start:'top 88%',onEnter:()=>gsap.from('.live-bar',{x:-44,opacity:0,duration:.75,ease:'power3.out'})});
+        }
+
+        /* ══ TICKER ══════════════════════════════════════════ */
+        function setupMouseTrailTicker() {
+            const track=document.getElementById('tickerTrack');
+            if(!track)return;
+            const BASE_SPEED=1.1,MAX_BOOST=3.5,FRICTION=.92;
+            let x=0,boost=0,lastMX=0,paused=false,halfW=0;
+            function measureHalf(){ halfW=track.scrollWidth/2; }
+            measureHalf(); window.addEventListener('resize',measureHalf);
+            document.addEventListener('mousemove',e=>{const delta=e.clientX-lastMX;lastMX=e.clientX;boost+=delta*.12;boost=Math.max(-MAX_BOOST,Math.min(MAX_BOOST,boost));});
+            track.addEventListener('mouseenter',()=>paused=true);
+            track.addEventListener('mouseleave',()=>paused=false);
+            (function loop(){
                 requestAnimationFrame(loop);
-
-                if (paused) {
-                    boost *= FRICTION;
-                    return;
-                }
-
-                boost *= FRICTION;
-                // Clamp to reasonable range: negative boost = faster, positive = slower
-                const speed = BASE_SPEED - boost;
-                const clampedSpeed = Math.max(0.3, Math.min(BASE_SPEED + MAX_BOOST, speed));
-
-                x -= clampedSpeed;
-
-                // Seamless loop: reset when we've scrolled exactly one full set
-                if (halfW > 0 && x <= -halfW) {
-                    x += halfW;
-                }
-
-                track.style.transform = 'translateX(' + x + 'px)';
+                if(paused){boost*=FRICTION;return;}
+                boost*=FRICTION;
+                const speed=BASE_SPEED-boost;
+                const clampedSpeed=Math.max(.3,Math.min(BASE_SPEED+MAX_BOOST,speed));
+                x-=clampedSpeed;
+                if(halfW>0&&x<=-halfW)x+=halfW;
+                track.style.transform='translateX('+x+'px)';
             })();
         }
 
-        /* ══════════════════════════════════════════════════════
-           17. LOGO HOVER SPARK BURST
-        ══════════════════════════════════════════════════════ */
+        /* ══ LOGO HOVER SPARK ════════════════════════════════ */
         function setupLogoHoverSpark() {
-            const canvas = document.getElementById('curCanvas');
-            const ctx = canvas.getContext('2d');
-            document.querySelectorAll('.lc').forEach(cell => {
-                cell.addEventListener('mouseenter', () => {
-                    const r = cell.getBoundingClientRect();
-                    const cx = r.left + r.width / 2,
-                        cy = r.top + r.height / 2;
-                    for (let i = 0; i < 12; i++) {
-                        const angle = (i / 12) * Math.PI * 2;
-                        setTimeout(() => {
-                            const len = Math.random() * 18 + 8;
-                            ctx.save();
-                            ctx.globalAlpha = .65;
-                            ctx.strokeStyle = '#c8a84b';
-                            ctx.lineWidth = 1.5;
-                            ctx.shadowColor = '#c8a84b';
-                            ctx.shadowBlur = 8;
-                            ctx.beginPath();
-                            ctx.moveTo(cx, cy);
-                            ctx.lineTo(cx + Math.cos(angle) * len, cy + Math.sin(angle) * len);
-                            ctx.stroke();
-                            ctx.restore();
-                        }, i * 12);
-                    }
+            const canvas=document.getElementById('curCanvas'),ctx=canvas.getContext('2d');
+            document.querySelectorAll('.lc').forEach(cell=>{
+                cell.addEventListener('mouseenter',()=>{
+                    const r=cell.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+                    for(let i=0;i<12;i++){const angle=(i/12)*Math.PI*2;setTimeout(()=>{const len=Math.random()*18+8;ctx.save();ctx.globalAlpha=.65;ctx.strokeStyle='#c8a84b';ctx.lineWidth=1.5;ctx.shadowColor='#c8a84b';ctx.shadowBlur=8;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(angle)*len,cy+Math.sin(angle)*len);ctx.stroke();ctx.restore();},i*12);}
                 });
             });
         }
 
-        /* ══════════════════════════════════════════════════════
-           18. SMOOTH HOVER — contacts + schedule
-        ══════════════════════════════════════════════════════ */
+        /* ══ SMOOTH HOVER ════════════════════════════════════ */
         function setupSmoothHover() {
-            document.querySelectorAll('.schedule-row:not(.today)').forEach(row => {
-                const time = row.querySelector('.stime');
-                if (!time) return;
-                row.addEventListener('mouseenter', () => gsap.to(time, {
-                    x: 8,
-                    color: 'var(--white)',
-                    duration: .2
-                }));
-                row.addEventListener('mouseleave', () => gsap.to(time, {
-                    x: 0,
-                    duration: .3,
-                    ease: 'power2.out'
-                }));
+            document.querySelectorAll('.schedule-row:not(.today)').forEach(row=>{
+                const time=row.querySelector('.stime');if(!time)return;
+                row.addEventListener('mouseenter',()=>gsap.to(time,{x:8,color:'var(--white)',duration:.2}));
+                row.addEventListener('mouseleave',()=>gsap.to(time,{x:0,duration:.3,ease:'power2.out'}));
             });
         }
 
-
-        /* ══════════════════════════════════════════════════════
-           STATS SECTION — cascade in
-        ══════════════════════════════════════════════════════ */
+        /* ══ STATS CASCADE ═══════════════════════════════════ */
         ScrollTrigger.create({
-            trigger: '.stats-section',
-            start: 'top 74%',
-            onEnter: () => gsap.from('.stat-cell', {
-                y: 46,
-                opacity: 0,
-                duration: .7,
-                stagger: .09,
-                ease: 'power3.out'
-            })
+            trigger: '.stats-section', start: 'top 74%',
+            onEnter: () => gsap.from('.stat-cell', { y: 46, opacity: 0, duration: .7, stagger: .09, ease: 'power3.out' })
         });
     </script>
 </body>
-
 </html>
