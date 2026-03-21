@@ -5,20 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baschieri — Utensili Professionali | Scandiano</title>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800&family=IBM+Plex+Mono:wght@400;500;600&family=Oswald:wght@600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.cdnfonts.com/css/bionix" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,600;0,700;0,800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/curetro" rel="stylesheet">
     <style>
-      /* Bionix: letters only — digits handled by Oswald */
+      /* Curetro: numeri e simboli. Bionix (cdnfonts): lettere */
       @font-face {
-        font-family: 'BionixFull';
-        src: local('Bionix');
-        unicode-range: U+0041-005A, U+0061-007A, U+00C0-024F; /* A-Z a-z + extended latin */
+        font-family: 'DisplayStack';
+        src: url('https://fonts.cdnfonts.com/s/110326/Curetro.woff') format('woff');
+        unicode-range: U+0030-0039, U+002B, U+002F, U+002E, U+002C, U+0025; /* 0-9 . , + / % */
       }
       @font-face {
-        font-family: 'BionixFull';
-        src: local('Oswald');
-        font-weight: 600 700;
-        unicode-range: U+0030-0039, U+002B, U+002F, U+002E, U+002C; /* 0-9 + . , + / */
+        font-family: 'DisplayStack';
+        src: url('https://fonts.cdnfonts.com/s/84887/Bionix.woff') format('woff');
+        unicode-range: U+0041-005A, U+0061-007A, U+00C0-024F, U+0020; /* A-Z a-z spazio */
       }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -86,7 +85,7 @@
         }
 
         .loader-logo {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 52px;
             letter-spacing: .14em;
             color: var(--white);
@@ -281,7 +280,7 @@
         }
 
         .logo-name {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 21px;
             letter-spacing: .1em;
             color: var(--white);
@@ -447,7 +446,7 @@
         }
 
         .h-title {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: clamp(68px, 10vw, 156px);
             line-height: .88;
             letter-spacing: .01em;
@@ -624,7 +623,7 @@
         }
 
         .sn {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 42px;
             line-height: 1;
             color: var(--white);
@@ -818,7 +817,7 @@
         }
 
         .stat-num {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: clamp(48px, 5.5vw, 74px);
             line-height: 1;
             color: var(--white);
@@ -882,7 +881,7 @@
         }
 
         .sec-title {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: clamp(44px, 5.5vw, 84px);
             line-height: .92;
             letter-spacing: .01em;
@@ -983,7 +982,7 @@
         }
 
         .pname {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 24px;
             letter-spacing: .05em;
             color: var(--white);
@@ -1063,7 +1062,7 @@
         }
 
         .pban-big {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: clamp(52px, 8.5vw, 124px);
             letter-spacing: .06em;
             color: transparent;
@@ -1429,7 +1428,7 @@
         }
 
         .fe-year {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 88px;
             line-height: .9;
             color: #6495ed;
@@ -1486,7 +1485,7 @@
         .usag-super {
             position: relative;
             z-index: 3;
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 52px;
             line-height: 1;
             color: white;
@@ -1524,7 +1523,7 @@
         .usag-tag  { color: #e84040; border-color: rgba(232,64,64,.25);  background: rgba(232,64,64,.05) }
 
         .pcc-title {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: clamp(28px, 3vw, 44px);
             line-height: .9;
             letter-spacing: .03em;
@@ -1796,7 +1795,7 @@
             position: absolute;
             top: -16px;
             left: 18px;
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 86px;
             color: var(--gold);
             opacity: .1;
@@ -1842,7 +1841,7 @@
         }
 
         .rating-big {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 88px;
             line-height: 1;
             color: #000
@@ -1858,7 +1857,7 @@
         }
 
         .rating-info .rv2 {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 26px;
             color: #000
         }
@@ -1885,7 +1884,7 @@
         }
 
         .rn {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 40px;
             color: var(--gold);
             line-height: 1;
@@ -1893,7 +1892,7 @@
         }
 
         .rt {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 25px;
             letter-spacing: .04em;
             color: var(--white);
@@ -1927,7 +1926,7 @@
 
         .p3-gold::after {
             content: '50+';
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 220px;
             line-height: 1;
             color: rgba(0, 0, 0, .08);
@@ -1947,7 +1946,7 @@
         }
 
         .p3-tit {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: clamp(32px, 3.5vw, 50px);
             line-height: .9;
             color: #000;
@@ -1992,7 +1991,7 @@
         }
 
         .p3-dark-tit {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: clamp(24px, 3vw, 40px);
             line-height: .9;
             color: var(--white)
@@ -2042,7 +2041,7 @@
         }
 
         .p3-iron-num {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 66px;
             line-height: 1;
             color: var(--white);
@@ -2153,7 +2152,7 @@
         }
 
         .stime {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 20px;
             letter-spacing: .06em;
             color: var(--white)
@@ -2243,7 +2242,7 @@
         }
 
         .map-title {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 18px;
             letter-spacing: .2em;
             color: var(--white);
@@ -2379,7 +2378,7 @@
         }
 
         .fph {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 27px;
             letter-spacing: .08em;
             color: var(--chrome)
@@ -2409,7 +2408,7 @@
         }
 
         .live-clock {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 52px;
             letter-spacing: .08em;
             color: var(--white);
@@ -2551,7 +2550,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 19px;
             color: rgba(255, 255, 255, .18);
             letter-spacing: .04em;
@@ -2598,7 +2597,7 @@
         }
 
         .stime {
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 22px;
             letter-spacing: .06em;
             color: var(--white);
@@ -2778,7 +2777,7 @@
         .nav-drawer ul li a {
             display: block;
             padding: 22px 40px;
-            font-family: 'BionixFull', 'Bionix', 'Oswald', sans-serif;
+            font-family: 'DisplayStack', 'Curetro', 'Bionix', sans-serif;
             font-size: 42px;
             letter-spacing: .05em;
             color: var(--white);
