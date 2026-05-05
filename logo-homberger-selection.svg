@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 120">
+  <rect x="2" y="2" width="556" height="116" rx="10" fill="none" stroke="#ffffff" stroke-opacity=".55" stroke-width="4"/>
+  <text x="50%" y="52%" text-anchor="middle" dominant-baseline="middle"
+        fill="#ffffff" font-family="Barlow, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="2">
+    HOMBERGER
+  </text>
+  <text x="50%" y="78%" text-anchor="middle" dominant-baseline="middle"
+        fill="#ffffff" fill-opacity=".78" font-family="IBM Plex Mono, monospace" font-size="18" letter-spacing="6">
+    SELECTION
+  </text>
+</svg>
